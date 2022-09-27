@@ -1,0 +1,492 @@
+[
+  {
+    "category": "Thời Trang Nữ",
+    "child": [
+      "Đầm, váy",
+      "Áo nữ",
+      "Set bộ, jumpsuit",
+      "Áo khoác nữ",
+      "Đồ lót nữ",
+      "Quần nữ",
+      "Đồ mặc nhà, đồ ngủ",
+      "Chân váy",
+      "Đồ bơi, đồ đi biển",
+      "Đồ đôi nam nữ",
+      "Quần áo thể thao nữ",
+      "Thời trang trung niên",
+      "Vải, nguyên phụ liệu may mặc",
+      "Thời trang big size",
+      "Thời trang thiết kế",
+      "Trang phục cưới"
+    ]
+  },
+  {
+    "category": "Thời Trang Nam",
+    "child": [
+      "Áo thun, áo polo nam",
+      "Áo sơ mi nam",
+      "Áo Khoác Nam",
+      "Quần jeans nam",
+      "Quần Dài Nam",
+      "Quần shorts nam",
+      "Quần áo thể thao nam",
+      "Đồ lót và đồ ngủ nam",
+      "Áo vest, blazer",
+      "Thời trang nam big size",
+      "Áo dài nam"
+    ]
+  },
+  {
+    "category": "Nhà Cửa",
+    "child": [
+      "Đồ dùng nhà bếp",
+      "Đồ dùng phòng ngủ",
+      "Đồ dùng sinh hoạt",
+      "Đồ dùng phòng ăn, uống",
+      "Thiết bị & đồ dùng phòng tắm",
+      "Vệ sinh, chăm sóc nhà cửa",
+      "Nội thất phòng khách",
+      "Nội thất phòng làm việc",
+      "Đồ Ngoại Thất",
+      "Dụng cụ làm bánh, kem",
+      "Nội thất phòng ngủ",
+      "Nội thất bếp, phòng ăn",
+      "Nội thất phòng trẻ em",
+      "Bộ đồ ăn dùng một lần",
+      "Đồ dùng trong nhà khác"
+    ]
+  },
+  {
+    "category": "Sức Khỏe & Làm Đẹp",
+    "child": [
+      "Dưỡng da mặt",
+      "Trang điểm môi",
+      "Trang điểm mặt",
+      "Làm sạch da mặt",
+      "Mặt nạ dưỡng da",
+      "Trang điểm mắt",
+      "Trị liệu chuyên sâu da mặt",
+      "Tắm & chăm sóc cơ thể",
+      "Chăm sóc tóc",
+      "Mỹ phẩm nam",
+      "Nước hoa",
+      "Mỹ phẩm Handmade & Organic",
+      "Thực phẩm chức năng",
+      "Thiết bị & dụng cụ chăm sóc cá nhân",
+      "Dụng cụ trang điểm",
+      "Chăm sóc răng miệng",
+      "Chăm sóc móng",
+      "Chăm sóc phụ nữ",
+      "Sản phẩm hỗ trợ tình dục",
+      "Dinh dưỡng thể thao, protein"
+    ]
+  },
+  {
+    "category": "Giày Dép",
+    "child": [
+      "Dép nữ",
+      "Giày cao gót nữ",
+      "Giày sandal nữ",
+      "Giày sneaker/thể thao nam",
+      "Giày lười, giày mọi nam",
+      "Giày sneaker/thể thao nữ",
+      "Dép nam",
+      "Giày thể thao chuyên dụng",
+      "Giày tây nam",
+      "Giày lười, giày mọi, slip-on nữ",
+      "Giày boot nữ",
+      "Giày tăng chiều cao nam",
+      "Giày, dép unisex",
+      "Giày, dép nhựa đi mưa",
+      "Giày, dép nữ big size",
+      "Giày, dép nam big size",
+      "Giày nam khác",
+      "Giày nữ khác",
+      "Phụ kiện giày dép"
+    ]
+  },
+  {
+    "category": "Túi Xách",
+    "child": [
+      "Balo",
+      "Túi xách nữ",
+      "Ví, bóp nam",
+      "Túi xách nam",
+      "Ví, bóp nữ",
+      "Vali - Túi xách du lịch",
+      "Túi laptop, ipad, điện thoại"
+    ]
+  },
+  {
+    "category": "Đồng Hồ",
+    "child": [
+      "Đồng hồ nam",
+      "Đồng hồ nữ",
+      "Đồng hồ đôi",
+      "Đồng hồ trẻ em",
+      "Đồng hồ khác",
+      "Phụ kiện đồng hồ"
+    ]
+  },
+  {
+    "category": "Phụ Kiện Thời Trang",
+    "child": [
+      "Phụ kiện thời trang nữ",
+      "Mắt kính nam nữ",
+      "Phụ kiện tóc nữ",
+      "Nón",
+      "Thắt Lưng",
+      "Phụ kiện thời trang nam"
+    ]
+  },
+  {
+    "category": "Tân Trang Nhà Cửa",
+    "child": [
+      "Dụng cụ cầm tay",
+      "Máy cơ khí và chế tạo",
+      "Dụng cụ làm vườn",
+      "Các loại đèn",
+      "Thiết bị điện và phụ kiện",
+      "Linh kiện điện tử",
+      "Phụ kiện máy cơ khí và chế tạo",
+      "Bóng đèn và phụ kiện đèn",
+      "Thiết bị đo lường",
+      "Thiết bị an ninh",
+      "Thiết bị nước",
+      "Dụng cụ xây dựng cho gia đình",
+      "Bảo hộ lao động",
+      "Đồ kim khí",
+      "Thiết bị nâng đỡ",
+      "Thiết bị và dụng cụ PCCC",
+      "Tân trang nhà cửa khác"
+    ]
+  },
+  {
+    "category": "Đời sống",
+    "child": [
+      "Trang trí nhà cửa",
+      "Quà tặng, hàng thủ công",
+      "Hoa, Cây cảnh",
+      "Nến và sản phẩm làm thơm phòng",
+      "Trang trí bàn",
+      "Trang trí tiệc và sự kiện",
+      "Nguyên vật liệu làm đồ handmade",
+      "Dụng cụ làm đồ handmade",
+      "Trang trí cửa sổ, lối đi"
+    ]
+  },
+  {
+    "category": "Dịch Vụ Tiện Ích",
+    "child": [
+      "Tiện Ích Nổi Bật",
+      "Tiện Ích Điện Thoại",
+      "Thanh Toán Hóa đơn",
+      "Du Lịch - Giải Trí",
+      "Tài chính",
+      "Quyên góp"
+    ]
+  },
+  {
+    "category": "Phụ kiện công nghệ",
+    "child": [
+      "Ốp lưng, bao da điện thoại, máy tính bảng",
+      "Sạc điện thoại, máy tính bảng",
+      "Phụ kiện điện thoại, máy tính bảng",
+      "Thiết bị đeo công nghệ",
+      "Thiết bị lưu trữ",
+      "Thiết bị mạng",
+      "Phụ kiện công nghệ khác",
+      "SIM card, dụng cụ chuyển đổi SIM",
+      "Linh kiện điện thoại, máy tính bảng",
+      "Cáp sạc, cáp kết nối"
+    ]
+  },
+  {
+    "category": "Ô tô - Xe máy",
+    "child": [
+      "Motor, xe máy, xe đạp điện",
+      "Xe ô tô",
+      "Phụ tùng xe máy",
+      "Thiết bị số cho ô tô",
+      "Phụ kiện bên trong ô tô",
+      "Phụ kiện bên ngoài ô tô, phụ tùng",
+      "Thiết bị định vị, cảm biến",
+      "Đồ bảo hộ mô tô, xe máy",
+      "Chăm sóc và bảo dưỡng ô tô, xe máy",
+      "Đèn xe máy",
+      "Bánh xe, lốp xe máy",
+      "Phụ kiện, đồ chơi xe máy",
+      "Hệ thống cơ điện, nhiên liệu, bộ lọc"
+    ]
+  },
+  {
+    "category": "Thiết bị y tế",
+    "child": [
+      "Chăm sóc sức khỏe",
+      "Thiết bị massage",
+      "Vật tư y tế",
+      "Dụng cụ chuyên khoa",
+      "Máy móc y tế",
+      "Dụng cụ vật lý trị liệu",
+      "Thiết bị y tế khác"
+    ]
+  },
+  {
+    "category": "Mẹ và bé",
+    "child": [
+      "Bỉm, Tã, Vệ sinh",
+      "Chăm sóc sức khỏe và an toàn",
+      "Sữa và thức ăn dặm",
+      "Dụng cụ ăn uống",
+      "Đồ cho bé ra ngoài",
+      "Thời trang mẹ bầu",
+      "Đồ dùng phòng ngủ cho bé",
+      "Đồ dùng phòng tắm cho bé",
+      "Đồ dùng cho mẹ bầu",
+      "Thời trang gia đình"
+    ]
+  },
+  {
+    "category": "Thời Trang Trẻ Em",
+    "child": [
+      "Quần áo sơ sinh",
+      "Bé gái 1-4 tuổi",
+      "Bé gái 5-14 tuổi",
+      "Bé trai 1-4 tuổi",
+      "Bé trai 5-14 tuổi",
+      "Giày dép bé gái",
+      "Giày dép bé trai",
+      "Phụ kiện thời trang trẻ em"
+    ]
+  },
+  {
+    "category": "Bách Hóa Tổng Hợp",
+    "child": [
+      "Giặt giũ & chăm sóc nhà cửa",
+      "Các loại thực phẩm khô",
+      "Đồ uống",
+      "Bánh, mứt",
+      "Gia vị",
+      "Thực phẩm bổ dưỡng",
+      "Kẹo",
+      "Sữa và thực phẩm từ sữa",
+      "Nguyên liệu",
+      "Thực phẩm đóng hộp",
+      "Vệ sinh cá nhân",
+      "Thực phẩm chay",
+      "Quà tặng bách hóa theo mùa",
+      "Bách hóa tổng hợp khác"
+    ]
+  },
+  {
+    "category": "Thực Phẩm Tươi Sống",
+    "child": [
+      "Rau - củ - quả",
+      "Các Loại Mắm",
+      "Thực phẩm đông lạnh",
+      "Thủy hải sản",
+      "Thịt - Trứng"
+    ]
+  },
+  {
+    "category": "Đồ điện gia dụng",
+    "child": [
+      "Quạt",
+      "Máy xay, máy ép",
+      "Nồi điện, nồi cơm điện",
+      "Thiết bị điện nhà bếp",
+      "Thiết bị chăm sóc quần áo",
+      "Bếp điện, ấm đun",
+      "Máy lọc, điều hòa không khí",
+      "Máy hút bụi",
+      "Lò nướng, bếp nướng",
+      "Thiết bị điện cho nhà hàng, quán cafe",
+      "Máy nước nóng"
+    ]
+  },
+  {
+    "category": "Điện thoại - Máy tính bảng",
+    "child": [
+      "Điện thoại mới",
+      "Máy tính bảng mới",
+      "Điện thoại cũ",
+      "Máy tính bảng cũ"
+    ]
+  },
+  {
+    "category": "Tivi - Thiết bị giải trí",
+    "child": [
+      "Tivi",
+      "Phụ kiện tivi",
+      "Thiết bị chơi game"
+    ]
+  },
+  {
+    "category": "Máy ảnh - Máy quay phim",
+    "child": [
+      "Máy quay, thiết bị ghi hình",
+      "Máy ảnh",
+      "Ống kính",
+      "Phụ kiện máy ảnh, máy quay",
+      "Máy ảnh - Máy quay phim khác"
+    ]
+  },
+  {
+    "category": "Thiết bị âm thanh",
+    "child": [
+      "Loa",
+      "Tai nghe",
+      "Hệ thống giải trí, karaoke",
+      "Linh kiện và phụ kiện âm thanh",
+      "Thiết bị âm thanh khác"
+    ]
+  },
+  {
+    "category": "Thể thao - Dã ngoại - Giải trí",
+    "child": [
+      "Dụng cụ, thiết bị tập thể dục",
+      "Hỗ trợ an toàn",
+      "Xe đạp",
+      "Phụ kiện xe đạp",
+      "Phụ tùng xe đạp",
+      "Bơi lội, lặn",
+      "Tennis",
+      "Cầu lông",
+      "Bóng bàn",
+      "Bóng đá",
+      "Bóng chuyền",
+      "Bóng rổ",
+      "Dã ngoại, cắm trại",
+      "Leo núi",
+      "Câu cá",
+      "Yoga, võ thuật, đấm bốc",
+      "Chạy bộ",
+      "Golf",
+      "Các môn thể thao khác",
+      "Nhạc cụ"
+    ]
+  },
+  {
+    "category": "Sách & Văn phòng phẩm",
+    "child": [
+      "Văn Phòng Phẩm",
+      "Dụng cụ mỹ thuật",
+      "Sách Ngoại ngữ - Từ điển",
+      "Sách thường thức - đời sống",
+      "Sách Văn học - Tiểu thuyết",
+      "Sách thiếu nhi",
+      "Sách Kinh tế",
+      "Sách Giáo khoa - Tham khảo",
+      "Sách chuyên ngành",
+      "Sách Văn hóa - Du lịch",
+      "Sách cũ"
+    ]
+  },
+  {
+    "category": "Vật phẩm phong thủy",
+    "child": [
+      "Tượng Phật",
+      "Linh vật phong thủy",
+      "Đá phong thủy",
+      "Tranh phong thủy",
+      "Phong thủy trang trí",
+      "Đồ thờ cúng",
+      "Trang sức phong thủy"
+    ]
+  },
+  {
+    "category": "Chăm sóc thú cưng",
+    "child": [
+      "Chăm sóc chó, mèo",
+      "Chăm sóc cá & bể thủy sinh",
+      "Chăm sóc chim",
+      "Chăm sóc thú cưng khác"
+    ]
+  },
+  {
+    "category": "Trang sức",
+    "child": [
+      "Vòng, lắc tay",
+      "Dây chuyền, vòng cổ",
+      "Bông tai, khuyên tai",
+      "Nhẫn",
+      "Set bộ trang sức",
+      "Trang sức cơ thể",
+      "Trang sức cặp đôi",
+      "Trang sức cho bé",
+      "Charm",
+      "Kệ treo, hộp đựng trang sức",
+      "Nguyên liệu & dụng cụ làm trang sức",
+      "Trang sức vàng nữ",
+      "Trang sức vàng nam",
+      "Trang sức vàng khác"
+    ]
+  },
+  {
+    "category": "Điện máy",
+    "child": [
+      "Tủ lạnh, tủ đông, tủ mát",
+      "Máy lạnh, máy điều hòa",
+      "Máy giặt, máy sấy",
+      "Điện gia dụng lớn"
+    ]
+  },
+  {
+    "category": "Đồ chơi",
+    "child": [
+      "Đồ chơi điều khiển từ xa",
+      "Hóa trang, cosplay",
+      "Trò chơi",
+      "Đồ chơi vận động cho bé",
+      "Đồ chơi phát triển trí tuệ",
+      "Búp bê, thú bông",
+      "Mô hình đồ chơi",
+      "Đồ chơi cho bé dưới 18 tháng",
+      "Đồ chơi đồ hàng",
+      "Đồ chơi khác"
+    ]
+  },
+  {
+    "category": "Laptop, Máy tính & Thiết bị văn phòng",
+    "child": [
+      "Laptop mới",
+      "Phụ kiện máy tính, laptop",
+      "Chuột, bàn phím",
+      "Linh kiện máy tính, laptop",
+      "Máy tính để bàn",
+      "Laptop cũ",
+      "Máy chiếu và phụ kiện",
+      "Máy in & Phụ kiện máy in",
+      "Phần mềm máy tính",
+      "Thiết bị văn phòng khác"
+    ]
+  },
+  {
+    "category": "Vé máy bay - Du lịch",
+    "child": [
+      "Vé máy bay Sendo",
+      "Vé xe Sendo",
+      "Vé tàu Sendo",
+      "Phương tiện di chuyển - Thuê xe",
+      "Tour du lịch trong nước",
+      "Combo du lịch trong nước",
+      "Dịch vụ du lịch trong nước",
+      "Khách sạn",
+      "Tour trọn gói"
+    ]
+  },
+  {
+    "category": "Voucher dịch vụ",
+    "child": [
+      "E-Voucher - Quà Tặng",
+      "Nhà hàng - Ẩm thực",
+      "Khóa học",
+      "Giải trí",
+      "Mã code phần mềm",
+      "Làm đẹp - Spa - Gym",
+      "Dịch vụ bảo hiểm",
+      "Dịch vụ giúp việc - Sửa chữa",
+      "Dịch vụ quà tặng"
+    ]
+  }
+]
