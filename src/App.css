@@ -5,4 +5,22 @@
     html {
         font-family: Proxima Nova, system-ui, sans-serif;
     }
+
+    body::-webkit-scrollbar {
+        width: 14px;
+    }
+
+    body::-webkit-scrollbar-track {
+        background: white;
+    }
+
+    body::-webkit-scrollbar-thumb {
+        background-color: grey;
+        border-radius: 20px;
+        border: 4px solid white;
+    }
+
+    body::-webkit-scrollbar-thumb:hover {
+        background: #9e9e9e;
+    }
 }

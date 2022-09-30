@@ -5,12 +5,11 @@ import * as Icon from '@iconscout/react-unicons';
 const Menu = ({categories}) => {
     const [hover, setHover] = useState(null)
     const [sub, setSub] = useState([])
-
     return (
         <div className="flex">
             <div className="min-w-max">
                 {categories.map((category, index) => {
-                    if (!category.parent && index <= 9) {
+                    if (!category.parent) {
                         const child = categories.filter(item => item.parent === category._id)
                         return (
                             <Link to={`/danh-muc/${category.slug}`} key={index}

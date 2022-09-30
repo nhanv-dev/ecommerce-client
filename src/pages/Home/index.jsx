@@ -1,19 +1,19 @@
 import {useState, useEffect, useContext} from 'react';
 import {SocketContext} from "../../service/socket";
 import Helmet from "../../components/Helmet";
-import Layout from "../../components/Layout";
+import {BuyerLayout} from "../../components/Layouts";
 import "./style.scss";
-import Constants from "../../common/Constants";
 
 
 function Home(props) {
     const socket = useContext(SocketContext);
 
     return (
-        <Layout type='customer'>
+        <BuyerLayout>
             <Helmet title="Trang chủ">
+                Trang chu
             </Helmet>
-        </Layout>
+        </BuyerLayout>
     );
 }
 

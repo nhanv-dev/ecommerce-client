@@ -24,12 +24,12 @@ module.exports = {
             serif: ['Merriweather', 'serif'],
         },
         fontSize: {
-            'xs': '.75rem',
+            'xs': '.785rem',
             'sm': '.85rem',
             'tiny': '.875rem',
+            'md': '.9rem',
             'base': '1rem',
-            'title': '1.5rem',
-            'lg': '1.125rem',
+            'lg': '1.1rem',
             'xl': '1.25rem',
             '2xl': '1.5rem',
             '3xl': '1.875rem',
@@ -45,7 +45,7 @@ module.exports = {
                 sm: '600px',
                 md: '728px',
                 lg: '984px',
-                xl: '1280px',
+                xl: '1400px',
             },
         },
         extend: {
@@ -58,8 +58,13 @@ module.exports = {
             },
             boxShadow: {
                 'tiny': '0 -2px 8px 0 rgb(0 0 0 / 10%), 0 4px 8px 0 rgb(0 0 0 / 10%)'
+            },
+            backgroundImage: {
+                'login-page': "url('https://auth.services.adobe.com/img/canvas/Fotolia_241479172_XL.jpg')"
             }
         }
     },
-    plugins: [],
+    plugins: [
+        require('@tailwindcss/line-clamp'),
+    ],
 }

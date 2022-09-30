@@ -1,18 +1,40 @@
+import {Link} from "react-router-dom";
+
 function ProductCard({product}) {
+
+    function formatCurrency(value) {
+        const formatter = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        });
+        return formatter.format(value);
+    }
+
     return (
-        <div className="relative group w-full border-1 rounded-sm bg-white rounded-[8px]">
-            <div className="w-full flex items-center justify-center">
+        <div className="cursor-pointer relative group w-full rounded-sm bg-white rounded-[8px] p-3.5">
+            <Link to={`/san-pham/${product.slug}`} className="w-full flex items-center justify-center mb-2">
                 <img src={product.images[0] || defaultImage} alt={product.name}/>
-            </div>
-            <div className="p-3">
-                <p className="text-base font-medium text-gray">{product.name}</p>
-                <p className="">{product.description}</p>
-                <p className="">{product.price}</p>
-            </div>
+            </Link>
+            <Link to={`/san-pham/${product.slug}`} className="block ">
+                <p className="hover:text-primary text-tiny font-medium text-black line-clamp-2 mb-2">
+                    {product.name}
+                </p>
+                <p className="text-base font-bold text-primary-hover mb-3">{formatCurrency(product.sell_price)}</p>
+                <div className="flex items-center justify-start gap-1.5 flex-wrap">
+                    {product.tags.slice(0, 3).map((tag, index) => {
+                        return (
+                            <span key={index}
+                                  className="rounded-[50px] px-3 py-1 text-[.725rem] flex-inline items-center justify-center bg-[#F1F3F9] font-bold text-[#133096]">
+                                {tag}
+                            </span>
+                        )
+                    })}
+                </div>
+            </Link>
         </div>
     );
 }
 
-const defaultImage = 'https://i5.walmartimages.com/asr/0ee198a5-e8f2-4d92-9cc7-ce610dc2eb2e.eee8074ec77e7af0c9e2e2072b680d3a.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF';
+const defaultImage = 'https://i5.walmrtimages.com/asr/0ee198a5-e8f2-4d92-9cc7-ce610dc2eb2e.eee8074ec77e7af0c9e2e2072b680d3a.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF';
 
 export default ProductCard;

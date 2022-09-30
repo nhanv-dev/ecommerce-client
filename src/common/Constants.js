@@ -1,5 +1,5 @@
 export default {
-    API_CATEGORIES: 'http://localhost:8080/api/v1/categories/',
+    API_CATEGORIES: 'http://localhost:8080/api/v1/categories',
     OPTIONS: (method, body) => {
         return {
             method: method,

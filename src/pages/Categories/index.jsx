@@ -2,7 +2,7 @@ import {useState, useEffect, useContext} from 'react';
 import {SocketContext} from "../../service/socket";
 import constants from "../../common/Constants";
 import Helmet from "../../components/Helmet";
-import Layout from "../../components/Layout";
+import {BuyerLayout} from "../../components/Layouts";
 import "./style.scss";
 import Category from "../Category";
 import {Link} from "react-router-dom";
@@ -22,7 +22,7 @@ function Categories() {
     }, [socket])
 
     return (
-        <Layout type='customer'>
+        <BuyerLayout>
             <Helmet title="Danh mục">
                 <div className="container py-8">
                     {categories.map((category, index) => {
@@ -43,7 +43,7 @@ function Categories() {
                     })}
                 </div>
             </Helmet>
-        </Layout>
+        </BuyerLayout>
     );
 }
 
