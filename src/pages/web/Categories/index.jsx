@@ -1,12 +1,12 @@
 import {useState, useEffect, useContext} from 'react';
-import {SocketContext} from "../../service/socket";
-import constants from "../../common/Constants";
-import Helmet from "../../components/Helmet";
-import {BuyerLayout} from "../../components/Layouts";
+import {SocketContext} from "../../../service/socket";
+import constants from "../../../common/Constants";
+import Helmet from "../../../components/web/Helmet";
+import {BuyerLayout} from "../../../components/web/Layouts";
 import "./style.scss";
 import Category from "../Category";
 import {Link} from "react-router-dom";
-import json from "../../assets/category.json";
+import json from "../../../assets/category.json";
 
 function Categories() {
     const socket = useContext(SocketContext);

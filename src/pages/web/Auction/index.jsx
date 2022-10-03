@@ -1,8 +1,8 @@
-import Helmet from "../../components/Helmet";
-import {BuyerLayout} from "../../components/Layouts";
+import Helmet from "../../../components/web/Helmet";
+import {BuyerLayout} from "../../../components/web/Layouts";
 import {useParams} from "react-router-dom";
 import "./style.scss";
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../../components/web/ProductCard";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
@@ -38,7 +38,7 @@ const sample = [
 
 ]
 
-function Category() {
+function Auction() {
     const {slug} = useParams();
     const [category, setCategory] = useState(null);
     const [products, setProducts] = useState([...sample, ...sample, ...sample, ...sample, ...sample, ...sample, ...sample, ...sample, ...sample, ...sample, ...sample, ...sample, ...sample, ...sample])
@@ -60,7 +60,7 @@ function Category() {
             <Helmet title={category ? `${category.name}` : 'Danh mục'}>
                 <div className="container h-full">
                     <div className="flex gap-4 py-10 relative">
-                        <div className="w-2/12">
+                        <div className="w-[18%]">
                             <div
                                 className="scroll-component sticky top-[58px] left-0 z-20 overflow-y-scroll overflow-x-hidden max-h-[90vh]">
                                 <div className="flex flex-col gap-3">
@@ -79,18 +79,8 @@ function Category() {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-10/12">
-                            <div className="grid grid-cols-5 gap-3">
-                                {products.map((product, index) => {
-                                    return (
-                                        <ProductCard key={index} product={product}/>
-                                    )
-                                })}
-                                {products.map((product, index) => {
-                                    return (
-                                        <ProductCard key={index} product={product}/>
-                                    )
-                                })}
+                        <div className="flex-1">
+                            <div className="grid grid-cols-4 gap-3">
                                 {products.map((product, index) => {
                                     return (
                                         <ProductCard key={index} product={product}/>
@@ -105,4 +95,4 @@ function Category() {
     );
 }
 
-export default Category;
+export default Auction;

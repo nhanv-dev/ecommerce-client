@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@iconscout/react-unicons": "^1.1.6",
+    "@iconscout/react-unicons-solid": "^0.0.3",
     "@reduxjs/toolkit": "^1.8.5",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@testing-library/jest-dom": "^5.16.5",

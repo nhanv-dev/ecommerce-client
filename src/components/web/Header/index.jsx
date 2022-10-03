@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react"
 import "./style.scss";
-import {SocketContext} from "../../service/socket";
+import {SocketContext} from "../../../service/socket";
 import {Link} from "react-router-dom";
 import Menu from "./Menu";
 import axios from 'axios';
@@ -28,7 +28,7 @@ function Header() {
 
     return (
         <header>
-            <div className="h-[35px] bg-[#f4f4f4] flex items-center">
+            <div className="h-[35px] bg-white flex items-center border-b-[1px] border-[#E5E5E5]">
                 <div className="container">
                     <div className="flex justify-between items-center">
                         <div className="flex justify-start items-center gap-4">
@@ -56,12 +56,12 @@ function Header() {
                     </div>
                 </div>
             </div>
-            <div className="h-[95px] flex items-center bg-[#efefef]">
+            <div className="h-[95px] flex items-center bg-white border-b-[1px] border-[#E5E5E5]">
                 <div className="container">
                     <div className="flex gap-8 justify-between items-center">
                         <Link to="/trang-chu" className="h-[30px]">
                             <img className="h-full w-auto"
-                                 src="https://merchant.hotdeal.vn/assets/img/logo-hotdeal.png"
+                                 src="https://demo2wpopal.b-cdn.net/shopio/wp-content/uploads/2021/12/logo.svg"
                                  alt="logo"/>
                         </Link>
                         <div className="flex-1 flex gap-4 items-center justify-start">
@@ -83,24 +83,47 @@ function Header() {
                     </div>
                 </div>
             </div>
-            <div className={`bg-primary transition-all z-50 ${scrollTop >= 130 && 'fixed top-0 left-0 right-0'}`}>
+            <div
+                className={`bg-[white] shadow-md transition-all z-50 border-b-[1px] border-[#E5E5E5] ${scrollTop >= 130 && 'fixed top-0 left-0 right-0'}`}>
                 <div className="container">
-                    <div className="flex gap-5 relative">
-                        <div className="flex gap-5">
-                            <div className="group bg-primary-hover px-7 py-3 flex items-center justify-between gap-4">
-                                <Link to="/danh-muc" className="text-white flex items-center gap-3">
+                    <div className="flex gap-6 py-2 relative">
+                        <div
+                            className="group bg-primary-hover min-w-[200px] px-4 py-2.5 rounded-[6px] flex items-center justify-between gap-4">
+                            <Link to="/danh-muc" className="text-white flex items-center justify-between w-full">
+                                <p className="flex items-center gap-3">
                                     <Icon.UilApps className="w-[20px] relative top-[1px]"/>
                                     <span className="font-bold tracking-tight capitalize">Danh mục</span>
-                                </Link>
-                                <div
-                                    className="min-w-full opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                                </p>
+                                <Icon.UilAngleDown className="relative top-[1px] w-[26px] w-[26px]"/>
+                            </Link>
+                            <div
+                                className="min-w-full opacity-0 invisible group-hover:opacity-100 group-hover:visible
                                     shadow-tiny transition-all absolute top-full left-0 rounded-[4px] bg-white z-50">
-                                    <Menu categories={categories}/>
-                                </div>
+                                <Menu categories={categories}/>
                             </div>
-                            <div className="flex items-center justify-end gap-5">
-
+                        </div>
+                        <div className="flex items-center justify-center">
+                            <div className="h-[30px] w-[2px] bg-[#DDDEE3] align-middle"></div>
+                        </div>
+                        <div className="flex items-center justify-between flex-1">
+                            <div className="flex items-center justify-start gap-8">
+                                <Link to="/tin-tuc"
+                                      className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
+                                    Tin tức
+                                </Link>
+                                <Link to="/thong-bao"
+                                      className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
+                                    Thông báo
+                                </Link>
+                                <Link to="/shop/123"
+                                      className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
+                                    Cửa hàng
+                                </Link>
                             </div>
+                            <Link to="/dau-gia"
+                                  className="group flex items-center gap-1 hover:text-primary-hover transition-all text-primary font-bold text-base capitalize">
+                                <Icon.UilFire className="group-hover:fill-primary-hover fill-primary transition-all"/> Sàn đấu giá
+                            </Link>
                         </div>
                     </div>
                 </div>

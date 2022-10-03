@@ -1,6 +1,6 @@
 import {useState, useContext} from 'react';
-import {SocketContext} from "../../service/socket";
-import Helmet from "../../components/Helmet";
+import {SocketContext} from "../../../service/socket";
+import Helmet from "../../../components/web/Helmet";
 import "./style.scss";
 
 function Register() {

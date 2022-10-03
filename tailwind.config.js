@@ -12,9 +12,10 @@ module.exports = {
             xl: '1440px',
         },
         colors: {
-            'primary': '#ed1c24',
-            'primary-hover': '#ca181f',
+            'primary': '#EE2624',
+            'primary-hover': '#D52220',
             'black': '#333',
+            'black-1': '#3f4b53',
             'white': '#fff',
             'gray': '#666',
             'border': '#dcdee3',
@@ -24,9 +25,9 @@ module.exports = {
             serif: ['Merriweather', 'serif'],
         },
         fontSize: {
-            'xs': '.785rem',
-            'sm': '.85rem',
-            'tiny': '.875rem',
+            'xs': '.775rem',
+            'sm': '.8rem',
+            'tiny': '.85rem',
             'md': '.9rem',
             'base': '1rem',
             'lg': '1.1rem',
@@ -60,7 +61,8 @@ module.exports = {
                 'tiny': '0 -2px 8px 0 rgb(0 0 0 / 10%), 0 4px 8px 0 rgb(0 0 0 / 10%)'
             },
             backgroundImage: {
-                'login-page': "url('https://auth.services.adobe.com/img/canvas/Fotolia_241479172_XL.jpg')"
+                'login-page': "url('https://auth.services.adobe.com/img/canvas/Fotolia_241479172_XL.jpg')",
+                'voucher': 'linear-gradient(to bottom right,#72d5d7,#11a7a9)',
             }
         }
     },

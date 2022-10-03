@@ -1,17 +1,10 @@
 import {Link} from "react-router-dom";
+import {formatCurrency} from "../../../utils/format";
 
 function ProductCard({product}) {
 
-    function formatCurrency(value) {
-        const formatter = new Intl.NumberFormat('vi-VN', {
-            style: 'currency',
-            currency: 'VND',
-        });
-        return formatter.format(value);
-    }
-
     return (
-        <div className="cursor-pointer relative group w-full rounded-sm bg-white rounded-[8px] p-3.5">
+        <div className="cursor-pointer relative group w-full rounded-sm bg-white rounded-[6px] p-3.5">
             <Link to={`/san-pham/${product.slug}`} className="w-full flex items-center justify-center mb-2">
                 <img src={product.images[0] || defaultImage} alt={product.name}/>
             </Link>
@@ -19,9 +12,10 @@ function ProductCard({product}) {
                 <p className="hover:text-primary text-tiny font-medium text-black line-clamp-2 mb-2">
                     {product.name}
                 </p>
+                <p className="text-base font-bold text-[#efefef] line-through">{formatCurrency(product.sell_price)}</p>
                 <p className="text-base font-bold text-primary-hover mb-3">{formatCurrency(product.sell_price)}</p>
                 <div className="flex items-center justify-start gap-1.5 flex-wrap">
-                    {product.tags.slice(0, 3).map((tag, index) => {
+                    {product.tags.slice(0, 1).map((tag, index) => {
                         return (
                             <span key={index}
                                   className="rounded-[50px] px-3 py-1 text-[.725rem] flex-inline items-center justify-center bg-[#F1F3F9] font-bold text-[#133096]">
