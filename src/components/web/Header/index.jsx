@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import Menu from "./Menu";
 import axios from 'axios';
 import * as Icon from '@iconscout/react-unicons';
+import Logo from "../../../assets/img/logo.svg";
 
 function Header() {
     const socket = useContext(SocketContext);
@@ -60,9 +61,7 @@ function Header() {
                 <div className="container">
                     <div className="flex gap-8 justify-between items-center">
                         <Link to="/trang-chu" className="h-[30px]">
-                            <img className="h-full w-auto"
-                                 src="https://demo2wpopal.b-cdn.net/shopio/wp-content/uploads/2021/12/logo.svg"
-                                 alt="logo"/>
+                            <img className="h-full w-auto" src={Logo} alt="logo"/>
                         </Link>
                         <div className="flex-1 flex gap-4 items-center justify-start">
                             <input type="text"
@@ -119,10 +118,19 @@ function Header() {
                                       className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
                                     Cửa hàng
                                 </Link>
+                                <Link to="/seller/"
+                                      className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
+                                    Kênh bán hàng
+                                </Link>
+                                <Link to="/admin/"
+                                      className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
+                                    Trang quản trị
+                                </Link>
                             </div>
                             <Link to="/dau-gia"
                                   className="group flex items-center gap-1 hover:text-primary-hover transition-all text-primary font-bold text-base capitalize">
-                                <Icon.UilFire className="group-hover:fill-primary-hover fill-primary transition-all"/> Sàn đấu giá
+                                <Icon.UilFire
+                                    className="group-hover:fill-primary-hover fill-primary transition-all"/> Sàn đấu giá
                             </Link>
                         </div>
                     </div>

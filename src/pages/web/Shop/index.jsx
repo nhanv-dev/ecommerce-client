@@ -3,7 +3,7 @@ import {Link, NavLink, Route, Routes, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import * as Icon from '@iconscout/react-unicons';
 import * as IconSolid from '@iconscout/react-unicons-solid';
-import {BuyerLayout} from "../../../components/web/Layouts";
+import {BuyerLayout} from "../../../components/common/Layouts";
 import Helmet from "../../../components/web/Helmet";
 import Home from "./Home";
 import Collection from "./Collection";

@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import './style.scss';
 import Helmet from "../../../components/web/Helmet";
-import {BuyerLayout} from "../../../components/web/Layouts";
+import {BuyerLayout} from "../../../components/common/Layouts";
 import axios from "axios";
 
 function ProductDetail() {
@@ -10,9 +10,11 @@ function ProductDetail() {
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/v1/product/${slug}`).then((response) => {
-            console.log(response)
-        })
+        axios
+            .get(`http://localhost:8080/api/v1/product/${slug}`)
+            .then((response) => {
+                console.log(response)
+            })
     }, [slug])
 
     return (

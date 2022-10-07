@@ -1,5 +1,5 @@
 import Helmet from "../../../components/web/Helmet";
-import {BuyerLayout} from "../../../components/web/Layouts";
+import {BuyerLayout} from "../../../components/common/Layouts";
 import {useParams} from "react-router-dom";
 import "./style.scss";
 import ProductCard from "../../../components/web/ProductCard";

@@ -2,7 +2,7 @@ import {useState, useEffect, useContext} from 'react';
 import {SocketContext} from "../../../service/socket";
 import constants from "../../../common/Constants";
 import Helmet from "../../../components/web/Helmet";
-import {BuyerLayout} from "../../../components/web/Layouts";
+import {BuyerLayout} from "../../../components/common/Layouts";
 import "./style.scss";
 import Category from "../Category";
 import {Link} from "react-router-dom";

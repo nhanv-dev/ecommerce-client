@@ -1,7 +1,7 @@
 import "./style.scss";
 import {useParams, useSearchParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {BuyerLayout} from "../../../components/web/Layouts";
+import {BuyerLayout} from "../../../components/common/Layouts";
 import Helmet from "../../../components/web/Helmet";
 
 function Search() {

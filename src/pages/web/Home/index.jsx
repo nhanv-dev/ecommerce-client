@@ -1,7 +1,7 @@
 import {useState, useEffect, useContext} from 'react';
 import {SocketContext} from "../../../service/socket";
 import Helmet from "../../../components/web/Helmet";
-import {BuyerLayout} from "../../../components/web/Layouts";
+import {BuyerLayout} from "../../../components/common/Layouts";
 import "./style.scss";
 
 
