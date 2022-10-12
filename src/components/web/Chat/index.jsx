@@ -1,6 +1,6 @@
 import * as Icon from '@iconscout/react-unicons'
 import {Fragment, useState} from "react";
-import Table from "../../Admin/Table";
+import Table from "../../admin/Table";
 
 function Chat() {
     const [visible, setVisible] = useState(false);
