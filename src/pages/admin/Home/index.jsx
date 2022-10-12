@@ -1,7 +1,7 @@
 import React from 'react';
 import {AdminLayout} from "../../../components/common/Layouts";
 import Helmet from "../../../components/web/Helmet";
-import {ProductTable} from "../../../components/Admin/Table";
+import {ProductTable} from "../../../components/admin/Table";
 
 function Home() {
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from "../../Admin/Header";
-import Sidebar from "../../Admin/Sidebar";
+import Header from "../../admin/Header";
+import Sidebar from "../../admin/Sidebar";
 
 const SellerLayout = ({children}) => {
     return (
