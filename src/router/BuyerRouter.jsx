@@ -19,7 +19,7 @@ const routes = [
     {path: '/danh-muc', exact: true, component: Categories},
     {path: '/danh-muc/:slug', exact: true, component: Category},
     {path: '/san-pham/:slug', exact: true, component: ProductDetail},
-    {path: '/shop/:slug/*', exact: true, component: Shop},
+    {path: '/cua-hang/:slug/*', exact: true, component: Shop},
 ];
 
 function BuyerRouter() {

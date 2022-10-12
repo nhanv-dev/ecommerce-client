@@ -12,8 +12,8 @@ function Router() {
             <BrowserRouter>
                 <Routes>
                     <Route exact path="/*" element={<BuyerRouter/>}/>
-                    <Route exact path="/admin/*" element={<AdminRouter/>}/>
-                    <Route exact path="/seller/*" element={<SellerRouter/>}/>
+                    <Route exact path="/quan-tri/*" element={<AdminRouter/>}/>
+                    <Route exact path="/kenh-ban-hang/*" element={<SellerRouter/>}/>
                 </Routes>
             </BrowserRouter>
         </React.Suspense>

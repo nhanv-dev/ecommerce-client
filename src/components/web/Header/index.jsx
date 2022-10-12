@@ -102,7 +102,7 @@ function Header() {
                             </div>
                         </div>
                         <div className="flex items-center justify-center">
-                            <div className="h-[30px] w-[2px] bg-[#DDDEE3] align-middle"></div>
+                            <div className="h-[30px] w-[1.5px] bg-[#DDDEE3] align-middle"></div>
                         </div>
                         <div className="flex items-center justify-between flex-1">
                             <div className="flex items-center justify-start gap-8">
@@ -114,15 +114,15 @@ function Header() {
                                       className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
                                     Thông báo
                                 </Link>
-                                <Link to="/shop/123"
+                                <Link to="/cua-hang/123"
                                       className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
                                     Cửa hàng
                                 </Link>
-                                <Link to="/seller/"
+                                <Link to="/kenh-ban-hang/"
                                       className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
                                     Kênh bán hàng
                                 </Link>
-                                <Link to="/admin/"
+                                <Link to="/quan-tri/"
                                       className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
                                     Trang quản trị
                                 </Link>
