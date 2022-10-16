@@ -71,24 +71,26 @@ function Shop() {
                             <div className="flex gap-5 border-r-2 border-[#e7e8ea] pr-5">
                                 <div className="flex-1">
                                     <h5 className="font-bold text-black text-[1.2rem] line-clamp-2 mb-1">{shop.name}</h5>
-                                    {shop.rating && (<div className="flex items-center justify-start gap-2.5 mb-3">
-                                        <div className="flex gap-[.075rem] items-center">
-                                            <IconSolid.UisFavorite
-                                                className={`w-[16px] ${shop.rating.voteValue >= 1 ? 'fill-primary' : 'fill-gray '}`}/>
-                                            <IconSolid.UisFavorite
-                                                className={`w-[16px] ${shop.rating.voteValue >= 2 ? 'fill-primary' : 'fill-gray '}`}/>
-                                            <IconSolid.UisFavorite
-                                                className={`w-[16px] ${shop.rating.voteValue >= 3 ? 'fill-primary' : 'fill-gray '}`}/>
-                                            <IconSolid.UisFavorite
-                                                className={`w-[16px] ${shop.rating.voteValue >= 4 ? 'fill-primary' : 'fill-gray '}`}/>
-                                            <IconSolid.UisFavorite
-                                                className={`w-[16px] ${shop.rating.voteValue >= 5 ? 'fill-primary' : 'fill-gray '}`}/>
+                                    {shop.rating && (
+                                        <div className="flex items-center justify-start gap-2.5 mb-3">
+                                            <div className="flex gap-[.075rem] items-center">
+                                                <IconSolid.UisFavorite
+                                                    className={`w-[16px] ${shop.rating.voteValue >= 1 ? 'fill-primary' : 'fill-gray '}`}/>
+                                                <IconSolid.UisFavorite
+                                                    className={`w-[16px] ${shop.rating.voteValue >= 2 ? 'fill-primary' : 'fill-gray '}`}/>
+                                                <IconSolid.UisFavorite
+                                                    className={`w-[16px] ${shop.rating.voteValue >= 3 ? 'fill-primary' : 'fill-gray '}`}/>
+                                                <IconSolid.UisFavorite
+                                                    className={`w-[16px] ${shop.rating.voteValue >= 4 ? 'fill-primary' : 'fill-gray '}`}/>
+                                                <IconSolid.UisFavorite
+                                                    className={`w-[16px] ${shop.rating.voteValue >= 5 ? 'fill-primary' : 'fill-gray '}`}/>
+                                            </div>
+                                            <p className="text-base font-[700] text-primary">{shop.rating.voteValue}</p>
+                                            <p className="text-tiny font-bold text-black-1">
+                                                ({shop.rating.voteCount} Đánh giá)
+                                            </p>
                                         </div>
-                                        <p className="text-base font-[700] text-primary">{shop.rating.voteValue}</p>
-                                        <p className="text-tiny font-bold text-black-1">
-                                            ({shop.rating.voteCount} Đánh giá)
-                                        </p>
-                                    </div>)}
+                                    )}
                                     <div className="flex gap-3 items-center justify-start">
                                         <button
                                             className="min-w-max flex items-center justify-center gap-2 font-bold bg-[#e7e8ea] text-md text-[#3f4b53] outline-none py-1.5 px-3.5 rounded-[6px]">
