@@ -1,0 +1,23 @@
+.container-index{
+    width: 700px;
+    margin: auto;
+}
+.price-index{
+    padding: 5px 0;
+    width: 150px;
+    text-align: center;
+}
+.table-pr{
+  width: 100%;
+    padding: 20px;
+    background: yellow;
+    text-align: center;
+}
+.table-pr tr{
+    background: deepskyblue;
+}
+.table-pr td th{
+    padding: 8px 0;
+    text-align: center;
+}
+

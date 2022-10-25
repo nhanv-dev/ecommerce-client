@@ -1,5 +1,5 @@
 import React from 'react';
-
+import "./style.css";
 function Index() {
     return (
         <div className="container-index">
