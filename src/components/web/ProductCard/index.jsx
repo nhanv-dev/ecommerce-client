@@ -4,9 +4,9 @@ import {formatCurrency} from "../../../utils/format";
 function ProductCard({product}) {
 
     return (
-        <div className="cursor-pointer relative group w-full rounded-sm bg-white rounded-[6px] p-3.5">
+        <div className="cursor-pointer relative group w-full rounded-md bg-white rounded-[6px] p-3.5">
             <Link to={`/san-pham/${product.slug}`} className="w-full flex items-center justify-center mb-2">
-                <img src={product.images[0] || defaultImage} alt={product.name}/>
+                <img src={product.images[0].img || defaultImage} alt={product.name}/>
             </Link>
             <Link to={`/san-pham/${product.slug}`} className="block ">
                 <p className="hover:text-primary text-tiny font-medium text-black line-clamp-2 mb-2">
