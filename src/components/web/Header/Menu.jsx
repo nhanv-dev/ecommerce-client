@@ -36,7 +36,7 @@ const SubCategories = ({categories}) => {
                 {categories.map((category, index) => {
                     return (
                         <div className="min-w-max" key={index}>
-                            <Link to={`/danh-muc/${category.slug}`} className="text-tiny font-medium text-gray">
+                            <Link to={`/danh-muc/${category.slug}`} className="text-md font-medium text-black-1 hover:text-primary">
                                 {category.name}
                             </Link>
                         </div>

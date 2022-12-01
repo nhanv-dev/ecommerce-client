@@ -9,8 +9,9 @@ import Home from "./Home";
 import Collection from "./Collection";
 import Info from "./Info";
 import Product from "./Product";
-import login from "../Login";
 import Review from "./Review";
+import ShopExample from "../../../common/ShopExample";
+import {formatBetweenDate} from "../../../utils/format";
 
 function Shop() {
     const {slug} = useParams();
@@ -18,27 +19,7 @@ function Shop() {
     const [vouchers, setVouchers] = useState(null);
 
     useEffect(() => {
-        const shop = {
-            _id: 'pigeonvnofficial',
-            name: 'pigeonvnofficial',
-            address: '',
-            city: 'Hồ Chí Minh',
-            email: 'jazashop@gmail.com',
-            phone: '0932715315',
-            amountProducts: 2000,
-            avatar: 'https://cf.shopee.vn/file/681dd7348ef4192f67f05a3bfaa6be1a_tn',
-            slug: 'pigeonvnofficial',
-            rating: {
-                voteCount: 1703, voteValue: 4.9,
-            },
-            followed: 23400,
-            following: 76,
-            chatResponseRate: 99,
-            tags: ['shop+', 'official'],
-            createdDate: '',
-
-        };
-        setShop(shop);
+        setShop(ShopExample);
     }, [slug])
 
     useEffect(() => {
@@ -58,12 +39,12 @@ function Shop() {
         <BuyerLayout>
             <Helmet title={shop ? `Shop - ${shop.name}` : 'Cửa hàng'}>
                 <div className="container pb-6">
-                    <div className="bg-white rounded-b-[8px]">
+                    <div className="bg-white rounded-[8px]">
                         <div className="h-[200px] overflow-hidden flex items-center justify-center">
                             <img src="https://pwa-web.scdn.vn/static/media/page_loading.4a62ff00.png"
                                  alt="background" className="w-auto h-[150px]"/>
                         </div>
-                        <div className="flex gap-4   py-4 px-6 border-b-2 border-[#e7e8ea]">
+                        <div className="flex gap-4 py-4 px-6 border-b-2 border-[#e7e8ea]">
                             <div
                                 className="rounded-[50%] w-[90px] h-[90px] overflow-hidden border-[.1rem] border-primary ">
                                 <img src={shop.avatar} alt="avatar"/>
@@ -114,7 +95,8 @@ function Shop() {
                                 <div className="flex-1 relative py-1 border-r-[2px] border-[#e7e8ea]">
                                     <div className="flex items-center gap-3 justify-center mb-1">
                                         <Icon.UilShop className="w-[20px] h-[20px] fill-black-1"/>
-                                        <span className="font-medium text-[#0f62fe] text-[.95rem]">3 năm 3 tháng</span>
+                                        <span
+                                            className="font-medium text-[#0f62fe] text-[.95rem]">{formatBetweenDate(shop.joinDate)}</span>
                                     </div>
                                     <p className="text-center font-semibold text-md text-black-1">
                                         Bán hàng trên Shopio</p>
@@ -122,7 +104,7 @@ function Shop() {
                                 <div className="flex-1 relative py-1 border-r-[2px] border-[#e7e8ea]">
                                     <div className="flex items-center gap-3 justify-center mb-1">
                                         <Icon.UilArchive className="w-[20px] h-[20px] fill-black-1"/>
-                                        <span className="font-medium text-[#0f62fe] text-[.95rem]">639</span>
+                                        <span className="font-medium text-[#0f62fe] text-[.95rem]">{shop.numberOfProducts}</span>
                                     </div>
                                     <p className="text-center font-semibold text-md text-black-1">
                                         Sản phẩm
@@ -131,7 +113,7 @@ function Shop() {
                                 <div className="flex-1 relative py-1 border-r-[2px] border-[#e7e8ea]">
                                     <div className="flex items-center gap-3 justify-center mb-1">
                                         <Icon.UilCommentAltLines className="w-[20px] h-[20px] fill-black-1"/>
-                                        <span className="font-medium text-[#0f62fe] text-[.95rem]">Đang cập nhật</span>
+                                        <span className="font-medium text-[#0f62fe] text-[.95rem]">{shop.chatResponseRate}%</span>
                                     </div>
                                     <p className="text-center font-semibold text-md text-black-1">
                                         Tỉ lệ phản hồi
@@ -173,7 +155,7 @@ const NavigationLink = ({to, title}) => {
     const classes = "text-primary after:bg-primary";
     return (
         <NavLink to={to} end className={(value) => {
-            return `duration-500 pt-4 pb-3 px-3 transition-all font-bold text-[.95rem] tracking-[-.1px] relative after:absolute after:bg-transparent after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:rounded-[50px] 
+            return `duration-500 pt-4 pb-3 px-3 transition-all font-bold text-md tracking-[-.1px] relative after:absolute after:bg-transparent after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:rounded-[50px] 
             ${value?.isActive ? classes : 'text-black'}`
         }}>
             {title}
