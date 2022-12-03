@@ -22,7 +22,7 @@ function Footer({product, quantity}) {
                     className={`bg-white fixed bottom-[0] py-2 z-50 left-0 right-0 overflow-hidden ${scrollTop >= 100 ? '' : 'hidden'}`}
                     style={{boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px'}}>
                     <div className="container relative flex items-center justify-between gap-6">
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-8">
                             <div className="flex items-center justify-center gap-3">
                                 <div style={{backgroundImage: `url(${product.images[0].url})`}}
                                      className="border-[1px] min-w-[65px] min-h-[65px] overflow-hidden rounded-[5px] border-[#e7e8ea] bg-origin-content bg-center bg-cover bg-no-repeat">
@@ -33,7 +33,7 @@ function Footer({product, quantity}) {
                                 </div>
                             </div>
                             <div className="text-right">
-                                <p className="text-primary font-bold text-lg">{formatCurrency(product.sell_price * quantity)}</p>
+                                <p className="text-primary font-bold text-lg">{formatCurrency((product.sellPrice * (100 - product.discountPercent) / 100) * quantity)}</p>
                             </div>
                         </div>
                         <div className="flex flex-1 items-center justify-start gap-2">

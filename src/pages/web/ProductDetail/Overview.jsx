@@ -61,10 +61,10 @@ function Overview({product, updateQuantity, quantity}) {
                     <div className="flex-1">
                         <div className="border-b border-[#e7e8ea]">
                             <h1 className="font-bold">{product.name}</h1>
-                            <p className="text-base font-bold text-primary-hover my-2">{formatCurrency(product.sell_price)}</p>
-                            <div className="flex mb-5">
-                                <p className="text-base font-bold text-[#313113] line-through">{formatCurrency(product.sell_price)} </p>
-                                <p className="ml-3 font-bold text-primary-hover">Giảm {(product.sell_price - product.sell_price) * 100}%</p>
+                            <p className="text-base font-bold text-primary-hover my-2">{formatCurrency(product.sellPrice * (100 - product.discountPercent) / 100)}</p>
+                            <div className="flex mb-3">
+                                <p className="text-base font-bold text-[#313113] line-through">{formatCurrency(product.sellPrice)} </p>
+                                <p className="ml-3 font-bold text-primary-hover">Giảm {product.discountPercent}%</p>
                             </div>
                             <div className="flex items-center mb-5">
                                 <div className="flex gap-0.5">

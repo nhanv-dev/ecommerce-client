@@ -6,18 +6,23 @@ import Menu from "./Menu";
 import axios from 'axios';
 import * as Icon from '@iconscout/react-unicons';
 import Logo from "../../../assets/img/logo.svg";
+import {publicRequest} from "../../../utils/requestMethods";
+import {useSelector} from "react-redux";
 
 function Header() {
-    const socket = useContext(SocketContext);
     const [categories, setCategories] = useState([])
     const [scrollTop, setScrollTop] = useState(0);
+    const user = useSelector(state => state.user);
+
     useEffect(() => {
-        axios
-            .get('http://localhost:8080/api/v1/categories?limit=10')
-            .then((response) => {
-                setCategories(response.data.categories)
-            });
-    }, [socket])
+        publicRequest.get('/categories?limit=8').then((res) => {
+            setCategories(res.data.categories)
+        });
+    }, [])
+
+    useEffect(() => {
+
+    }, [user])
 
     useEffect(() => {
         const onScroll = (e) => {
@@ -59,26 +64,33 @@ function Header() {
             </div>
             <div className="h-[95px] flex items-center bg-white border-b-[1px] border-[#E5E5E5]">
                 <div className="container">
-                    <div className="flex gap-8 justify-between items-center">
-                        <Link to="/trang-chu" className="h-[30px]">
-                            <img className="h-full w-auto" src={Logo} alt="logo"/>
-                        </Link>
-                        <div className="flex-1 flex gap-4 items-center justify-start">
+                    <div className="flex gap-6 justify-between items-center">
+                        <div className="w-[200px]">
+                            <Link to="/trang-chu" className="h-[30px]">
+                                <img className="h-full w-auto" src={Logo} alt="logo"/>
+                            </Link>
+                        </div>
+                        <div className="w-[500px] flex gap-4 items-center justify-center">
                             <input type="text"
-                                   className="text-gray text-tiny font-medium bg-white px-3 flex-1 h-[40px] rounded-[4px] focus-visible:outline-none"
+                                   className="text-gray bg-[#F7F7F7] text-tiny font-medium bg-white px-3 flex-1 h-[40px] rounded-[8px] focus-visible:outline-none"
                                    placeholder="Tìm kiếm sản phẩm..."/>
                             <button
-                                className="bg-white w-[40px] h-[40px] rounded-[4px] flex items-center justify-center">
+                                className="bg-[#F7F7F7] w-[40px] h-[40px] rounded-[4px] flex items-center justify-center">
                                 <Icon.UilSearch className="w-[20px] h-[20px] text-black"/>
                             </button>
                         </div>
-                        <button>
-                            <Icon.UilShoppingBag className="w-[24px] h-[24px] text-black"/>
-                        </button>
-                        <Link to="/dang-nhap"
-                              className="font-semibold text-tiny text-black bg-white w-max px-4 py-2 rounded-[4px] flex items-center justify-center">
-                            Đăng nhập
-                        </Link>
+                        <div className="w-[200px] flex items-center justify-end gap-10">
+                            <UserButton user={user}/>
+                            <button className="relative outline-none group">
+                                <Icon.UilShoppingBag className="w-[26px] h-[26px] text-black"/>
+                                <p className="transition-all group-hover:opacity-100 group-hover:top-full mt-[10px] opacity-0 z-[20] absolute top-[70%] left-[50%] translate-x-[-50%] min-w-max bg-black text-white font-medium rounded-[8px] text-sm px-2.5 py-1">
+                                    <span
+                                        className="absolute bottom-[99%] left-[50%] translate-x-[-50%] border-[7px] border-[transparent] border-b-[#333333]"/>
+                                    Giỏ hàng
+                                </p>
+                                <p className="absolute right-[-10px] top-[-10px] rounded-full bg-primary w-[20px] h-[20px] flex items-center justify-center text-white text-sm font-bold">0</p>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -140,5 +152,76 @@ function Header() {
     );
 }
 
+const UserButton = ({user}) => {
+    useEffect(() => {
+
+    }, [])
+    const handleSignOut = () => {
+
+    }
+    return (
+        <>
+            {user?.info ?
+                <div className="relative group">
+                    <Link to="/nguoi-dung/thong-tin" className="relative outline-none">
+                        <Icon.UilUser className="w-[26px] h-[26px] text-black"/>
+                    </Link>
+                    <div
+                        className="transition-all group-hover:opacity-100 group-hover:top-full mt-[10px] opacity-0 z-[20] absolute top-[70%] right-[-20px]  shadow min-w-max bg-white text-black font-medium rounded-[8px] text-sm">
+                        <span
+                            className="absolute bottom-[99%] right-[19px] translate-x-[-50%] border-[7px] border-[transparent] border-b-[white]"/>
+                        <div className="min-w-[250px] max-w-[250px]">
+                            <div
+                                className="flex items-center justify-start gap-3 border-b-[1px] border-[#eee] py-3 px-4">
+                                <Link to="/nguoi-dung/thong-tin"
+                                      className="bg-cover min-w-[35px] min-h-[35px] rounded-full border-2 border-primary"
+                                      style={{backgroundImage: 'url(https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png)'}}/>
+                                <div className="flex flex-col overflow-hidden w-full">
+                                    <Link to="/nguoi-dung/thong-tin"
+                                          className="w-[120px] text-base text-primary-hover line-clamp-1 transition-all">
+                                        {user?.info?.username}
+                                    </Link>
+                                    <Link to="/nguoi-dung/thong-tin"
+                                          className="font-medium text-sm hover:text-primary flex items-center justify-start gap-2 transition-all">
+                                        <Icon.UilEditAlt className="w-[16px] h-[16px]"/> Chỉnh sửa thông tin
+                                    </Link>
+                                </div>
+                            </div>
+                            <div className="py-3 px-4 border-b-[1px] border-[#eee] flex flex-col gap-4">
+                                <Link to="/nguoi-dung/hoa-don"
+                                      className="flex items-center justify-start gap-3 text-tiny transition-all hover:text-primary-hover">
+                                    <Icon.UilCreditCardSearch className="w-[20px] h-[20px]"/> Tra cứu hóa đơn
+                                </Link>
+                                <Link to="/nguoi-dung/doi-mat-khau"
+                                      className="flex items-center justify-start gap-3 text-tiny transition-all hover:text-primary-hover">
+                                    <Icon.UilHeart className="w-[20px] h-[20px]"/> Yêu thích
+                                </Link>
+                                <Link to="/nguoi-dung/doi-mat-khau"
+                                      className="flex items-center justify-start gap-3 text-tiny transition-all hover:text-primary-hover">
+                                    <Icon.UilLock className="w-[20px] h-[20px]"/> Đổi mật khẩu
+                                </Link>
+                            </div>
+                            <div className="py-3 px-4">
+                                <button onClick={handleSignOut}
+                                        className="flex items-center justify-start gap-3 text-tiny transition-all hover:text-primary-hover">
+                                    <Icon.UilSignout className="w-[20px] h-[20px]"/> Đăng xuất
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div> :
+                <Link to="/dang-nhap"
+                      className="relative outline-none group">
+                    <Icon.UilUser className="w-[26px] h-[26px] text-black"/>
+                    <p className="transition-all group-hover:opacity-100 group-hover:top-full mt-[10px] opacity-0 z-[20] absolute top-[70%] left-[50%] translate-x-[-50%] min-w-max bg-black text-white font-medium rounded-[8px] text-sm px-2.5 py-1">
+                    <span
+                        className="absolute bottom-[99%] left-[50%] translate-x-[-50%] border-[7px] border-[transparent] border-b-[#333333]"/>
+                        Đăng nhập
+                    </p>
+                </Link>
+            }
+        </>
+    )
+}
 
 export default Header;
