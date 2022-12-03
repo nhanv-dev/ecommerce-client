@@ -14,7 +14,7 @@ function ProductCard({product}) {
             <Link to={`/san-pham/${product.slug}`} className="w-full flex items-center justify-center mb-2">
                 <img src={image} alt={product.name}/>
             </Link>
-            <Link to={`/san-pham/${product.slug}`} className="block ">
+            <Link to={`/san-pham/${product.slug}`} className="block">
                 <p className="hover:text-primary text-[.85rem] font-semibold text-[#0f1e29] line-clamp-2 mb-2">
                     {product.name}
                 </p>
