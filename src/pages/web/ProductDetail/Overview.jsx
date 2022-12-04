@@ -92,7 +92,7 @@ function Overview({product, updateQuantity, quantity}) {
                                         <Icon.UilMinus className="text-center text-[#3f4b53] w-[16px] h-[16px]"/>
                                     </button>
                                     <input value={quantity} type="text" onChange={(e) => {
-                                        console.log(e)
+                                        handleUpdateQuantity(e.target.value)
                                     }} className="text-center mx-2 rounded-[5px] border-2 border-[#e7e8ea] w-[35px]"/>
                                     <button onClick={() => handleUpdateQuantity(++quantity)}
                                             className="hover:bg-[#F3F3F3] rounded-[5px] bg-[#e7e8ea] w-[30px] h-[30px] flex items-center justify-center">

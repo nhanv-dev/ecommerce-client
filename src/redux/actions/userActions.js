@@ -18,6 +18,3 @@ export const register = async (payload) => {
     }
 }
 
-export const logout = async (payload) => ({
-    type: types.USER_LOGOUT, payload
-})

@@ -3,22 +3,17 @@ import {SocketContext} from "../../../service/socket";
 import constants from "../../../common/Constants";
 import Helmet from "../../../components/web/Helmet";
 import {BuyerLayout} from "../../../components/common/Layouts";
-import "./style.scss";
-import Category from "../Category";
 import {Link} from "react-router-dom";
-import json from "../../../assets/category.json";
+import {publicRequest} from "../../../utils/requestMethods";
 
 function Categories() {
     const socket = useContext(SocketContext);
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetch(constants.API_CATEGORIES)
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data)
-                setCategories([...data.categories])
-            })
+        publicRequest.get("/categories").then((res) => {
+            setCategories([...res.data.categories])
+        })
     }, [socket])
 
     return (
