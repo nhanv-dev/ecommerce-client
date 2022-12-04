@@ -32,7 +32,7 @@ function ProductDetail() {
     return (
         <BuyerLayout>
             <Helmet title={product?.name}>
-                <div className="container">
+                <div className="container py-8">
                     <Overview product={product} updateQuantity={updateQuantity} quantity={quantity}/>
                     <div className="flex justify-between mt-6 max-w-full gap-6 pb-6">
                         <Shop relatedProducts={relatedProducts}/>

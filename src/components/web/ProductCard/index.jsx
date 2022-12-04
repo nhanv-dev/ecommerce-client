@@ -10,9 +10,10 @@ function ProductCard({product}) {
         });
     }, []);
     return (
-        <div className="cursor-pointer relative group w-full rounded-md bg-white rounded-[6px] p-3.5">
-            <Link to={`/san-pham/${product.slug}`} className="w-full flex items-center justify-center mb-2">
-                <img src={image} alt={product.name}/>
+        <div className="cursor-pointer relative group w-full rounded-md bg-white rounded-[5px] p-3">
+            <Link to={`/san-pham/${product.slug}`}
+                  className="w-full flex items-center justify-center mb-2 rounded-[5px] overflow-hidden">
+                <div style={{backgroundImage: `url(${image})`}} className="rounded-[5px] w-full min-h-[180px] min-w-[180px] pt-full bg-cover bg-center"/>
             </Link>
             <Link to={`/san-pham/${product.slug}`} className="block">
                 <p className="hover:text-primary text-[.85rem] font-semibold text-[#0f1e29] line-clamp-2 mb-2">

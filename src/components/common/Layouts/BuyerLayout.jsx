@@ -8,7 +8,7 @@ const BuyerLayout = ({children}) => {
     return (
         <div className="w-full max-w-full relative">
             <Header/>
-            <div className="py-6 bg-[#F2F3F7] min-h-[60vh]">
+            <div className="bg-[#F2F3F7] min-h-[60vh]">
                 {children}
             </div>
             <ScrollButton/>

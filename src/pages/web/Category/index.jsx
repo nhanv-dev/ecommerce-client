@@ -1,18 +1,19 @@
-import Helmet from "../../../components/web/Helmet";
-import {BuyerLayout} from "../../../components/common/Layouts";
-import {useParams} from "react-router-dom";
-import "./style.scss";
-import ProductCard from "../../../components/web/ProductCard";
 import {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
 import axios from "axios";
 import ProductExample from "../../../common/ProductExample";
+import Helmet from "../../../components/web/Helmet";
+import {BuyerLayout} from "../../../components/common/Layouts";
+import ProductCard from "../../../components/web/ProductCard";
+import {publicRequest} from "../../../utils/requestMethods";
 
 function Category() {
     const {slug} = useParams();
     const [category, setCategory] = useState(null);
     const [products, setProducts] = useState([ProductExample, ProductExample, ProductExample, ProductExample, ProductExample, ProductExample])
+
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/v1/categories/slug/${slug}`).then(response => {
+        publicRequest.get(`/categories/slug/${slug}`).then(response => {
             setCategory(response.data.category)
         })
     }, [slug])
@@ -35,7 +36,7 @@ function Category() {
                                 <div className="flex flex-col gap-3">
                                     {products.map((product, index) => {
                                         return (
-                                            <div className="bg-white rounded-[8px] p-3.5 ">
+                                            <div key={index} className="bg-white rounded-[8px] p-3.5 ">
                                                 <h5>Nơi bán</h5>
                                                 <div>
                                                     <p>TP.Hồ Chí Minh</p>
