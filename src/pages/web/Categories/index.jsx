@@ -21,8 +21,8 @@ function Categories() {
             <Helmet title="Danh mục">
                 <div className="container py-8">
                     {categories.map((category, index) => {
-                        if (!category.parent) {
-                            const subCategories = categories.filter(subCategory => subCategory.parent === category._id)
+                        if (!category.parentId) {
+                            const subCategories = categories.filter(subCategory => subCategory.parentId === category._id)
                             return (
                                 <div className="mb-5" key={index}>
                                     <div className="flex mb-5 items-center justify-center">
