@@ -1,7 +1,9 @@
 
 function Info(props) {
     return (
-        <div>Info</div>
+        <div className="container">
+
+        </div>
     );
 }
 

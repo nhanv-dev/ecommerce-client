@@ -38,7 +38,7 @@ function ProductDetail() {
                         <Shop relatedProducts={relatedProducts}/>
                         <div className="flex-1">
                             <ProductDescription product={product}/>
-                            <QuestionBlock/>
+                            <QuestionBlock product={product}/>
                         </div>
                     </div>
                     <Comment product={product}/>

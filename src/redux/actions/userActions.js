@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes'
-import {publicRequest} from "../../utils/requestMethods";
+import {protectedRequest, publicRequest} from "../../utils/requestMethods";
 
 export const login = async (payload) => {
     const res = await publicRequest.post("/auth/login", payload);
@@ -7,7 +7,7 @@ export const login = async (payload) => {
         type: types.USER_LOGIN,
         payload: {
             accessToken: res.data.accessToken,
-            info: res.data.user
+            info: res.data.user,
         }
     }
 }
@@ -18,3 +18,7 @@ export const register = async (payload) => {
     }
 }
 
+export const reLogin = async () => {
+    const response = await protectedRequest.post("/auth/re-login")
+    if (response.status === 200) return {accessToken: response.data.accessToken, user: response.data.user}
+}

@@ -100,8 +100,8 @@ function Comment({product}) {
                                     <SolidIcon.UisStar className="w-[12px] h-[12px] text-[#e4a400]"/>
                                     <SolidIcon.UisStar className="w-[12px] h-[12px] text-[#e4a400]"/>
                                 </div>
-                                <p className="pt-2 font-semibold text-[.85rem] text-[#808089] ">
-                                    {comments.length} nhận xét
+                                <p className="pt-2 font-medium text-[.85rem] text-[#808089] ">
+                                    {comments.length} đánh giá & nhận xét
                                 </p>
                             </div>
                         </div>
@@ -188,7 +188,7 @@ const CommentItem = ({comment, extendClass}) => {
                     <div className="w-[55px] h-[55px] overflow-hidden rounded-full bg-cover bg-center"
                          style={{backgroundImage: `url(${comment.user.avatar})`}}>
                     </div>
-                    <div className="">
+                    <div>
                         <h1 className="font-bold text-md">{comment.user.name}</h1>
                         <div className="flex italic items-center text-[#3f4b53] justify-start text">
                             <p className="text-sm font-medium">{comment.createdDate}</p>
@@ -218,7 +218,7 @@ const CommentItem = ({comment, extendClass}) => {
                                                className={`w-[14px] h-[14px] ${index < comment.rating ? "text-[#e4a400]" : "text-[#e0e0e0]"}`}/>
                         ))}
                     </div>
-                    <p className="text-tiny font-semibold text-black-1">
+                    <p className="text-sm font-semibold text-black-1">
                         {comment.rating === 5 && 'Rất hài lòng'}
                         {comment.rating === 4 && 'Hài lòng'}
                         {comment.rating === 3 && 'Bình thường'}
@@ -236,13 +236,13 @@ const CommentItem = ({comment, extendClass}) => {
                 </div>
                 <div className="flex gap-6 mt-4">
                     <button
-                        className="flex items-center gap-2 px-4 py-1.5 rounded-[4px] border-[1px] border-[#0b74e5] text-tiny text-[#0b74e5] font-semibold">
-                        <Icon.UilThumbsUp className="w-[18px] h-[18px]"/> Hữu ích
+                        className="flex items-center gap-2 px-4 py-1.5 rounded-[4px] border-[1px] border-[#0b74e5] text-sm text-[#0b74e5] font-semibold">
+                        <Icon.UilThumbsUp className="w-[16px] h-[16px] relative top-[-1px]"/> Hữu ích
                     </button>
-                    <button className="text-tiny text-[#0b74e5] font-semibold">
+                    <button className="text-sm text-[#0b74e5] font-semibold">
                         Bình luận
                     </button>
-                    <button className="text-tiny text-[#0b74e5] font-semibold">
+                    <button className="text-sm text-[#0b74e5] font-semibold">
                         Chia sẻ
                     </button>
                 </div>

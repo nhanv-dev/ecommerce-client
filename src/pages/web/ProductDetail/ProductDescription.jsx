@@ -9,9 +9,9 @@ function ProductDescription({product}) {
             {product &&
                 <div className="rounded-[5px] min-h-[15rem] bg-white p-6 mb-6">
                     <div className={`overflow-hidden mb-3 h-${isShow ? '[20rem]' : 'auto'}`}>
-                        <p className="font-bold text-lg mb-3">Mô tả sản phẩm</p>
+                        <p className="font-bold text-base mb-3">Mô tả sản phẩm</p>
                         <div dangerouslySetInnerHTML={{__html: product.description}} className="text-md mb-3"></div>
-                        <p className="font-bold text-lg mb-3">Thông tin chi tiết</p>
+                        <p className="font-bold text-base mb-3">Thông tin chi tiết</p>
                         <table className="table-auto w-[100%] rounded-lg">
                             <tbody>
                             {product.info?.map((info, index) => (
