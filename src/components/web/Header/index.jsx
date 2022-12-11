@@ -1,23 +1,24 @@
 import React, {useContext, useEffect, useState} from "react"
-import "./style.scss";
+import axios from 'axios';
 import {SocketContext} from "../../../service/socket";
 import {Link} from "react-router-dom";
 import Menu from "./Menu";
-import axios from 'axios';
 import * as Icon from '@iconscout/react-unicons';
 import Logo from "../../../assets/img/logo.svg";
+import {publicRequest} from "../../../utils/requestMethods";
+import {useSelector} from "react-redux";
+import UserComponent from "./UserComponent";
 
 function Header() {
-    const socket = useContext(SocketContext);
     const [categories, setCategories] = useState([])
     const [scrollTop, setScrollTop] = useState(0);
+
     useEffect(() => {
-        axios
-            .get('http://localhost:8080/api/v1/categories?limit=10')
-            .then((response) => {
-                setCategories(response.data.categories)
-            });
-    }, [socket])
+        publicRequest.get('/categories?limit=8').then((res) => {
+            setCategories(res.data.categories)
+        });
+    }, [])
+
 
     useEffect(() => {
         const onScroll = (e) => {
@@ -33,22 +34,19 @@ function Header() {
                 <div className="container">
                     <div className="flex justify-between items-center">
                         <div className="flex justify-start items-center gap-4">
-                            <p className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
-                                <span>Tải ứng dụng</span>
-                            </p>
-                            <p className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
-                                <span>Chăm sóc khách hàng</span>
-                            </p>
-                            <p className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
-                                <span>Kiểm tra đơn hàng</span>
-                            </p>
+                            <Link to="/kenh-nguoi-ban" className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
+                                <span>Kênh người bán</span>
+                            </Link>
+                            <Link to="/dang-ky-ban-hang" className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
+                                <span>Bán hàng cùng Shopio</span>
+                            </Link>
                         </div>
                         <div className="flex justify-start items-center gap-4">
                             <p className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
-                                <span>Tải ứng dụng</span>
+                                <span>Chăm sóc khách hàng</span>
                             </p>
                             <p className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
-                                <span>Chăm sóc khách hàng</span>
+                                <span>Hỗ trợ</span>
                             </p>
                             <p className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
                                 <span>Kiểm tra đơn hàng</span>
@@ -59,26 +57,33 @@ function Header() {
             </div>
             <div className="h-[95px] flex items-center bg-white border-b-[1px] border-[#E5E5E5]">
                 <div className="container">
-                    <div className="flex gap-8 justify-between items-center">
-                        <Link to="/trang-chu" className="h-[30px]">
-                            <img className="h-full w-auto" src={Logo} alt="logo"/>
-                        </Link>
-                        <div className="flex-1 flex gap-4 items-center justify-start">
+                    <div className="flex gap-6 justify-between items-center">
+                        <div className="w-[200px]">
+                            <Link to="/trang-chu" className="h-[30px]">
+                                <img className="h-full w-auto" src={Logo} alt="logo"/>
+                            </Link>
+                        </div>
+                        <div className="w-[700px] flex gap-4 items-center justify-center">
                             <input type="text"
-                                   className="text-gray text-tiny font-medium bg-white px-3 flex-1 h-[40px] rounded-[4px] focus-visible:outline-none"
+                                   className="text-gray bg-[#F7F7F7] text-tiny font-medium bg-white px-3 flex-1 h-[40px] rounded-[5px] focus-visible:outline-none"
                                    placeholder="Tìm kiếm sản phẩm..."/>
                             <button
-                                className="bg-white w-[40px] h-[40px] rounded-[4px] flex items-center justify-center">
+                                className="bg-[#F7F7F7] w-[40px] h-[40px] rounded-[5px] flex items-center justify-center">
                                 <Icon.UilSearch className="w-[20px] h-[20px] text-black"/>
                             </button>
                         </div>
-                        <button>
-                            <Icon.UilShoppingBag className="w-[24px] h-[24px] text-black"/>
-                        </button>
-                        <Link to="/dang-nhap"
-                              className="font-semibold text-tiny text-black bg-white w-max px-4 py-2 rounded-[4px] flex items-center justify-center">
-                            Đăng nhập
-                        </Link>
+                        <div className="w-[200px] flex items-center justify-end gap-10">
+                            <UserComponent/>
+                            <Link to="/gio-hang" className="relative outline-none group">
+                                <Icon.UilShoppingBag className="w-[26px] h-[26px] text-black"/>
+                                <p className="transition-all group-hover:opacity-100 group-hover:visible group-hover:top-full mt-[10px] opacity-0 invisible z-[20] absolute top-[70%] left-[50%] translate-x-[-50%] min-w-max bg-black text-white font-medium rounded-[8px] text-sm px-2.5 py-1">
+                                    <span
+                                        className="absolute bottom-[99%] left-[50%] translate-x-[-50%] border-[7px] border-[transparent] border-b-[#333333]"/>
+                                    Giỏ hàng
+                                </p>
+                                <p className="absolute right-[-10px] top-[-10px] rounded-full bg-primary w-[20px] h-[20px] flex items-center justify-center text-white text-sm font-bold">0</p>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -114,13 +119,9 @@ function Header() {
                                       className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
                                     Thông báo
                                 </Link>
-                                <Link to="/cua-hang/123"
+                                <Link to="/cua-hang/pigeonvnofficial"
                                       className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
                                     Cửa hàng
-                                </Link>
-                                <Link to="/kenh-ban-hang/"
-                                      className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
-                                    Kênh bán hàng
                                 </Link>
                                 <Link to="/quan-tri/"
                                       className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
@@ -139,6 +140,5 @@ function Header() {
         </header>
     );
 }
-
 
 export default Header;

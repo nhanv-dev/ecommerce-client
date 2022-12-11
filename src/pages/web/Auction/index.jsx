@@ -1,5 +1,5 @@
 import Helmet from "../../../components/web/Helmet";
-import {BuyerLayout} from "../../../components/common/Layouts";
+import {UserLayout} from "../../../components/common/Layouts";
 import {useParams} from "react-router-dom";
 import "./style.scss";
 import ProductCard from "../../../components/web/ProductCard";
@@ -56,7 +56,7 @@ function Auction() {
     }, [category])
 
     return (
-        <BuyerLayout>
+        <UserLayout>
             <Helmet title={category ? `${category.name}` : 'Danh mục'}>
                 <div className="container h-full">
                     <div className="flex gap-4 py-10 relative">
@@ -91,7 +91,7 @@ function Auction() {
                     </div>
                 </div>
             </Helmet>
-        </BuyerLayout>
+        </UserLayout>
     );
 }
 

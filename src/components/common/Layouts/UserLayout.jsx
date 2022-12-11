@@ -4,11 +4,11 @@ import Footer from "../../web/Footer";
 import Chat from "../../web/Chat";
 import ScrollButton from "../../web/ScrollButton";
 
-const BuyerLayout = ({children}) => {
+const UserLayout = ({children}) => {
     return (
         <div className="w-full max-w-full relative">
             <Header/>
-            <div className="pt-5 bg-[#F2F3F7]">
+            <div className="bg-[#F2F3F7] min-h-[60vh]">
                 {children}
             </div>
             <ScrollButton/>
@@ -17,4 +17,4 @@ const BuyerLayout = ({children}) => {
         </div>
     )
 }
-export default BuyerLayout;
+export default UserLayout;

@@ -1,33 +1,27 @@
 import {useState, useEffect, useContext} from 'react';
 import {SocketContext} from "../../../service/socket";
-import constants from "../../../common/Constants";
 import Helmet from "../../../components/web/Helmet";
-import {BuyerLayout} from "../../../components/common/Layouts";
-import "./style.scss";
-import Category from "../Category";
+import {UserLayout} from "../../../components/common/Layouts";
 import {Link} from "react-router-dom";
-import json from "../../../assets/category.json";
+import {publicRequest} from "../../../utils/requestMethods";
 
 function Categories() {
     const socket = useContext(SocketContext);
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetch(constants.API_CATEGORIES)
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data)
-                setCategories([...data.categories])
-            })
+        publicRequest.get("/categories").then((res) => {
+            setCategories([...res.data.categories])
+        })
     }, [socket])
 
     return (
-        <BuyerLayout>
+        <UserLayout>
             <Helmet title="Danh mục">
                 <div className="container py-8">
                     {categories.map((category, index) => {
-                        if (!category.parent) {
-                            const subCategories = categories.filter(subCategory => subCategory.parent === category._id)
+                        if (!category.parentId) {
+                            const subCategories = categories.filter(subCategory => subCategory.parentId === category._id)
                             return (
                                 <div className="mb-5" key={index}>
                                     <div className="flex mb-5 items-center justify-center">
@@ -43,7 +37,7 @@ function Categories() {
                     })}
                 </div>
             </Helmet>
-        </BuyerLayout>
+        </UserLayout>
     );
 }
 

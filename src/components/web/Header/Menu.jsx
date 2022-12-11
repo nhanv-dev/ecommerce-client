@@ -9,8 +9,8 @@ const Menu = ({categories}) => {
         <div className="flex">
             <div className="min-w-max">
                 {categories.map((category, index) => {
-                    if (!category.parent) {
-                        const child = categories.filter(item => item.parent === category._id)
+                    if (!category.parentId) {
+                        const child = categories.filter(item => item.parentId === category._id)
                         return (
                             <Link to={`/danh-muc/${category.slug}`} key={index}
                                   onMouseEnter={() => {
@@ -36,7 +36,7 @@ const SubCategories = ({categories}) => {
                 {categories.map((category, index) => {
                     return (
                         <div className="min-w-max" key={index}>
-                            <Link to={`/danh-muc/${category.slug}`} className="text-tiny font-medium text-gray">
+                            <Link to={`/danh-muc/${category.slug}`} className="text-md font-medium text-black-1 hover:text-primary">
                                 {category.name}
                             </Link>
                         </div>
