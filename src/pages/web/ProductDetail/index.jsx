@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 import './style.scss';
 import Helmet from "../../../components/web/Helmet";
+
 import {UserLayout} from "../../../components/common/Layouts";
 import Footer from "./Footer";
 import Shop from "./Shop";
@@ -18,6 +19,7 @@ function ProductDetail() {
     const [relatedProducts, setRelatedProducts] = useState([{...productExample}, {...productExample}, {...productExample}]);
     const [quantity, setQuantity] = useState(1);
     useEffect(() => {
+
         // axios
         //     .get(`http://localhost:8080/api/v1/product/${slug}`)
         //     .then((response) => {
