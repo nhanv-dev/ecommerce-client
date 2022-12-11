@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {BuyerLayout} from "../../../components/common/Layouts";
+import {UserLayout} from "../../../components/common/Layouts";
 import Helmet from "../../../components/web/Helmet";
 import * as icon from '@iconscout/react-unicons';
 import visa from "../../../assets/img/visa.png";
@@ -80,7 +80,7 @@ const onChangeValue=(e)=>{
 
     return (
 
-        <BuyerLayout>
+        <UserLayout>
             {show && <Modal closeModal={setShow}/>}
             <Helmet title='Thanh toán'>
 
@@ -297,7 +297,7 @@ const onChangeValue=(e)=>{
 
                 </div>
             </Helmet>
-        </BuyerLayout>
+        </UserLayout>
     );
 }
 

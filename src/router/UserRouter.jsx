@@ -15,22 +15,29 @@ const Shop = lazy(() => import('../pages/web/Shop'));
 const SearchingPayment = lazy(() => import('../pages/web/SearchingPayment'));
 const Register = lazy(() => import('../pages/web/Register'));
 const RegisterShop = lazy(() => import('../pages/web/RegisterShop'));
+const Checkout =lazy(()=> import('../pages/web/Checkout'));
+const ChangeAddress =lazy(()=> import('../pages/web/ChangeAddress'));
+const CreateAddress = lazy(()=> import('../pages/web/CreateAddress'))
 
 const routes = [
     {path: '/', exact: true, component: Home},
     {path: '/trang-chu', exact: true, component: Home},
     {path: '/gio-hang', exact: true, component: Cart},
     {path: '/dau-gia', exact: true, component: Auction},
-    {path: '/danh-muc', exact: true, component: Categories},
-    {path: '/dang-ky-ban-hang', exact: true, component: RegisterShop},
-    {path: '/danh-muc/:slug', exact: true, component: Category},
     {path: '/san-pham/:slug', exact: true, component: ProductDetail},
+    {path: '/danh-muc', exact: true, component: Categories},
+    {path: '/danh-muc/:slug', exact: true, component: Category},
     {path: '/cua-hang/:slug/*', exact: true, component: Shop},
+    {path: '/thanh-toan', exact: true, component: Checkout},
+    {path: '/thay-doi-dia-chi', exact: true, component: ChangeAddress},
+    {path: '/them-dia-chi', exact: true, component: CreateAddress},
 ]
 const authRoutes = [
     {path: '/nguoi-dung/thong-tin', exact: true, component: Profile, replaceTo: '/dang-nhap'},
     {path: '/nguoi-dung/doi-mat-khau', exact: true, component: ChangingPassword, replaceTo: '/dang-nhap'},
     {path: '/nguoi-dung/hoa-don', exact: true, component: SearchingPayment, replaceTo: '/dang-nhap'},
+    {path: '/dang-ky-ban-hang', exact: true, component: RegisterShop, replaceTo: '/dang-nhap'},
+
 ]
 const reverseAuthRoutes = [
     {path: '/dang-nhap', exact: true, component: Login, replaceTo: '/trang-chu'},
@@ -48,7 +55,8 @@ function UserRouter() {
 
             {reverseAuthRoutes.map(route => (
                 <Route key={route.path} exact={route.exact} path={route.path}
-                       element={!user.accessToken && !user.logged ? <route.component/> : <Navigate to={route.replaceTo} replace={true}/>}/>
+                       element={!user.accessToken && !user.logged ? <route.component/> :
+                           <Navigate to={route.replaceTo} replace={true}/>}/>
             ))}
 
             {authRoutes.map(route => (
