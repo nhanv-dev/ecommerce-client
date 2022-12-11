@@ -1,75 +1,97 @@
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {login} from "../../../redux/actions/userActions";
+import {register} from "../../../redux/actions/userActions";
 import {Link, useNavigate} from "react-router-dom";
 import * as Icon from '@iconscout/react-unicons';
-import Logo from "../../../assets/img/logo-white.svg";
+import Logo from "../../../assets/img/logo.svg";
 import Helmet from "../../../components/web/Helmet";
 
 function Register() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [username, setUsername] = useState("nhanvapp");
-    const [password, setPassword] = useState("111");
+    const [fullName, setFullName] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [repeatPassword, setRepeatPassword] = useState("");
     const [email, setEmail] = useState("");
-    const user = useSelector((state) => state.user)
+    const user = useSelector(state => state.user);
 
-    async function handleLogin(e) {
+    async function handleRegister(e) {
         e.preventDefault();
-        dispatch(await login({username, password}))
+        if (password !== repeatPassword) return;
+        dispatch(await register({username, password, email, fullName}))
     }
 
     useEffect(() => {
-        if (user.accessToken && user.info) navigate("/")
-    }, [user, dispatch])
+        // if (user.accessToken && user.info) navigate("/")
+    }, [user])
 
     return (
-        <Helmet title="Đăng nhập">
-            <div
-                className="min-h-[100vh] bg-cover bg-[#f4f4f4] bg-center relative after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after:bg-[#000] after:z-10 after:opacity-40"
-                style={{backgroundImage: `url(https://auth.services.adobe.com/img/canvas/Fotolia_134829797_XL.jpg)`}}
-            >
+        <Helmet title="Đăng ký - Shopio.">
+            <div style={{backgroundImage: `url(https://auth.services.adobe.com/img/canvas/Fotolia_134829797_XL.jpg)`}}
+                 className="min-h-[100vh] bg-cover bg-[#f4f4f4] bg-center relative after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after:bg-[#000] after:z-10 after:opacity-40">
                 <div
-                    className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-20 bg-white rounded-2xl shadow bg-cover bg-left-bottom p-8 w-[450px] h-[600px] after:rounded-2xl after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after:bg-[#000] after:z-10 after:opacity-30"
-                    style={{backgroundImage: 'url(https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bf884ad570b50659c5fa2dc2cfb20ecf&auto=format&fit=crop&w=1000&q=100)'}}>
-                    <div className="absolute left-[50%] top-[42%] translate-x-[-50%] translate-y-[-50%] z-30">
-                        <Link to="/" className="block w-[130px] mx-auto mb-6">
-                            <img src={Logo} alt="logo" className="w-full"/>
-                        </Link>
-                        <form className="w-[300px]" onSubmit={handleLogin}>
-                            <div
-                                className="flex items-center justify-start gap-3 bg-white w-full mb-5 rounded-xl p-3">
-                                <Icon.UilUser className="text-[#6f787e] w-24px h-24px"/>
-                                <input onChange={(e) => setUsername(e.target.value)} value={username}
-                                       className="text-[#6f787e] font-medium text-md w-full outline-none"
-                                       type="text" placeholder="Tài khoản"/>
-                            </div>
-                            <div
-                                className="flex items-center justify-start gap-3 bg-white w-full mb-5 rounded-xl p-3">
-                                <Icon.UilLock className="text-[#6f787e] w-24px h-24px"/>
-                                <input onChange={(e) => setPassword(e.target.value)} value={password}
-                                       className="text-[#6f787e] font-medium text-md w-full outline-none"
-                                       type="password" placeholder="Mật khẩu"/>
-                            </div>
-                            <div
-                                className="flex items-center justify-start gap-3 bg-white w-full mb-5 rounded-xl p-3">
-                                <Icon.UilLock className="text-[#6f787e] w-24px h-24px"/>
-                                <input onChange={(e) => setPassword(e.target.value)} value={password}
-                                       className="text-[#6f787e] font-medium text-md w-full outline-none"
-                                       type="password" placeholder="Mật khẩu"/>
-                            </div>
-                            <div className="w-full flex items-center justify-center">
+                    className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-20 bg-[#F6F7FC] rounded-[8px] shadow w-[1000px] h-[500px]">
+                    <div className="relative flex z-30 h-full">
+                        <div className="flex-1 p-8 h-full">
+                            <h5 className="font-extrabold text-3xl mb-3">Đăng ký</h5>
+                            <form className="w-[400px] mb-3" onSubmit={handleRegister}>
+                                <div style={{boxShadow: '0 1px 2px 0 rgb(0 0 0 / 10%)'}}
+                                     className="flex items-center justify-start gap-3 bg-white w-full mb-4 rounded-[8px] p-3">
+                                    <Icon.UilUserExclamation className="text-[#6f787e] w-24px h-24px"/>
+                                    <input type="text" placeholder="Họ & Tên"
+                                           onChange={(e) => setFullName(e.target.value)} value={fullName}
+                                           className="text-[#6f787e] font-medium text-md w-full outline-none"/>
+                                </div>
+                                <div style={{boxShadow: '0 1px 2px 0 rgb(0 0 0 / 10%)'}}
+                                     className="flex items-center justify-start gap-3 bg-white w-full mb-4 rounded-[8px] p-3">
+                                    <Icon.UilEnvelopeAlt className="text-[#6f787e] w-24px h-24px"/>
+                                    <input type="text" placeholder="Email"
+                                           onChange={(e) => setEmail(e.target.value)} value={email}
+                                           className="text-[#6f787e] font-medium text-md w-full outline-none"/>
+                                </div>
+                                <div style={{boxShadow: '0 1px 2px 0 rgb(0 0 0 / 10%)'}}
+                                     className="flex items-center justify-start gap-3 bg-white w-full mb-4 rounded-[8px] p-3">
+                                    <Icon.UilUser className="text-[#6f787e] w-24px h-24px"/>
+                                    <input type="text" placeholder="Tên đăng nhập"
+                                           onChange={(e) => setUsername(e.target.value)} value={username}
+                                           className="text-[#6f787e] font-medium text-md w-full outline-none"/>
+                                </div>
+                                <div style={{boxShadow: '0 1px 2px 0 rgb(0 0 0 / 10%)'}}
+                                     className="flex items-center justify-start gap-3 bg-white w-full mb-4 rounded-[8px] p-3">
+                                    <Icon.UilLock className="text-[#6f787e] w-24px h-24px"/>
+                                    <input type="password" placeholder="Mật khẩu"
+                                           onChange={(e) => setPassword(e.target.value)} value={password}
+                                           className="text-[#6f787e] font-medium text-md w-full outline-none"/>
+                                </div>
+                                <div style={{boxShadow: '0 1px 2px 0 rgb(0 0 0 / 10%)'}}
+                                     className="flex items-center justify-start gap-3 bg-white w-full mb-4 rounded-[8px] p-3">
+                                    <Icon.UilLock className="text-[#6f787e] w-24px h-24px"/>
+                                    <input type="password" placeholder="Nhập lại mật khẩu"
+                                           onChange={(e) => setRepeatPassword(e.target.value)} value={repeatPassword}
+                                           className="text-[#6f787e] font-medium text-md w-full outline-none"/>
+                                </div>
                                 <button type="submit"
-                                        className="relative bg-[#6B92A4] font-bold text-md text-white rounded-lg px-8 py-2">
-                                    Đăng nhập
+                                        className="relative bg-[#6B92A4] font-bold text-md text-white rounded-[8px] px-8 py-2">
+                                    Đăng ký
                                 </button>
+                            </form>
+                            <div className="font-medium text-black text-md">
+                                <span>Bạn đã có tài khoản? </span>
+                                <Link to="/dang-nhap" className="text-[#0073C2]"> Đăng nhập ngay</Link>
                             </div>
-                        </form>
-                    </div>
-                    <div className="absolute left-0 w-full bottom-[20px] z-40">
-                        <div className="text-center font-medium text-white text-md">
-                            Bạn chưa có tài khoản?
-                            <Link to="/dang-ky" className="text-[#0073C2]"> Đăng ký ngay</Link>
+                        </div>
+                        <div className="bg-cover w-[400px] min-h-full rounded-r-[8px] relative"
+                             style={{backgroundImage: 'url(https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bf884ad570b50659c5fa2dc2cfb20ecf&auto=format&fit=crop&w=1000&q=100)'}}>
+                            <div className="absolute p-8">
+                                <Link to="/"
+                                      className="block h-[45px] mb-3">
+                                    <img src={Logo} alt="logo" className="h-full"/>
+                                </Link>
+                                <p className="text-base font-semibold text-white mb-6 min-w-max">
+                                    Chào mừng bạn đến với Shopio.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

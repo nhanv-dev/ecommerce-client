@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 import ProductExample from "../../../common/ProductExample";
 import Helmet from "../../../components/web/Helmet";
-import {BuyerLayout} from "../../../components/common/Layouts";
+import {UserLayout} from "../../../components/common/Layouts";
 import ProductCard from "../../../components/web/ProductCard";
 import {publicRequest} from "../../../utils/requestMethods";
 
@@ -26,7 +26,7 @@ function Category() {
     }, [category])
 
     return (
-        <BuyerLayout>
+        <UserLayout>
             <Helmet title={category ? `${category.name}` : 'Danh mục'}>
                 <div className="container h-full">
                     <div className="flex gap-4 py-10 relative">
@@ -61,7 +61,7 @@ function Category() {
                     </div>
                 </div>
             </Helmet>
-        </BuyerLayout>
+        </UserLayout>
     );
 }
 

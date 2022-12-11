@@ -1,8 +1,7 @@
 import {useState, useEffect, useContext} from 'react';
 import {SocketContext} from "../../../service/socket";
-import constants from "../../../common/Constants";
 import Helmet from "../../../components/web/Helmet";
-import {BuyerLayout} from "../../../components/common/Layouts";
+import {UserLayout} from "../../../components/common/Layouts";
 import {Link} from "react-router-dom";
 import {publicRequest} from "../../../utils/requestMethods";
 
@@ -17,7 +16,7 @@ function Categories() {
     }, [socket])
 
     return (
-        <BuyerLayout>
+        <UserLayout>
             <Helmet title="Danh mục">
                 <div className="container py-8">
                     {categories.map((category, index) => {
@@ -38,7 +37,7 @@ function Categories() {
                     })}
                 </div>
             </Helmet>
-        </BuyerLayout>
+        </UserLayout>
     );
 }
 
