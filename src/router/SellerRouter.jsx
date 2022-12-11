@@ -1,6 +1,5 @@
 import {Route, Routes} from "react-router-dom";
 import {lazy} from "react";
-
 const Home = lazy(() => import('../pages/seller/Home'));
 
 const routes = [

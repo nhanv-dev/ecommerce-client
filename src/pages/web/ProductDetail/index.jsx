@@ -3,7 +3,6 @@ import {useParams} from "react-router-dom";
 import './style.scss';
 import Helmet from "../../../components/web/Helmet";
 import {BuyerLayout} from "../../../components/common/Layouts";
-import axios from "axios";
 import product from "../Shop/Product";
 import {formatCurrency} from "../../../utils/format";
 import * as Icon from '@iconscout/react-unicons-solid';
@@ -14,6 +13,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Thumbs } from 'swiper';
 import ProductCard from "../../../components/web/ProductCard";
 import Logo from "../../../assets/img/shop.png";
+import axios from "axios";
 
 function ProductDetail() {
     const sample = [
@@ -113,8 +113,7 @@ function ProductDetail() {
     useEffect(() => {
         setColor(undefined)
         setSize(undefined)
-        axios
-            .get(`http://localhost:8080/api/v1/product/${slug}`)
+        axios.get(`http://localhost:8080/api/v1/product/${slug}`)
             .then((response) => {
                 console.log(response)
             })
