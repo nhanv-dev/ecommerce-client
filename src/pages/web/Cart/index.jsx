@@ -1,6 +1,6 @@
-import {useState, useEffect, useContext} from 'react';
+import {useState, useEffect} from 'react';
 import Helmet from "../../../components/web/Helmet";
-import {BuyerLayout} from "../../../components/common/Layouts";
+import {UserLayout} from "../../../components/common/Layouts";
 import cartExample from "../../../common/CartExample";
 import CartItem from "./CartItem";
 import {Link} from "react-router-dom";
@@ -15,7 +15,7 @@ function Cart() {
     }, [])
 
     return (
-        <BuyerLayout>
+        <UserLayout>
             <Helmet title="Giỏ hàng">
                 <div className="container py-8">
                     <div className="flex flex-wrap items-start justify-start gap-5 relative">
@@ -40,7 +40,7 @@ function Cart() {
                     </div>
                 </div>
             </Helmet>
-        </BuyerLayout>
+        </UserLayout>
     );
 }
 

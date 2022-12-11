@@ -1,16 +1,21 @@
 import {useEffect} from 'react';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import * as Icon from "@iconscout/react-unicons";
+import {logout} from "../../../redux/actions/userActions";
 
 function UserComponent(props) {
+    const dispatch = useDispatch();
     const user = useSelector(state => state.user);
+
     useEffect(() => {
+        console.log(user)
+    }, [user])
 
-    }, [])
-    const handleSignOut = () => {
-
+    const handleSignOut = async (e) => {
+        dispatch(await logout());
     }
+
     return (
         <>
             {user?.info ?
@@ -31,7 +36,7 @@ function UserComponent(props) {
                                 <div className="flex flex-col overflow-hidden w-full">
                                     <Link to="/nguoi-dung/thong-tin"
                                           className="w-[120px] text-base text-primary-hover line-clamp-1 transition-all">
-                                        {user?.info?.username}
+                                        {user?.info?.fullName}
                                     </Link>
                                     <Link to="/nguoi-dung/thong-tin"
                                           className="font-medium text-sm hover:text-primary flex items-center justify-start gap-2 transition-all">
@@ -40,6 +45,10 @@ function UserComponent(props) {
                                 </div>
                             </div>
                             <div className="py-3 px-4 border-b-[1px] border-[#eee] flex flex-col gap-4">
+                                <Link to="/nguoi-dung/hoa-don"
+                                      className="flex items-center justify-start gap-3 text-tiny transition-all hover:text-primary-hover">
+                                    <Icon.UilStore className="w-[20px] h-[20px]"/> Shop của tôi
+                                </Link>
                                 <Link to="/nguoi-dung/hoa-don"
                                       className="flex items-center justify-start gap-3 text-tiny transition-all hover:text-primary-hover">
                                     <Icon.UilCreditCardSearch className="w-[20px] h-[20px]"/> Tra cứu hóa đơn

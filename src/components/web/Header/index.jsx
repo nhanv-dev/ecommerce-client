@@ -34,12 +34,12 @@ function Header() {
                 <div className="container">
                     <div className="flex justify-between items-center">
                         <div className="flex justify-start items-center gap-4">
-                            <p className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
+                            <Link to="/kenh-nguoi-ban" className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
                                 <span>Kênh người bán</span>
-                            </p>
-                            <p className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
+                            </Link>
+                            <Link to="/dang-ky-ban-hang" className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
                                 <span>Bán hàng cùng Shopio</span>
-                            </p>
+                            </Link>
                         </div>
                         <div className="flex justify-start items-center gap-4">
                             <p className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
@@ -119,13 +119,9 @@ function Header() {
                                       className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
                                     Thông báo
                                 </Link>
-                                <Link to="/cua-hang/123"
+                                <Link to="/cua-hang/pigeonvnofficial"
                                       className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
                                     Cửa hàng
-                                </Link>
-                                <Link to="/kenh-ban-hang/"
-                                      className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
-                                    Kênh bán hàng
                                 </Link>
                                 <Link to="/quan-tri/"
                                       className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">

@@ -1,7 +1,7 @@
 import "./style.scss";
 import {useParams, useSearchParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {BuyerLayout} from "../../../components/common/Layouts";
+import {UserLayout} from "../../../components/common/Layouts";
 import Helmet from "../../../components/web/Helmet";
 
 function Search() {
@@ -24,13 +24,13 @@ function Search() {
 
 
     return (
-        <BuyerLayout>
+        <UserLayout>
             <Helmet title="Tìm kiếm sản phẩm">
                 <div className="container py-8">
 
                 </div>
             </Helmet>
-        </BuyerLayout>
+        </UserLayout>
     );
 }
 

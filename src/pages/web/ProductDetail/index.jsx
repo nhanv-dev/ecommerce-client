@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 import './style.scss';
 import Helmet from "../../../components/web/Helmet";
-import {BuyerLayout} from "../../../components/common/Layouts";
+import {UserLayout} from "../../../components/common/Layouts";
 import Footer from "./Footer";
 import Shop from "./Shop";
 import Overview from "./Overview";
@@ -30,7 +30,7 @@ function ProductDetail() {
     }
 
     return (
-        <BuyerLayout>
+        <UserLayout>
             <Helmet title={product?.name}>
                 <div className="container py-8">
                     <Overview product={product} updateQuantity={updateQuantity} quantity={quantity}/>
@@ -45,7 +45,7 @@ function ProductDetail() {
                     <Footer product={product} quantity={quantity}/>
                 </div>
             </Helmet>
-        </BuyerLayout>
+        </UserLayout>
     );
 }
 

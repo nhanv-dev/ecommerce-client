@@ -1,17 +1,15 @@
 import React from 'react';
-import Header from "../../web/Header";
-import Footer from "../../web/Footer";
-import Chat from "../../web/Chat";
+import Header from "../../seller/Header";
+import Sidebar from "../../seller/Sidebar";
 
 const SellerLayout = ({children}) => {
     return (
         <div className="w-full max-w-full relative">
-            <Header/>
-            <div className="bg-[#F2F3F7]">
+            <Header></Header>
+            <Sidebar></Sidebar>
+            <div className="ml-[66px] mt-[75px] py-10 bg-[#F3F6F9] min-h-[100vh]">
                 {children}
             </div>
-            <Chat/>
-            <Footer/>
         </div>
     )
 }

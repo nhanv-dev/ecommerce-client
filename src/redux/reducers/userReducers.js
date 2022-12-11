@@ -3,9 +3,9 @@ import {protectedRequest} from "../../utils/requestMethods";
 import {reLogin} from "../actions/userActions";
 
 const initialState = () => {
-    const data = JSON.parse(localStorage.getItem("persist:root"));
-    const state = {...data}
-    if (data) {
+    const data = JSON.parse(localStorage.getItem("persist:root")) || {};
+    const state = {...data, logged: false}
+    if (data.accessToken) {
         reLogin().then(res => {
             if (res) {
                 state.accessToken = res.accessToken
@@ -23,12 +23,18 @@ const initialState = () => {
 }
 
 const userReducers = (state = initialState(), action) => {
+    const storage = JSON.parse(localStorage.getItem("persist:root")) || {}
     switch (action.type) {
         case types.USER_LOGIN:
-            if (action.payload.accessToken) {
-                action.payload.logged = true
-                localStorage.setItem("persist:root", JSON.stringify(action.payload))
-            }
+            if (action.payload.accessToken)
+                localStorage.setItem("persist:root", JSON.stringify({...storage, ...action.payload}))
+            return {...state, ...action.payload}
+        case types.USER_LOGOUT:
+            delete storage.accessToken
+            delete storage.info
+            delete state.accessToken
+            delete state.info
+            localStorage.setItem("persist:root", JSON.stringify({...storage}))
             return {...state, ...action.payload}
         default:
             return state
