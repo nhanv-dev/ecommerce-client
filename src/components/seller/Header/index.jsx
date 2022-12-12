@@ -1,10 +1,24 @@
 import {Link} from "react-router-dom";
-import UserComponent from "./UserComponent";
+import ShopComponent from "./ShopComponent";
 import * as Icon from "@iconscout/react-unicons";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {protectedRequest, publicRequest} from "../../../utils/requestMethods";
+import {useEffect} from "react";
+import {SHOP_LOGIN_FAILED, SHOP_LOGIN_SUCCESS} from "../../../redux/constants/ActionTypes";
 
 function Header() {
-    const user = useSelector(state => state.user)
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
+    const shop = useSelector(state => state.shop);
+
+    useEffect(() => {
+        protectedRequest.get("/shops/detail").then(res => {
+            dispatch({type: SHOP_LOGIN_SUCCESS, payload: res.data.shop})
+        }).catch(err => {
+            dispatch({type: SHOP_LOGIN_FAILED})
+        })
+    }, [user])
+
     return (
         <div className="fixed left-0 top-0 right-0 bg-white h-[75px] shadow-md z-50">
             <div className="w-full h-full px-5 py-1 flex items-center gap-10">
@@ -15,10 +29,30 @@ function Header() {
                         <span className="leading-[22px]">Kênh bán hàng</span>
                     </div>
                 </Link>
-                <div className="flex justify-end items-center flex-wrap flex-1">
-                    <div className="flex items-center justify-start gap-8">
-                        <UserComponent user={user}/>
+                <div className="flex justify-end items-center gap-10 flex-1 pr-3">
+                    <div className="flex items-center justify-center gap-6">
+                        <Link to="/kenh-ban-hang/dang-ban"
+                              className="flex items-center justify-center gap-1.5 text-black-1 transition-all hover:text-primary-hover text-md font-semibold">
+                            <Icon.UilArchive className="w-[20px] h-[20px]"/>
+                            Đơn đặt hàng
+                        </Link>
+                        <Link to="/kenh-ban-hang/dang-ban"
+                              className="flex items-center justify-center gap-1.5 text-black-1 transition-all hover:text-primary-hover text-md font-semibold">
+                            <Icon.UilEnvelopeCheck className="w-[20px] h-[20px]"/>
+                            Đánh giá & Nhận xét
+                        </Link>
+                        <Link to="/kenh-ban-hang/dang-ban"
+                              className="flex items-center justify-center gap-1.5 text-black-1 transition-all hover:text-primary-hover text-md font-semibold">
+                            <Icon.UilMessage className="w-[20px] h-[20px]"/>
+                            Tin nhắn
+                        </Link>
+                        <Link to="/kenh-ban-hang/dang-ban"
+                              className="flex items-center justify-center gap-1.5 text-black-1 transition-all hover:text-primary-hover text-md font-semibold">
+                            <Icon.UilCreateDashboard className="w-[20px] h-[20px]"/>
+                            Đăng bán
+                        </Link>
                     </div>
+                    <ShopComponent user={user}/>
                 </div>
             </div>
         </div>

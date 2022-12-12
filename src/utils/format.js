@@ -14,9 +14,18 @@ export function formatPercent(percent, fixed) {
     return `${(percent * 100).toFixed(fixed)}%`;
 }
 
-export function formatDate(date) {
-    return null;
-    // return `${(percent * 100).toFixed(fixed)}%`;
+export function formatSmallDate(date) {
+    if (!date) return null;
+    const options = {year: 'numeric', month: 'long', day: 'numeric'};
+    return new Date(date).toLocaleDateString('vi-VN', options).toString();
+}
+
+export function formatLongDate(date) {
+    if (!date) return null;
+    const options = {
+        hour: '2-digit', minute: '2-digit', year: 'numeric', month: 'long', day: 'numeric',
+    };
+    return new Date(date).toLocaleDateString('vi-VN', options).toString();
 }
 
 export function formatBetweenDate(date) {

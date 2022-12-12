@@ -13,15 +13,16 @@ function Category() {
     const [products, setProducts] = useState([ProductExample, ProductExample, ProductExample, ProductExample, ProductExample, ProductExample])
 
     useEffect(() => {
-        publicRequest.get(`/categories/slug/${slug}`).then(response => {
+        publicRequest.get(`/categories/${slug}`).then(response => {
             setCategory(response.data.category)
         })
     }, [slug])
 
     useEffect(() => {
         if (!category) return;
-        axios.get(`http://localhost:8080/api/v1/products?category=${category._id}&limit=32`).then(response => {
+        publicRequest.get(`/products?category=${category._id}&limit=32`).then(res => {
             // console.log(response.data.products)
+            console.log(res)
         })
     }, [category])
 

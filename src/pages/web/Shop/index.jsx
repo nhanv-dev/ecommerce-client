@@ -41,7 +41,7 @@ function Shop() {
 
     return (
         <UserLayout>
-            <Helmet title={shop ? `Shop - ${shop.name}` : 'Cửa hàng'}>
+            <Helmet title={shop ? `${shop.name} - Shopio` : 'Cửa hàng - Shopio'}>
                 <div className="pb-6">
                     <div className="container pb-6">
                         <div className="bg-white rounded-b-[8px]">

@@ -3,7 +3,7 @@ import * as Icon from '@iconscout/react-unicons';
 
 function Sidebar() {
     return (
-        <div className="fixed left-0 bottom-0 top-[76px] bg-white w-[66px] border-r-[1px] border-[#EBEDF5]">
+        <div className="z-50 fixed left-0 bottom-0 top-[75px] bg-white w-[66px] border-r-[1px] border-[#EBEDF5]">
             <div className="w-full h-full flex flex-col items-center py-5 justify-between">
                 <div className="flex flex-col items-center gap-6">
                     <NavigationLink to="/kenh-ban-hang" title="Kênh bán hàng" icon={<Icon.UilEstate className={"w-[20px]"}/>}/>

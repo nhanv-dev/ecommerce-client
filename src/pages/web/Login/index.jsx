@@ -5,22 +5,24 @@ import {Link, useNavigate} from "react-router-dom";
 import * as Icon from '@iconscout/react-unicons';
 import Logo from "../../../assets/img/logo-white.svg";
 import Helmet from "../../../components/web/Helmet";
+import {protectedRequest} from "../../../utils/requestMethods";
+import {SHOP_LOGIN_FAILED, SHOP_LOGIN_SUCCESS} from "../../../redux/constants/ActionTypes";
 
 function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.user)
-    const [username, setUsername] = useState("nhanvapp");
+    const [username, setUsername] = useState("pigeon");
     const [password, setPassword] = useState("123");
 
     async function handleLogin(e) {
         e.preventDefault();
-        dispatch(await login({username, password}))
+        dispatch(await login({username, password}));
     }
 
     useEffect(() => {
         if (user.accessToken && user.info) navigate("/")
-    }, [user, dispatch])
+    }, [user])
 
     return (
         <Helmet title="Đăng nhập - Shopio.">
