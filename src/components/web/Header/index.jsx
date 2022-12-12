@@ -34,7 +34,7 @@ function Header() {
                 <div className="container">
                     <div className="flex justify-between items-center">
                         <div className="flex justify-start items-center gap-4">
-                            <Link to="/kenh-nguoi-ban" className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
+                            <Link to="/kenh-ban-hang" className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
                                 <span>Kênh người bán</span>
                             </Link>
                             <Link to="/dang-ky-ban-hang" className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
@@ -118,14 +118,6 @@ function Header() {
                                 <Link to="/thong-bao"
                                       className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
                                     Thông báo
-                                </Link>
-                                <Link to="/cua-hang/pigeonvnofficial"
-                                      className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
-                                    Cửa hàng
-                                </Link>
-                                <Link to="/quan-tri/"
-                                      className="hover:text-primary-hover transition-all text-black-1 font-bold text-md capitalize">
-                                    Trang quản trị
                                 </Link>
                             </div>
                             <Link to="/dau-gia"

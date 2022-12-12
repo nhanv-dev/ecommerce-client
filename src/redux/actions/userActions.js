@@ -1,38 +1,42 @@
 import * as types from '../constants/ActionTypes'
 import {protectedRequest, publicRequest} from "../../utils/requestMethods";
-import {USER_RE_LOGIN} from "../constants/ActionTypes";
+import {SHOP_LOGIN_FAILED, SHOP_LOGIN_SUCCESS} from "../constants/ActionTypes";
+import axios from "axios";
 
 export const login = async (payload) => {
     const res = await publicRequest.post("/auth/login", payload);
+    if (res.status !== 200) return {type: types.USER_LOGIN_FAILED};
+    const data = {accessToken: res.data.accessToken, info: res.data.user};
+    const shopRes = await axios.create({
+        baseURL: "http://localhost:8080/api/v1/",
+        headers: {token: `Bearer ${data.accessToken}`},
+    }).get("/shops/detail")
+    data.shop = {...shopRes.data.shop}
+    console.log(data)
     return {
-        type: types.USER_LOGIN,
-        payload: {
-            accessToken: res.data.accessToken,
-            info: res.data.user,
-            logged: !!res.data.accessToken
-        }
+        type: types.USER_LOGIN_SUCCESS,
+        payload: {...data}
     }
 }
 export const logout = async () => {
     return {
         type: types.USER_LOGOUT,
-        payload: {logged: false}
     }
 }
 
 export const register = async (payload) => {
     const res = await publicRequest.post("/auth/register", payload);
-    console.log(res)
     return {
-        type: types.USER_REGISTER, payload
+        type: types.USER_REGISTER, payload, res
     }
 }
 
 export const reLogin = async () => {
-    const response = await protectedRequest.post("/auth/re-login")
-    if (response.status === 200) return {
-        type: USER_RE_LOGIN,
-        accessToken: response.data.accessToken,
-        user: response.data.user
+    const res = await protectedRequest.post("/auth/re-login")
+    if (res.status === 200) return {
+        type: types.USER_RE_LOGIN,
+        accessToken: res.data.accessToken,
+        user: res.data.user,
+        shop: res.data.shop,
     }
 }

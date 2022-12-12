@@ -15,9 +15,9 @@ const Shop = lazy(() => import('../pages/web/Shop'));
 const SearchingPayment = lazy(() => import('../pages/web/SearchingPayment'));
 const Register = lazy(() => import('../pages/web/Register'));
 const RegisterShop = lazy(() => import('../pages/web/RegisterShop'));
-const Checkout =lazy(()=> import('../pages/web/Checkout'));
-const ChangeAddress =lazy(()=> import('../pages/web/ChangeAddress'));
-const CreateAddress = lazy(()=> import('../pages/web/CreateAddress'))
+const Checkout = lazy(() => import('../pages/web/Checkout'));
+const ChangeAddress = lazy(() => import('../pages/web/ChangeAddress'));
+const CreateAddress = lazy(() => import('../pages/web/CreateAddress'))
 
 const routes = [
     {path: '/', exact: true, component: Home},
@@ -55,14 +55,14 @@ function UserRouter() {
 
             {reverseAuthRoutes.map(route => (
                 <Route key={route.path} exact={route.exact} path={route.path}
-                       element={!user.accessToken && !user.logged ? <route.component/> :
+                       element={!user.accessToken ? <route.component/> :
                            <Navigate to={route.replaceTo} replace={true}/>}/>
             ))}
 
             {authRoutes.map(route => (
                 <Route key={route.path} exact={route.exact} path={route.path}
                        element={
-                           user.accessToken && user.logged ?
+                           user.accessToken ?
                                <route.component/> :
                                <Navigate to={route.replaceTo} replace={true}/>
                        }/>

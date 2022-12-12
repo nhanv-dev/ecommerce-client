@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
     notification: notificationReducers,
     socket: socketReducers,
     user: userReducers,
-    shop: shopReducers
+    shop: shopReducers,
 })
 
 export default rootReducer;

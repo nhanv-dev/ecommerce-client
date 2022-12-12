@@ -6,11 +6,13 @@ import {logout} from "../../../redux/actions/userActions";
 
 function UserComponent(props) {
     const dispatch = useDispatch();
+    const state = useSelector(state => state);
     const user = useSelector(state => state.user);
+    const shop = useSelector(state => state.shop);
 
     useEffect(() => {
-        console.log(user)
-    }, [user])
+        console.log(state)
+    }, [state])
 
     const handleSignOut = async (e) => {
         dispatch(await logout());
@@ -45,7 +47,7 @@ function UserComponent(props) {
                                 </div>
                             </div>
                             <div className="py-3 px-4 border-b-[1px] border-[#eee] flex flex-col gap-4">
-                                <Link to="/nguoi-dung/hoa-don"
+                                <Link to={`/cua-hang/${shop.slug}`}
                                       className="flex items-center justify-start gap-3 text-tiny transition-all hover:text-primary-hover">
                                     <Icon.UilStore className="w-[20px] h-[20px]"/> Shop của tôi
                                 </Link>
