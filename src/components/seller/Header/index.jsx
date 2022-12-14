@@ -11,14 +11,6 @@ function Header() {
     const user = useSelector(state => state.user);
     const shop = useSelector(state => state.shop);
 
-    useEffect(() => {
-        protectedRequest.get("/shops/detail").then(res => {
-            dispatch({type: SHOP_LOGIN_SUCCESS, payload: res.data.shop})
-        }).catch(err => {
-            dispatch({type: SHOP_LOGIN_FAILED})
-        })
-    }, [user])
-
     return (
         <div className="fixed left-0 top-0 right-0 bg-white h-[75px] shadow-md z-50">
             <div className="w-full h-full px-5 py-1 flex items-center gap-10">

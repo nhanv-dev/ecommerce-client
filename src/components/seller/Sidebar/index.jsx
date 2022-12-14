@@ -1,7 +1,10 @@
 import {Link, NavLink} from "react-router-dom";
 import * as Icon from '@iconscout/react-unicons';
+import {useSelector} from "react-redux";
 
 function Sidebar() {
+    const shop=useSelector(state => state.shop);
+
     return (
         <div className="z-50 fixed left-0 bottom-0 top-[75px] bg-white w-[66px] border-r-[1px] border-[#EBEDF5]">
             <div className="w-full h-full flex flex-col items-center py-5 justify-between">
@@ -15,7 +18,7 @@ function Sidebar() {
                 </div>
                 <div className="flex flex-col items-center gap-6 justify-end mb-3">
                     <NavigationLink to="" title="Hỗ trợ" icon={<Icon.UilInfoCircle className={"w-[20px]"}/>}/>
-                    <NavigationLink to="/cua-hang/123" title="Cửa hàng" icon={<Icon.UilAirplay className={"w-[20px]"}/>}/>
+                    <NavigationLink to={`/cua-hang/${shop.slug}`} title="Cửa hàng" icon={<Icon.UilAirplay className={"w-[20px]"}/>}/>
                     <NavigationLink to="/trang-chu" title="Trang chủ" icon={<Icon.UilEstate className={"w-[20px]"}/>}/>
                 </div>
             </div>

@@ -12,19 +12,19 @@ import ProductDescription from "./ProductDescription";
 import Comment from "./Comment";
 import QuestionBlock from "./QuestionBlock";
 import productExample from "../../../common/ProductExample";
+import {publicRequest} from "../../../utils/requestMethods";
 
 function ProductDetail() {
     const {slug} = useParams();
     const [product, setProduct] = useState(null);
     const [relatedProducts, setRelatedProducts] = useState([{...productExample}, {...productExample}, {...productExample}]);
     const [quantity, setQuantity] = useState(1);
-    useEffect(() => {
 
-        // axios
-        //     .get(`http://localhost:8080/api/v1/product/${slug}`)
-        //     .then((response) => {
-        //     })
-        setProduct(productExample)
+    useEffect(() => {
+        publicRequest.get(`/products?slug=${slug}&detail=true`).then(res => {
+            console.log(res)
+            setProduct(res.data.product)
+        })
     }, [slug])
 
     const updateQuantity = (value) => {

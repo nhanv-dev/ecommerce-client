@@ -10,7 +10,7 @@ import {publicRequest} from "../../../utils/requestMethods";
 function Category() {
     const {slug} = useParams();
     const [category, setCategory] = useState(null);
-    const [products, setProducts] = useState([ProductExample, ProductExample, ProductExample, ProductExample, ProductExample, ProductExample])
+    const [products, setProducts] = useState([])
 
     useEffect(() => {
         publicRequest.get(`/categories/${slug}`).then(response => {
@@ -20,9 +20,8 @@ function Category() {
 
     useEffect(() => {
         if (!category) return;
-        publicRequest.get(`/products?category=${category._id}&limit=32`).then(res => {
-            // console.log(response.data.products)
-            console.log(res)
+        publicRequest.get(`/products/all`).then(res => {
+            setProducts(res.data.products)
         })
     }, [category])
 
@@ -31,7 +30,7 @@ function Category() {
             <Helmet title={category ? `${category.name}` : 'Danh mục'}>
                 <div className="container h-full">
                     <div className="flex gap-4 py-10 relative">
-                        <div className="w-[18%]">
+                        <div className="w-[260px]">
                             <div
                                 className="scroll-component sticky top-[58px] left-0 z-20 overflow-y-scroll overflow-x-hidden max-h-[90vh]">
                                 <div className="flex flex-col gap-3">
