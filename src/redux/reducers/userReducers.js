@@ -5,17 +5,6 @@ import {reLogin} from "../actions/userActions";
 const initialState = () => {
     const data = JSON.parse(localStorage.getItem("persist:root")) || {};
     const state = {...data}
-    if (data.accessToken) {
-        reLogin().then(res => {
-            if (!res.accessToken || !res.user) return;
-            state.accessToken = res.accessToken
-            state.user = res.user
-        }).catch(err => {
-            delete state.accessToken
-            delete state.user
-            localStorage.setItem("persist:root", JSON.stringify(state))
-        })
-    }
     return {accessToken: state.accessToken, info: state.info}
 }
 

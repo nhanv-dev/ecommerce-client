@@ -6,13 +6,8 @@ import {logout} from "../../../redux/actions/userActions";
 
 function UserComponent(props) {
     const dispatch = useDispatch();
-    const state = useSelector(state => state);
     const user = useSelector(state => state.user);
     const shop = useSelector(state => state.shop);
-
-    useEffect(() => {
-        console.log(state)
-    }, [state])
 
     const handleSignOut = async (e) => {
         dispatch(await logout());

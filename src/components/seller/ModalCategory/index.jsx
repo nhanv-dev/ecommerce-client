@@ -6,6 +6,11 @@ function ModalCategory({category, setCategory, showCategory, showSubCategory, se
     const [categories, setCategories] = useState();
 
     useEffect(() => {
+        if (showSubCategory || showCategory) document.body.classList.add('overflow-hidden');
+        else document.body.classList.remove('overflow-hidden');
+    }, [showSubCategory, showCategory])
+
+    useEffect(() => {
         if (!showSubCategory) return;
         publicRequest.get(`/categories/children?parentId=${category.parent._id}`).then(res => {
             setCategories(res.data.categories)

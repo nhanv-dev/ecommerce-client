@@ -13,16 +13,18 @@ function ProductCard({product}) {
         <div className="cursor-pointer relative group w-full rounded-md bg-white rounded-[5px] p-3">
             <Link to={`/san-pham/${product.slug}`}
                   className="w-full flex items-center justify-center mb-2 rounded-[5px] overflow-hidden">
-                <div style={{backgroundImage: `url(${image})`}} className="rounded-[5px] w-full min-h-[180px] min-w-[180px] pt-full bg-cover bg-center"/>
+                <div style={{backgroundImage: `url(${image})`}}
+                     className="rounded-[5px] w-full min-h-[180px] min-w-[180px] pt-full bg-cover bg-center"/>
             </Link>
             <Link to={`/san-pham/${product.slug}`} className="block">
-                <p className="hover:text-primary text-[.85rem] font-semibold text-[#0f1e29] line-clamp-2 mb-2">
+                <p className="hover:text-primary text-tiny font-semibold text-[#0f1e29] line-clamp-2 mb-1">
                     {product.name}
                 </p>
-                <p className="text-base font-bold text-primary-hover">{formatCurrency(product.sellPrice * (100 - product.discountPercent) / 100)}</p>
-                <div className="flex items-center justify-start gap-3 mb-3">
-                    <p className="text-tiny font-semibold text-[#b7bbbf] line-through">{formatCurrency(product.sellPrice)}</p>
-                    <p className="text-primary font-bold text-[0.85rem]">-{product.discountPercent}%</p>
+                <div className="flex items-center justify-start gap-3">
+                    <p className="text-base font-bold text-primary-hover">{formatCurrency(product.basePrice * (100 - product.discountPercent) / 100)}</p>
+                    <p className="text-primary-hover font-bold text-sm relative top-[1px]">
+                        -{product.discountPercent}%
+                    </p>
                 </div>
                 <div className="flex items-center justify-start gap-1.5 flex-wrap">
                     {product.tags.slice(0, 1).map((tag, index) => {

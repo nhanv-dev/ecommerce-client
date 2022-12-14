@@ -4,6 +4,7 @@ import notificationReducers from "./notificationReducers";
 import socketReducers from "./socketReducers";
 import userReducers from "./userReducers";
 import shopReducers from "./shopReducers";
+import firebaseReducers from "./firebaseReducers";
 
 const rootReducer = combineReducers({
     chat: chatReducers,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     socket: socketReducers,
     user: userReducers,
     shop: shopReducers,
+    firebase: firebaseReducers,
 })
 
 export default rootReducer;

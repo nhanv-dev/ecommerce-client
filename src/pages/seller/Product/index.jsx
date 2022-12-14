@@ -7,7 +7,7 @@ import {protectedRequest, publicRequest} from "../../../utils/requestMethods";
 import {useParams} from "react-router-dom";
 import Editor from "./Editor";
 import {formatCurrency, formatLongDate} from "../../../utils/format";
-import ModalCategory from "./ModalCategory";
+import ModalCategory from "../../../components/seller/ModalCategory";
 
 function Product() {
     const {slug} = useParams();
