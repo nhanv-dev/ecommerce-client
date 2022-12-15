@@ -3,7 +3,7 @@ import {formatCurrency} from "../../../utils/format";
 import {useEffect, useState} from "react";
 import * as Icon from "@iconscout/react-unicons";
 
-function Footer({product, quantity}) {
+function Footer({product, quantity, addToCart}) {
     const [scrollTop, setScrollTop] = useState(0);
     const [color, setColor] = useState(undefined)
 
@@ -46,7 +46,7 @@ function Footer({product, quantity}) {
                                 <Icon.UilCommentAltLines className="w-[20px] h-[20px] text-[#3f4b53]"/>
                             </button>
                             <button
-                                className="rounded-[5px] px-4  min-w-max bg-[#e7e8ea] text-[#3f4b53] px-4 h-[40px] min-w-[150px] hover:bg-[#F3F3F3] active:bg-[#e7e8ea] ">
+                                className="rounded-[5px] px-4  min-w-max bg-[#e7e8ea] text-[#3f4b53] px-4 h-[40px] min-w-[150px] hover:bg-[#F3F3F3] active:bg-[#e7e8ea] " onClick={addToCart}>
                                 <span className="font-bold text-[0.875rem]">Thêm vào giỏ</span>
                             </button>
                             <button

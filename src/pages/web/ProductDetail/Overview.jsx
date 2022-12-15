@@ -4,14 +4,17 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import {Navigation, Thumbs} from "swiper";
 import * as SolidIcon from "@iconscout/react-unicons-solid";
 import * as Icon from "@iconscout/react-unicons";
+import {useDispatch} from "react-redux";
+import {buy} from "../../../redux/actions/cartActions";
 
-function Overview({product, updateQuantity, quantity}) {
+function Overview({product, updateQuantity, addToCart, quantity}) {
     const [activeThumbs, setActiveThumbs] = useState()
 
     const handleUpdateQuantity = (value) => {
         if (value <= 0) updateQuantity(1)
         else updateQuantity(value)
     }
+
     return (
         <>
             {product &&
@@ -103,7 +106,7 @@ function Overview({product, updateQuantity, quantity}) {
                             <div className="mt-5 flex items-center flex-row gap-3">
                                 <div className="basis-1/2 ">
                                     <button
-                                        className="text-base text-[#3f4b53] font-bold hover:bg-[#F3F3F3] rounded-[4px] bg-[#e7e8ea] w-[100%] h-[44px]">
+                                        className="text-base text-[#3f4b53] font-bold hover:bg-[#F3F3F3] rounded-[4px] bg-[#e7e8ea] w-[100%] h-[44px]" onClick={addToCart}>
                                         Thêm vào giỏ
                                     </button>
                                 </div>

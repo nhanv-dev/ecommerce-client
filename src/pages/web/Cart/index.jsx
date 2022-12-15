@@ -6,14 +6,16 @@ import CartItem from "./CartItem";
 import {Link} from "react-router-dom";
 import * as Icon from "@iconscout/react-unicons"
 import {formatCurrency} from "../../../utils/format";
+import {useSelector} from "react-redux";
 
 function Cart() {
     const [cart, setCart] = useState({});
-
+    const cartState = useSelector(state => state.cart)
     useEffect(() => {
-        setCart(cartExample)
-    }, [])
-
+        cartState.forEach((i)=>{
+            setCart(i)
+        })
+    })
     return (
         <UserLayout>
             <Helmet title="Giỏ hàng">
