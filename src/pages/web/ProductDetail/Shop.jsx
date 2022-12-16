@@ -8,8 +8,9 @@ import SmallProductCard from "../../../components/web/SmallProductCard";
 import shopExample from "../../../common/ShopExample";
 import DefaultShopImage from '../../../assets/img/default-shop.png';
 
-function Shop({relatedProducts}) {
+function Shop({product}) {
     const [shop, setShop] = useState({});
+    const [relatedProducts, relatedProduct] = useState([]);
 
     useEffect(() => {
         setShop(shopExample);
