@@ -23,7 +23,7 @@ function ProductDetail() {
     const [combinations, setCombinations] = useState([]);
     const [userCombination, setUserCombination] = useState(null);
     const [quantity, setQuantity] = useState(1);
-    const dispatch  = useDispatch();
+    const dispatch = useDispatch();
 
 
     useEffect(() => {
@@ -57,11 +57,11 @@ function ProductDetail() {
     const updateQuantity = (value) => {
         setQuantity(value)
     }
-    const addToCart = ()=>{
-        const item ={
+    const addToCart = () => {
+        const item = {
             id: 1,
-            userId:'quyen',
-            items: [{id:slug,product:{...product}, quantity: quantity}]
+            userId: 'quyen',
+            items: [{id: slug, product: {...product}, quantity: quantity}]
         }
         const action = buy(item);
         dispatch(action);
@@ -69,7 +69,7 @@ function ProductDetail() {
     return (
         <UserLayout>
             <Helmet title={product?.name}>
-
+                <div className="container py-8">
                     <Overview product={product}
                               userCombination={userCombination}
                               options={options}
@@ -77,10 +77,11 @@ function ProductDetail() {
                               userOptions={userOptions}
                               setUserOptions={setUserOptions}
                               updateQuantity={updateQuantity}
+                              addToCart={addToCart}
                               quantity={quantity}/>
-                    <div className="flex justify-between mt-6 max-w-full gap-6 pb-6">
+                    <div className=" flex justify-between mt-6 max-w-full gap-6 pb-6">
                         <Shop product={product}/>
-                        <div className="flex-1">
+                        <div className=" flex-1">
                             <ProductDescription product={product}/>
                             <QuestionBlock product={product}/>
                         </div>
