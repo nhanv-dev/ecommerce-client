@@ -6,20 +6,25 @@
   html, body {
     font-family: "Roboto", sans-serif;
   }
+
   body::-webkit-scrollbar {
     width: 14px;
   }
+
   body::-webkit-scrollbar-track {
     background: white;
   }
+
   body::-webkit-scrollbar-thumb {
     background-color: grey;
     border-radius: 20px;
     border: 4px solid white;
   }
+
   body::-webkit-scrollbar-thumb:hover {
     background: #9e9e9e;
   }
+
   .scroll-component::-webkit-scrollbar {
     width: 14px;
   }
@@ -34,11 +39,13 @@
   .scroll-component::-webkit-scrollbar-thumb:hover {
     background: #9e9e9e;
   }
+
   input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
+
   input[type=number] {
     -moz-appearance: textfield;
   }
@@ -568,6 +575,7 @@ input::-webkit-inner-spin-button {
   .ck-content .page-break {
     padding: 0;
   }
+
   /* ckeditor5-page-break/theme/pagebreak.css */
   .ck-content .page-break::after {
     display: none;

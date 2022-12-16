@@ -9,6 +9,10 @@ import Overview from "./Overview";
 import ProductDescription from "./ProductDescription";
 import Comment from "./Comment";
 import QuestionBlock from "./QuestionBlock";
+import productExample from "../../../common/ProductExample";
+import {useDispatch, useSelector} from "react-redux";
+import {buy} from "../../../redux/actions/cartActions";
+
 import {publicRequest} from "../../../utils/requestMethods";
 
 function ProductDetail() {
@@ -19,6 +23,8 @@ function ProductDetail() {
     const [combinations, setCombinations] = useState([]);
     const [userCombination, setUserCombination] = useState(null);
     const [quantity, setQuantity] = useState(1);
+    const dispatch  = useDispatch();
+
 
     useEffect(() => {
         publicRequest.get(`/products?slug=${slug}&detail=true`).then(res => {
@@ -51,11 +57,19 @@ function ProductDetail() {
     const updateQuantity = (value) => {
         setQuantity(value)
     }
-
+    const addToCart = ()=>{
+        const item ={
+            id: 1,
+            userId:'quyen',
+            items: [{id:slug,product:{...product}, quantity: quantity}]
+        }
+        const action = buy(item);
+        dispatch(action);
+    }
     return (
         <UserLayout>
             <Helmet title={product?.name}>
-                <div className="container py-8">
+
                     <Overview product={product}
                               userCombination={userCombination}
                               options={options}
@@ -72,7 +86,7 @@ function ProductDetail() {
                         </div>
                     </div>
                     <Comment product={product}/>
-                    <Footer product={product} quantity={quantity}/>
+                    <Footer product={product} quantity={quantity} addToCart={addToCart}/>
                 </div>
             </Helmet>
         </UserLayout>

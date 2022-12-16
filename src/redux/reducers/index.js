@@ -4,6 +4,7 @@ import notificationReducers from "./notificationReducers";
 import socketReducers from "./socketReducers";
 import userReducers from "./userReducers";
 import shopReducers from "./shopReducers";
+import cartReducers from "./cartReducers";
 import firebaseReducers from "./firebaseReducers";
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     socket: socketReducers,
     user: userReducers,
     shop: shopReducers,
+    cart:cartReducers,
     firebase: firebaseReducers,
 })
 
