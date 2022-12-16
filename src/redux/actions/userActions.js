@@ -4,19 +4,19 @@ import {SHOP_LOGIN_FAILED, SHOP_LOGIN_SUCCESS} from "../constants/ActionTypes";
 import axios from "axios";
 
 export const login = async (payload) => {
-    const res = await publicRequest.post("/auth/login", payload);
-    if (res.status !== 200) return {type: types.USER_LOGIN_FAILED};
-    const data = {accessToken: res.data.accessToken, info: res.data.user};
-    const shopRes = await axios.create({
-        baseURL: "http://localhost:8080/api/v1/",
-        headers: {token: `Bearer ${data.accessToken}`},
-    }).get("/shops/detail")
-    data.shop = {...shopRes.data.shop}
-    console.log(data)
-    return {
-        type: types.USER_LOGIN_SUCCESS,
-        payload: {...data}
-    }
+    const action = {type: types.USER_LOGIN_SUCCESS, payload: {}};
+    await publicRequest.post("/auth/login", payload)
+        .then(res => {
+            action.payload = {
+                accessToken: res.data.accessToken,
+                info: res.data.user,
+                shop: res.data.shop
+            };
+        }).catch(err => {
+            action.type = types.USER_LOGIN_FAILED;
+            action.payload = {};
+        })
+    return {...action}
 }
 export const logout = async () => {
     return {
@@ -32,11 +32,17 @@ export const register = async (payload) => {
 }
 
 export const reLogin = async () => {
-    const res = await protectedRequest.post("/auth/re-login")
-    if (res.status === 200) return {
-        type: types.USER_RE_LOGIN,
-        accessToken: res.data.accessToken,
-        user: res.data.user,
-        shop: res.data.shop,
-    }
+    const action = {type: types.USER_LOGIN_SUCCESS, payload: {}};
+    await protectedRequest.post("/auth/re-login")
+        .then(async (res) => {
+            action.payload = {
+                accessToken: res.data.accessToken,
+                info: res.data.user,
+                shop: res.data.shop
+            };
+        }).catch(err => {
+            action.type = types.USER_LOGIN_FAILED;
+            action.payload = {};
+        })
+    return {...action}
 }

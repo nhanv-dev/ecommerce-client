@@ -5,18 +5,6 @@ import {Link} from "react-router-dom";
 import {formatDate} from "../../../utils/format";
 import {protectedRequest, publicRequest} from "../../../utils/requestMethods";
 
-const data = [
-    {
-        user: {
-            _id: 1,
-            name: 'Trần Thanh Nhân',
-            avatar: 'https://media3.scdn.vn/img4/2021/08_11/uM41MFm2oMETHLbjqGv4.jpg',
-        },
-        message: "Tốt",
-        replied: false,
-        createdDate: "07:15 25/09/2022",
-    }
-]
 
 function QuestionBlock({product}) {
     const user = useSelector(state => state.user);
@@ -24,10 +12,9 @@ function QuestionBlock({product}) {
 
     useEffect(() => {
         if (product) {
-            console.log(product)
             publicRequest.get(`/questions?productId=${product?._id}&page=1`).then(res => {
-                console.log(res)
-                setQuestions(data)
+                const {questions} = res.data;
+                setQuestions(questions)
             })
         }
     }, [product])

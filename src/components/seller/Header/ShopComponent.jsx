@@ -18,7 +18,7 @@ function ShopComponent(props) {
         <div className="relative group ">
             <Link to="/kenh-ban-hang/thong-tin" className="relative outline-none gap-1 flex items-center">
                 <div style={{backgroundImage: `url(${shop?.avatar || image})`}}
-                     className="bg-cover bg-center w-[36px] h-[36px] text-black border-primary border-[2px] rounded-full"/>
+                     className="bg-cover bg-center w-[42px] h-[42px] text-black border-primary border-[2px] rounded-full"/>
             </Link>
             <div
                 className="shadow-xl transition-all group-hover:opacity-100 group-hover:visible group-hover:top-full mt-[10px] opacity-0 invisible z-[20] absolute top-[70%] right-[0px]  shadow min-w-max bg-white text-black font-medium rounded-[8px] text-sm">
@@ -28,7 +28,7 @@ function ShopComponent(props) {
                     <div
                         className="flex items-center justify-start gap-3 border-b-[1px] border-[#eee] py-3 px-4">
                         <Link to="/kenh-ban-hang/thong-tin" style={{backgroundImage: `url(${shop?.avatar || image})`}}
-                              className="bg-cover min-w-[35px] min-h-[35px] rounded-full border-2 border-primary"/>
+                              className="bg-cover min-w-[42px] min-h-[42px] rounded-full border-2 border-primary"/>
                         <div className="flex flex-col overflow-hidden w-full">
                             <Link to="/kenh-ban-hang/thong-tin"
                                   className="w-[120px] text-base text-primary-hover line-clamp-1 transition-all">

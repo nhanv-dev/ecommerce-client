@@ -1,12 +1,9 @@
-import React, {useContext, useEffect, useState} from "react"
-import axios from 'axios';
-import {SocketContext} from "../../../service/socket";
+import React, {useEffect, useState} from "react"
 import {Link} from "react-router-dom";
 import Menu from "./Menu";
 import * as Icon from '@iconscout/react-unicons';
 import Logo from "../../../assets/img/logo.svg";
 import {publicRequest} from "../../../utils/requestMethods";
-import {useSelector} from "react-redux";
 import UserComponent from "./UserComponent";
 
 function Header() {
@@ -34,10 +31,12 @@ function Header() {
                 <div className="container">
                     <div className="flex justify-between items-center">
                         <div className="flex justify-start items-center gap-4">
-                            <Link to="/kenh-ban-hang" className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
+                            <Link to="/kenh-ban-hang"
+                                  className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
                                 <span>Kênh người bán</span>
                             </Link>
-                            <Link to="/dang-ky-ban-hang" className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
+                            <Link to="/dang-ky-ban-hang"
+                                  className="cursor-pointer flex items-center justify-center gap-2 text-xs font-[500] text-black">
                                 <span>Bán hàng cùng Shopio</span>
                             </Link>
                         </div>
@@ -88,7 +87,8 @@ function Header() {
                 </div>
             </div>
             <div
-                className={`bg-[white] shadow-md transition-all z-50 border-b-[1px] border-[#E5E5E5] ${scrollTop >= 130 && 'fixed top-0 left-0 right-0'}`}>
+                // ${scrollTop >= 900 && 'fixed top-0 left-0 right-0'}
+                className={`bg-[white] shadow-md transition-all z-50 border-b-[1px] border-[#E5E5E5] `}>
                 <div className="container">
                     <div className="flex gap-6 py-2 relative">
                         <div
