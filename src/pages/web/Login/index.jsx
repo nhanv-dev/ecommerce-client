@@ -39,7 +39,7 @@ function Login() {
                             <img src={Logo} alt="logo" className="w-full"/>
                         </Link>
                         <div id="toast-danger "
-                             className={`flex items-center ${data ? '': 'hidden'} p-4 mb-4 w-full max-w-xs bg-[#FDE8E8] text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800`}
+                             className={`flex items-center ${data ? '': 'hidden'} p-4 mb-4 w-full max-w-xs bg-[#FDE8E8] text-gray-500 bg-white rounded-xl shadow dark:text-gray-400 dark:bg-gray-800`}
                              role="alert">
                             <div
                                 className="inline-flex flex-shrink-0 justify-center items-center rounded-full w-5 h-5 text-white bg-primary dark:bg-red-800 dark:text-red-200">
@@ -51,7 +51,7 @@ function Login() {
                                 </svg>
                                 <span className="sr-only">Error icon</span>
                             </div>
-                            <div className="ml-3 text-sm font-normal">Sai tên đăng nhập hoặc mật khẩu</div>
+                            <div className="ml-3 text-[#C53030] text-md font-normal">Sai tên đăng nhập hoặc mật khẩu</div>
                         </div>
                         <form className="w-[300px]" onSubmit={handleLogin}>
                             <div
