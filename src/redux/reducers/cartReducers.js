@@ -18,7 +18,7 @@ const cartReducers = (state=initialState, action)=>{
             })
                 item = idSt.find((p) => p.id === product.id);
             }
-            if(item == undefined){
+            if(item === undefined){
                 if(state.length<=0){
                     state.push(action.payload)
                 }else{
@@ -35,7 +35,6 @@ const cartReducers = (state=initialState, action)=>{
             }
             localStorage.setItem("cartItem", JSON.stringify(state))
             return [...state]
-            break;
         default:
             return state
     }

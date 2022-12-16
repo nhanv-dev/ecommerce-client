@@ -28,15 +28,16 @@ const routes = [
     {path: '/danh-muc', exact: true, component: Categories},
     {path: '/danh-muc/:slug', exact: true, component: Category},
     {path: '/cua-hang/:slug/*', exact: true, component: Shop},
-    {path: '/thanh-toan', exact: true, component: Checkout},
-    {path: '/thay-doi-dia-chi', exact: true, component: ChangeAddress},
-    {path: '/them-dia-chi', exact: true, component: CreateAddress},
 ]
+
 const authRoutes = [
     {path: '/nguoi-dung/thong-tin', exact: true, component: Profile, replaceTo: '/dang-nhap'},
     {path: '/nguoi-dung/doi-mat-khau', exact: true, component: ChangingPassword, replaceTo: '/dang-nhap'},
     {path: '/nguoi-dung/hoa-don', exact: true, component: SearchingPayment, replaceTo: '/dang-nhap'},
     {path: '/dang-ky-ban-hang', exact: true, component: RegisterShop, replaceTo: '/dang-nhap'},
+    {path: '/thanh-toan', exact: true, component: Checkout, replaceTo: '/dang-nhap'},
+    {path: '/thay-doi-dia-chi', exact: true, component: ChangeAddress, replaceTo: '/dang-nhap'},
+    {path: '/them-dia-chi', exact: true, component: CreateAddress, replaceTo: '/dang-nhap'},
 
 ]
 const reverseAuthRoutes = [

@@ -9,8 +9,8 @@ import {formatCurrency} from "../../../utils/format";
 import {useSelector} from "react-redux";
 
 function Cart() {
-    const [cart, setCart] = useState({});
-    const cartState = useSelector(state => state.cart)
+    const [cart, setCart] = useState();
+    const cartState = useSelector(state => state.cart);
     useEffect(() => {
         cartState.forEach((i)=>{
             setCart(i)
