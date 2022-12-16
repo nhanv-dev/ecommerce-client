@@ -14,16 +14,17 @@ function Login() {
     const user = useSelector((state) => state.user)
     const [username, setUsername] = useState("pigeon");
     const [password, setPassword] = useState("123");
+    const data = localStorage.getItem("persist:root")
+
 
     async function handleLogin(e) {
         e.preventDefault();
         dispatch(await login({username, password}));
     }
-
     useEffect(() => {
+        if(data)  localStorage.removeItem("persist:root")
         if (user.accessToken && user.info) navigate("/")
     }, [user])
-
     return (
         <Helmet title="Đăng nhập - Shopio.">
             <div
@@ -37,6 +38,21 @@ function Login() {
                         <Link to="/" className="block w-[130px] mx-auto mb-6">
                             <img src={Logo} alt="logo" className="w-full"/>
                         </Link>
+                        <div id="toast-danger "
+                             className={`flex items-center ${data ? '': 'hidden'} p-4 mb-4 w-full max-w-xs bg-[#FDE8E8] text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800`}
+                             role="alert">
+                            <div
+                                className="inline-flex flex-shrink-0 justify-center items-center rounded-full w-5 h-5 text-white bg-primary dark:bg-red-800 dark:text-red-200">
+                                <svg aria-hidden="true" className="w-3 h-3" fill="white" viewBox="0 0 20 20"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                          clip-rule="evenodd"></path>
+                                </svg>
+                                <span className="sr-only">Error icon</span>
+                            </div>
+                            <div className="ml-3 text-sm font-normal">Sai tên đăng nhập hoặc mật khẩu</div>
+                        </div>
                         <form className="w-[300px]" onSubmit={handleLogin}>
                             <div
                                 className="flex items-center justify-start gap-3 bg-white w-full mb-5 rounded-xl p-3">
@@ -73,6 +89,9 @@ function Login() {
                         </div>
                     </div>
                 </div>
+
+
+
             </div>
         </Helmet>
     );
