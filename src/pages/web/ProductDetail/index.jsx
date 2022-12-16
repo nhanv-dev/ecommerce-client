@@ -1,9 +1,7 @@
-import {Fragment, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import axios from "axios";
 import './style.scss';
 import Helmet from "../../../components/web/Helmet";
-
 import {UserLayout} from "../../../components/common/Layouts";
 import Footer from "./Footer";
 import Shop from "./Shop";
@@ -11,21 +9,44 @@ import Overview from "./Overview";
 import ProductDescription from "./ProductDescription";
 import Comment from "./Comment";
 import QuestionBlock from "./QuestionBlock";
-import productExample from "../../../common/ProductExample";
 import {publicRequest} from "../../../utils/requestMethods";
 
 function ProductDetail() {
     const {slug} = useParams();
     const [product, setProduct] = useState(null);
-    const [relatedProducts, setRelatedProducts] = useState([{...productExample}, {...productExample}, {...productExample}]);
+    const [options, setOptions] = useState([]);
+    const [userOptions, setUserOptions] = useState([]);
+    const [combinations, setCombinations] = useState([]);
+    const [userCombination, setUserCombination] = useState(null);
     const [quantity, setQuantity] = useState(1);
 
     useEffect(() => {
         publicRequest.get(`/products?slug=${slug}&detail=true`).then(res => {
-            console.log(res)
-            setProduct(res.data.product)
+            const {product, options, combinations} = res.data;
+            setProduct(product)
+            setOptions(options)
+            setCombinations(combinations)
         })
     }, [slug])
+
+    useEffect(() => {
+        const correctCombination = findCombinations(userOptions)
+        if (correctCombination.length === 0)
+            return setUserCombination({outOfStock: true})
+        setUserCombination(correctCombination[0]);
+    }, [userOptions])
+
+    const findCombinations = (options) => {
+        return [...combinations].filter(item => {
+            const strings = item.combinationString.split(" + ")
+            const included = strings.filter(character => {
+                return options.filter(item => {
+                    return item.value.name === character;
+                }).length > 0;
+            })
+            return included.length === strings.length
+        })
+    }
 
     const updateQuantity = (value) => {
         setQuantity(value)
@@ -35,9 +56,16 @@ function ProductDetail() {
         <UserLayout>
             <Helmet title={product?.name}>
                 <div className="container py-8">
-                    <Overview product={product} updateQuantity={updateQuantity} quantity={quantity}/>
+                    <Overview product={product}
+                              userCombination={userCombination}
+                              options={options}
+                              combinations={combinations}
+                              userOptions={userOptions}
+                              setUserOptions={setUserOptions}
+                              updateQuantity={updateQuantity}
+                              quantity={quantity}/>
                     <div className="flex justify-between mt-6 max-w-full gap-6 pb-6">
-                        <Shop relatedProducts={relatedProducts}/>
+                        <Shop product={product}/>
                         <div className="flex-1">
                             <ProductDescription product={product}/>
                             <QuestionBlock product={product}/>
