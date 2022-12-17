@@ -87,8 +87,7 @@ function Header() {
                 </div>
             </div>
             <div
-                // ${scrollTop >= 900 && 'fixed top-0 left-0 right-0'}
-                className={`bg-[white] shadow-md transition-all z-50 border-b-[1px] border-[#E5E5E5] `}>
+                className={`bg-[white] shadow-md transition-all z-50 border-b-[1px] border-[#E5E5E5] ${scrollTop >= 300 && 'fixed top-0 left-0 right-0'}`}>
                 <div className="container">
                     <div className="flex gap-6 py-2 relative">
                         <div

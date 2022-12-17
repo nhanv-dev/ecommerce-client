@@ -7,14 +7,9 @@ import * as Icon from '@iconscout/react-unicons';
 import SmallProductCard from "../../../components/web/SmallProductCard";
 import shopExample from "../../../common/ShopExample";
 import DefaultShopImage from '../../../assets/img/default-shop.png';
+import {formatBetweenDate, formatSmallDate, formatToK} from "../../../utils/format";
 
-function Shop({product}) {
-    const [shop, setShop] = useState({});
-    const [relatedProducts, relatedProduct] = useState([]);
-
-    useEffect(() => {
-        setShop(shopExample);
-    }, [])
+function Shop({shop, relatedProducts}) {
 
     useEffect(() => {
         fetch(shop.avatar).then((resp) => {
@@ -23,40 +18,48 @@ function Shop({product}) {
     }, [shop])
 
     return (
-        <div className="w-[550px] bg-white p-6 sticky top-[88px] h-full rounded-[5px]">
+        <div className="w-[500px] bg-white p-6 sticky top-[88px] h-full rounded-[5px]">
             <div className="flex gap-4 items-start justify-start">
-                <Link to={'/shop/' + shop.slug} className="w-[70px] h-[70px] relative">
-                    <img className="rounded-full w-full h-full" src={shop.avatar} alt="logo"/>
+                <Link to={`/cua-hang/${shop.slug}`}
+                      className="w-[70px] h-[70px] relative rounded-full bg-cover bg-center border-2 border-border"
+                      style={{backgroundImage: `url(${shop.avatar})`}}>
                     <p className="absolute bottom-0 right-0 border-[3.5px] rounded-full border-[#FFFFFF] w-[24px] h-[24px] bg-[#00C50A]"/>
                 </Link>
                 <div>
-                    <h1 className="font-bold mb-1.5">{shop.name}</h1>
+                    <Link to={`/cua-hang/${shop.slug}`}
+                          className="font-bold mt-1 mb-1 block transition-all hover:text-primary-hover">
+                        {shop.name}
+                    </Link>
                     <div className="flex items-center justify-start gap-3">
                         <p className="font-bold text-sm text-[#3f4b53]">{shop.area}</p>
                         <p className="w-[1.5px] h-[12px] bg-[#3f4b53] opacity-50"></p>
                         <div className="flex items-center justify-start gap-1">
-                            <p className="font-bold text-sm text-[#3f4b53]">{shop.rate}</p>
+                            <p className="font-bold text-sm text-[#3f4b53]">{shop.rating}</p>
                             <SolidIcon.UisStar className="w-[16px] h-[14px] text-[#e4a400]"/>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="flex my-4 justify-between items-center">
+            <div className="flex my-5 justify-between items-center">
                 <div className="text-center">
-                    <p className="font-semibold text-sm">{shop.joinDate}</p>
+                    <p className="font-semibold text-sm">{formatBetweenDate(shop.createdAt)}</p>
                     <p className="font-bold text-tiny text-[#3f4b53]">Bán ở Sendo</p>
                 </div>
                 <div className="text-center">
-                    <p className="font-semibold text-sm">{shop.numberOfProducts}</p>
+                    <p className="font-semibold text-sm">{shop.amountProducts}</p>
                     <p className="font-bold text-tiny text-[#3f4b53]">Sản phẩm</p>
                 </div>
                 <div className="text-center">
-                    <p className="font-semibold text-sm">{shop.readyShip}</p>
-                    <p className="font-bold text-tiny text-[#3f4b53]">Chuẩn bị hàng</p>
+                    <p className="font-semibold text-sm">{formatToK(shop.followed || 0)}</p>
+                    <p className="font-bold text-tiny text-[#3f4b53]">Lượt theo dõi</p>
                 </div>
                 <div className="text-center">
-                    <p className="font-semibold text-sm">{shop.chatResponseRate}%</p>
-                    <p className="font-bold text-tiny text-[#3f4b53]"> Tỉ lệ phản hồi</p>
+                    <p className="font-semibold text-sm">{formatToK(shop.following || 0)}</p>
+                    <p className="font-bold text-tiny text-[#3f4b53]"> Đang theo dõi</p>
+                </div>
+                <div className="text-center">
+                    <p className="font-semibold text-sm">{shop.responseRate}%</p>
+                    <p className="font-bold text-tiny text-[#3f4b53]">Tỉ lệ phản hồi</p>
                 </div>
             </div>
             <div className="w-full">
