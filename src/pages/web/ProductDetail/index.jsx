@@ -9,23 +9,22 @@ import Overview from "./Overview";
 import ProductDescription from "./ProductDescription";
 import Comment from "./Comment";
 import QuestionBlock from "./QuestionBlock";
-import productExample from "../../../common/ProductExample";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {buy} from "../../../redux/actions/cartActions";
 
 import {publicRequest} from "../../../utils/requestMethods";
 
 function ProductDetail() {
     const {slug} = useParams();
+    const dispatch = useDispatch();
     const [product, setProduct] = useState(null);
     const [options, setOptions] = useState([]);
     const [userOptions, setUserOptions] = useState([]);
     const [combinations, setCombinations] = useState([]);
     const [userCombination, setUserCombination] = useState(null);
     const [quantity, setQuantity] = useState(1);
-    const dispatch = useDispatch();
-
-
+    const [shop, setShop] = useState({});
+    const [relatedProducts, setRelatedProducts] = useState([]);
     useEffect(() => {
         publicRequest.get(`/products?slug=${slug}&detail=true`).then(res => {
             const {product, options, combinations} = res.data;
@@ -34,6 +33,16 @@ function ProductDetail() {
             setCombinations(combinations)
         })
     }, [slug])
+
+
+    useEffect(() => {
+        if (!product || !product._id) return;
+        publicRequest.get(`/shops/product?productId=${product._id}`).then(res => {
+            const {shop, relatedProducts} = res.data;
+            setShop(shop);
+            setRelatedProducts(relatedProducts);
+        })
+    }, [product])
 
     useEffect(() => {
         const correctCombination = findCombinations(userOptions)
@@ -57,6 +66,7 @@ function ProductDetail() {
     const updateQuantity = (value) => {
         setQuantity(value)
     }
+
     const addToCart = () => {
         const item = {
             id: 1,
@@ -80,14 +90,14 @@ function ProductDetail() {
                               updateQuantity={updateQuantity}
                               addToCart={addToCart}
                               quantity={quantity}/>
-                    <div className=" flex justify-between mt-6 max-w-full gap-6 pb-6">
-                        <Shop product={product}/>
-                        <div className=" flex-1">
+                    <div className="flex flex-wrap justify-between mt-6 max-w-full gap-6 pb-6">
+                            <Shop shop={shop} relatedProducts={relatedProducts}/>
+                        <div className="flex-1">
                             <ProductDescription product={product}/>
-                            <QuestionBlock product={product}/>
+                            <QuestionBlock product={product} shop={shop}/>
                         </div>
                     </div>
-                    <Comment product={product}/>
+                    <Comment product={product} shop={shop}/>
                     <Footer product={product} quantity={quantity} addToCart={addToCart}/>
                 </div>
             </Helmet>

@@ -9,10 +9,10 @@ function Images({images}) {
         imageRef.current.scrollLeft += scrollOffset;
     }
     return (
-        <div>
-            <div className="mb-5">
+        <div className="mb-5 w-full">
+            <div className="mb-5 w-full">
                 <div
-                    className="group relative w-full h-[400px] overflow-hidden border border-border rounded-[8px] flex items-center justify-center">
+                    className="group relative w-full h-[450px] overflow-hidden border border-border rounded-[8px] flex items-center justify-center">
                     <div
                         style={{backgroundImage: `url(${(images && images[active]) ? images[active].url : DefaultImage})`}}
                         className="h-full bg-cover bg-center w-full rounded-[8px] relative "/>
