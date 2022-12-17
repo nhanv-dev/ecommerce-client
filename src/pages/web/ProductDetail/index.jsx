@@ -38,7 +38,7 @@ function ProductDetail() {
     useEffect(() => {
         const correctCombination = findCombinations(userOptions)
         if (correctCombination.length === 0)
-            return setUserCombination({outOfStock: true})
+            return setUserCombination({isNotExist: true})
         setUserCombination(correctCombination[0]);
     }, [userOptions])
 
@@ -66,6 +66,7 @@ function ProductDetail() {
         const action = buy(item);
         dispatch(action);
     }
+
     return (
         <UserLayout>
             <Helmet title={product?.name}>
