@@ -69,7 +69,7 @@ function Login() {
                                        type="password" placeholder="Mật khẩu"/>
                             </div>
                             <div className="flex items-center justify-center mb-3">
-                                <Link to="/quen-mat-khau"
+                                <Link to="/quen-mat-khau/1"
                                       className="text-md font-semibold text-white">
                                     Quên mật khẩu ?
                                 </Link>
