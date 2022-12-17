@@ -6,6 +6,7 @@ import * as SolidIcon from "@iconscout/react-unicons-solid";
 import * as Icon from "@iconscout/react-unicons";
 import {useDispatch} from "react-redux";
 import {buy} from "../../../redux/actions/cartActions";
+import Images from "./Images";
 
 
 function Overview(props) {
@@ -13,13 +14,12 @@ function Overview(props) {
         product,
         userCombination,
         options,
-        combinations, addToCart,
+        addToCart,
         userOptions,
         setUserOptions,
         updateQuantity,
         quantity
     } = props;
-    const [activeThumbs, setActiveThumbs] = useState()
 
     const handleChooseOption = (option, value) => {
         const payload = [...userOptions].filter(item => item.option._id !== option._id)
@@ -37,47 +37,8 @@ function Overview(props) {
         <>
             {product &&
                 <div className="flex gap-6 bg-white h-auto rounded-[5px] px-6">
-                    <div className="py-6 w-[500px] h-full">
-                        <div className="rounded-[5px] mb-3">
-                            <div className="w-full h-[100%] rounded-[5px]">
-                                <Swiper
-                                    loop={true}
-                                    spaceBetween={0}
-                                    thumbs={{swiper: activeThumbs}}
-                                    modules={[Navigation, Thumbs]}
-                                    navigation={true}
-                                    grabCursor={true}
-                                    className='product-images-slider-thumbs'>
-                                    <>
-                                        {product.images.map((image, index) => {
-                                            return (
-                                                <SwiperSlide className="rounded-[5px]" key={index}>
-                                                    <div style={{backgroundImage: `url(${image.url})`}}
-                                                         className="rounded-[5px] w-[500px] h-[500px] bg-cover bg-center"/>
-                                                </SwiperSlide>
-                                            )
-                                        })}
-                                    </>
-                                </Swiper>
-                            </div>
-                        </div>
-                        <Swiper
-                            loop={false}
-                            spaceBetween={10}
-                            slidesPerView={5}
-                            modules={[Navigation, Thumbs]}
-                            navigation={true}
-                            grabCursor={true}
-                            className='product-images-slider-thumbs mb-8'>
-                            <>
-                                {product.images.map((image, index) => (
-                                    <SwiperSlide key={index}>
-                                        <div className="rounded-[5px] w-[90px] h-[90px] bg-cover bg-center"
-                                             style={{backgroundImage: `url(${image.url})`}}/>
-                                    </SwiperSlide>
-                                ))}
-                            </>
-                        </Swiper>
+                    <div className="py-6 w-[300px] h-full">
+                        <Images images={product?.images}/>
                         <div className="flex items-center gap-2">
                             <p className="font-medium text-md text-black-1">Chia sẻ:</p>
                             <button
@@ -125,14 +86,14 @@ function Overview(props) {
                             </div>
                             <div className="p-5 pt-3 rounded-[5px] bg-[#FAFAFA] mb-5">
                                 <p className="text-3xl font-medium text-primary-hover my-2">
-                                    {userCombination ?
+                                    {userCombination && !userCombination.isNotExist ?
                                         formatCurrency(userCombination.price * (100 - product.discountPercent) / 100) :
                                         formatCurrency(product.basePrice * (100 - product.discountPercent) / 100)
                                     }
                                 </p>
                                 <div className="flex items-center">
                                     <p className="text-base font-medium text-[#808089] line-through">
-                                        {userCombination ?
+                                        {userCombination && !userCombination.isNotExist ?
                                             formatCurrency(userCombination.price) : formatCurrency(product.basePrice)
                                         }
                                     </p>
@@ -187,23 +148,23 @@ function Overview(props) {
                                     </button>
                                 </div>
                                 <div className="font-medium text-md ml-5">
-                                    {(userOptions.length === options.length && !userCombination?.outOfStock) &&
+                                    {(userOptions.length === options.length && !userCombination?.isNotExist) &&
                                         `${userCombination.stock} sản phẩm hiện có`
                                     }
-                                    {(userOptions.length === options.length && userCombination?.outOfStock) &&
+                                    {(userOptions.length === options.length && userCombination?.isNotExist) &&
                                         "Sản phẩm hiện chưa mở bán"
                                     }
                                 </div>
                             </div>
                             <div className="mt-5">
                                 <p className="font-medium text-md rounded-full px-5 py-1 bg-[#e7e8ea] max-w-max">
-                                    {userOptions.length < options.length && (userCombination || userCombination.outOfStock) &&
+                                    {userOptions.length < options.length && (userCombination || userCombination.isNotExist) &&
                                         "Vui lòng chọn loại sản phẩm"
                                     }
-                                    {(userOptions.length === options.length && userCombination?.outOfStock) &&
+                                    {(userOptions.length === options.length && userCombination?.isNotExist) &&
                                         "Vui lòng chọn loại sản phẩm khác"
                                     }
-                                    {(userOptions.length === options.length && !userCombination?.outOfStock) &&
+                                    {(userOptions.length === options.length && !userCombination?.isNotExist) &&
                                         `Mã sản phẩm: ${userCombination.combinationString}`
                                     }
                                 </p>
