@@ -12,7 +12,6 @@ function Router() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
 
-    useEffect(() => {
         // async function fetch() {
         //     const storage = localStorage.getItem("persist:root");
         //     if (!storage) return;
@@ -22,6 +21,7 @@ function Router() {
         //     }
         // }
         //
+
         // fetch();
     }, [])
 

@@ -5,17 +5,24 @@ import * as Icon from '@iconscout/react-unicons';
 import Logo from "../../../assets/img/logo.svg";
 import {publicRequest} from "../../../utils/requestMethods";
 import UserComponent from "./UserComponent";
+import {useSelector} from "react-redux";
 
 function Header() {
     const [categories, setCategories] = useState([])
     const [scrollTop, setScrollTop] = useState(0);
+    const count = useSelector(state => state.cart);
+    const [num, setNum] = useState(0)
 
     useEffect(() => {
         publicRequest.get('/categories?limit=8').then((res) => {
             setCategories(res.data.categories)
         });
     }, [])
-
+    useEffect(()=>{
+           count?.forEach((c)=>{
+            setNum(c.items.length)
+        })
+    },[count])
 
     useEffect(() => {
         const onScroll = (e) => {
@@ -24,7 +31,6 @@ function Header() {
         window.addEventListener("scroll", onScroll);
         return () => window.removeEventListener("scroll", onScroll);
     }, [scrollTop])
-
     return (
         <header>
             <div className="h-[35px] bg-white flex items-center border-b-[1px] border-[#E5E5E5]">
@@ -80,7 +86,7 @@ function Header() {
                                         className="absolute bottom-[99%] left-[50%] translate-x-[-50%] border-[7px] border-[transparent] border-b-[#333333]"/>
                                     Giỏ hàng
                                 </p>
-                                <p className="absolute right-[-10px] top-[-10px] rounded-full bg-primary w-[20px] h-[20px] flex items-center justify-center text-white text-sm font-bold">0</p>
+                                <p className="absolute right-[-10px] top-[-10px] rounded-full bg-primary w-[20px] h-[20px] flex items-center justify-center text-white text-sm font-bold">{num}</p>
                             </Link>
                         </div>
                     </div>
