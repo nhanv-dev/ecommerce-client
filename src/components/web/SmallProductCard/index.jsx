@@ -18,7 +18,7 @@ function ProductCard({product}) {
                 <p className="hover:text-primary text-[.85rem] font-semibold text-black line-clamp-2 mb-2">
                     {product.name}
                 </p>
-                <p className="text-base font-bold text-primary-hover">{formatCurrency(product.sellPrice)}</p>
+                <p className="text-base font-bold text-primary-hover">{formatCurrency(product.basePrice)}</p>
             </Link>
         </div>
     );

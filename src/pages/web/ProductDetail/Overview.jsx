@@ -6,6 +6,7 @@ import * as SolidIcon from "@iconscout/react-unicons-solid";
 import * as Icon from "@iconscout/react-unicons";
 import {useDispatch} from "react-redux";
 import {buy} from "../../../redux/actions/cartActions";
+import Images from "./Images";
 
 
 function Overview(props) {
@@ -13,13 +14,12 @@ function Overview(props) {
         product,
         userCombination,
         options,
-        combinations, addToCart,
+        addToCart,
         userOptions,
         setUserOptions,
         updateQuantity,
         quantity
     } = props;
-    const [activeThumbs, setActiveThumbs] = useState()
 
     const handleChooseOption = (option, value) => {
         const payload = [...userOptions].filter(item => item.option._id !== option._id)
@@ -37,47 +37,8 @@ function Overview(props) {
         <>
             {product &&
                 <div className="flex gap-6 bg-white h-auto rounded-[5px] px-6">
-                    <div className="py-6 w-[500px] h-full">
-                        <div className="rounded-[5px] mb-3">
-                            <div className="w-full h-[100%] rounded-[5px]">
-                                <Swiper
-                                    loop={true}
-                                    spaceBetween={0}
-                                    thumbs={{swiper: activeThumbs}}
-                                    modules={[Navigation, Thumbs]}
-                                    navigation={true}
-                                    grabCursor={true}
-                                    className='product-images-slider-thumbs'>
-                                    <>
-                                        {product.images.map((image, index) => {
-                                            return (
-                                                <SwiperSlide className="rounded-[5px]" key={index}>
-                                                    <div style={{backgroundImage: `url(${image.url})`}}
-                                                         className="rounded-[5px] w-[500px] h-[500px] bg-cover bg-center"/>
-                                                </SwiperSlide>
-                                            )
-                                        })}
-                                    </>
-                                </Swiper>
-                            </div>
-                        </div>
-                        <Swiper
-                            loop={false}
-                            spaceBetween={10}
-                            slidesPerView={5}
-                            modules={[Navigation, Thumbs]}
-                            navigation={true}
-                            grabCursor={true}
-                            className='product-images-slider-thumbs mb-8'>
-                            <>
-                                {product.images.map((image, index) => (
-                                    <SwiperSlide key={index}>
-                                        <div className="rounded-[5px] w-[90px] h-[90px] bg-cover bg-center"
-                                             style={{backgroundImage: `url(${image.url})`}}/>
-                                    </SwiperSlide>
-                                ))}
-                            </>
-                        </Swiper>
+                    <div className="py-6 w-[450px] h-full">
+                        <Images images={product?.images}/>
                         <div className="flex items-center gap-2">
                             <p className="font-medium text-md text-black-1">Chia sẻ:</p>
                             <button
@@ -125,14 +86,14 @@ function Overview(props) {
                             </div>
                             <div className="p-5 pt-3 rounded-[5px] bg-[#FAFAFA] mb-5">
                                 <p className="text-3xl font-medium text-primary-hover my-2">
-                                    {userCombination ?
+                                    {userCombination && !userCombination.isNotExist ?
                                         formatCurrency(userCombination.price * (100 - product.discountPercent) / 100) :
                                         formatCurrency(product.basePrice * (100 - product.discountPercent) / 100)
                                     }
                                 </p>
                                 <div className="flex items-center">
                                     <p className="text-base font-medium text-[#808089] line-through">
-                                        {userCombination ?
+                                        {userCombination && !userCombination.isNotExist ?
                                             formatCurrency(userCombination.price) : formatCurrency(product.basePrice)
                                         }
                                     </p>
@@ -187,94 +148,95 @@ function Overview(props) {
                                     </button>
                                 </div>
                                 <div className="font-medium text-md ml-5">
-                                    {(userOptions.length === options.length && !userCombination?.outOfStock) &&
+                                    {(userOptions.length === options.length && !userCombination?.isNotExist) &&
                                         `${userCombination.stock} sản phẩm hiện có`
                                     }
-                                    {(userOptions.length === options.length && userCombination?.outOfStock) &&
+                                    {(userOptions.length === options.length && userCombination?.isNotExist) &&
                                         "Sản phẩm hiện chưa mở bán"
                                     }
                                 </div>
                             </div>
                             <div className="mt-5">
-                                <p className="font-medium text-md rounded-full px-5 py-1 bg-[#e7e8ea] max-w-max">
-                                    {userOptions.length < options.length && (userCombination || userCombination.outOfStock) &&
+                                <p className="font-medium text-tiny rounded-full px-4 py-1 bg-[#e7e8ea] max-w-max">
+                                    {userOptions.length < options.length && (userCombination || userCombination.isNotExist) &&
                                         "Vui lòng chọn loại sản phẩm"
                                     }
-                                    {(userOptions.length === options.length && userCombination?.outOfStock) &&
+                                    {(userOptions.length === options.length && userCombination?.isNotExist) &&
                                         "Vui lòng chọn loại sản phẩm khác"
                                     }
-                                    {(userOptions.length === options.length && !userCombination?.outOfStock) &&
+                                    {(userOptions.length === options.length && !userCombination?.isNotExist) &&
                                         `Mã sản phẩm: ${userCombination.combinationString}`
                                     }
                                 </p>
                             </div>
-                            <div className="mt-5 flex items-center flex-row gap-3">
+                            <div className="max-w-[500px] mt-5 flex items-center flex-row gap-3">
                                 <div className="basis-1/2 ">
                                     <button
-                                        className="text-base text-[#3f4b53] font-bold hover:bg-[#F3F3F3] rounded-[4px] bg-[#e7e8ea] w-[100%] h-[44px]"
+                                        className="text-base text-[#3f4b53] font-medium hover:bg-[#F3F3F3] rounded-[4px] bg-[#e7e8ea] w-[100%] h-[44px]"
                                         onClick={addToCart}>
                                         Thêm vào giỏ
                                     </button>
                                 </div>
                                 <div className="basis-1/2">
                                     <button
-                                        className="text-base text-white font-bold hover:bg-primary-hover rounded-[4px] bg-primary w-[100%] h-[44px]">
+                                        className="text-base text-white font-medium hover:bg-primary-hover rounded-[4px] bg-primary w-[100%] h-[44px]">
                                         Mua ngay
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <div className="pb-5 border-b border-[#f2f2f2]">
-                            <div className="pb-5 border-b border-[#f2f2f2]">
-                                <p className="mt-3 text-lg font-bold">
-                                    Ưu đãi dành cho bạn
-                                </p>
-                                <div className=" flex mt-3 ">
-                                    <div className=" items-center justify-start flex basis-1/2 p-2">
-                                        <div className="flex flex-col basis-1/6">
-                                            <img className="w-[50px] h-[50px]"
-                                                 src="https://yt3.ggpht.com/radw-0s056UWMotq-3d_3-qkCoiumQUDuhTNoMZ3FZ0Z7qnHT57I8-s2tS-X8La96v5nImM_=s900-c-k-c0x00ffffff-no-rj"
-                                                 alt=""/>
-                                        </div>
-                                        <div className="">
-                                            <span className=" text[#3f4b53]">Trả góp Kvedivo</span>
-                                        </div>
+                        <div className="mb-5 pb-5 border-b border-[#f2f2f2]">
+                            <div className="flex items-center justify-between gap-5 mb-5">
+                                <h5 className="font-medium text-base">Tùy chọn giao hàng</h5>
+                                <Icon.UilInfoCircle className="text-[#6f787e]"/>
+                            </div>
+                            <div className="flex items-center gap-5">
+                                <div
+                                    className="rounded-[12px] px-3 py-2 border border-[#eeeeee] max-w-max min-w-[260px]">
+                                    <div className="mb-0.5 flex items-center justify-start gap-2.5">
+                                        <img alt="shipping" className="w-[32px]"
+                                             src="https://salt.tikicdn.com/ts/upload/85/45/34/2fc25c6a660d84a41a6bf9276ce160ba.png"/>
+                                        <p className="text-tiny font-semibold text-[#00ab56]">Trước 16:00 hôm nay</p>
                                     </div>
-                                    <div className="items-center justify-start flex basis-1/2 p-2">
-                                        <div className="flex flex-col basis-1/6">
-                                            <Icon.UilMobileAndroid className="text-[#FF940B] w-[40px] h-[40px]"/>
-                                        </div>
-                                        <div className="">
-                                            <span className=" text[#3f4b53]">Giảm khi mua qua App</span>
-                                        </div>
+                                    <p className="mb-0.5 text-sm font-medium">Vận chuyển: 25.000đ</p>
+                                    <div
+                                        className="flex items-center justify-start gap-2.5 bg-[#f2f0fe] rounded-[5px] text-[#402da1] p-1 max-w-max">
+                                        <img alt="shipping" className="w-[13px]"
+                                             src="https://salt.tikicdn.com/ts/upload/df/e2/b4/063c4d55ca380f818547f00f5175d39f.png"/>
+                                        <p className="text-sm font-medium">Freeship 100% với {formatCurrency(85999)}</p>
                                     </div>
                                 </div>
-
-                                {/*</div>*/}
-                                {/*<div className="pb-5 border-b border-[#f2f2f2]">*/}
-                                {/*    <p className="mt-3 text-lg font-bold">*/}
-                                {/*        Quyền lợi khách hàng*/}
-                                {/*    </p>*/}
-                                {/*    <div className=" flex mt-3 ">*/}
-                                {/*        <div className=" items-center justify-start flex basis-1/2 p-2">*/}
-                                {/*            <div className="flex flex-col basis-1/12">*/}
-                                {/*                <Icon.UilShieldCheck className="text-[#07B359] w-[30px] h-[30px]"/>*/}
-                                {/*            </div>*/}
-                                {/*            <div className="">*/}
-                                {/*                <span className="pl-1 text[#3f4b53]">Miễn phí hoàn trả</span>*/}
-                                {/*            </div>*/}
-
-                                {/*        </div>*/}
-                                {/*        <div className="items-center justify-start flex basis-1/2 p-2">*/}
-                                {/*            <div className="flex flex-col basis-1/12">*/}
-                                {/*                <Icon.UilShieldCheck className="text-[#07B359] w-[30px] h-[30px]"/>*/}
-                                {/*            </div>*/}
-                                {/*            <div className="">*/}
-                                {/*                <span className="pl-1 text-[#3f4b53]">48 giờ hoàn trả</span>*/}
-                                {/*            </div>*/}
-                                {/*        </div>*/}
-                                {/*    </div>*/}
-
+                                <div
+                                    className="rounded-[12px] px-3 py-2 border border-[#eeeeee] max-w-max min-w-[260px]">
+                                    <div className="mb-0.5 flex items-center justify-start gap-2.5">
+                                        <img alt="shipping" className="w-[32px]"
+                                             src="https://salt.tikicdn.com/ts/upload/67/e4/c2/02b5400b39bb3371e06d33c1e9f4d854.png"/>
+                                        <p className="text-tiny font-semibold text-[#00ab56]">Ngày mai, trước 23:00</p>
+                                    </div>
+                                    <p className="mb-0.5 text-sm font-medium">Vận chuyển: 14.000đ</p>
+                                    <div
+                                        className="flex items-center justify-start gap-2.5 bg-[#f2f0fe] rounded-[5px] text-[#402da1] p-1 max-w-max">
+                                        <img alt="shipping" className="w-[13px]"
+                                             src="https://salt.tikicdn.com/ts/upload/df/e2/b4/063c4d55ca380f818547f00f5175d39f.png"/>
+                                        <p className="text-sm font-medium">Freeship 100% với {formatCurrency(48999)}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="">
+                            <div className="flex items-center justify-between gap-5 mb-5">
+                                <h5 className="font-medium text-base">Quyền lợi khách hàng & Bảo hành</h5>
+                                <Icon.UilInfoCircle className="text-[#6f787e]"/>
+                            </div>
+                            <div className="flex items-center gap-6">
+                                <div className="flex items-center justify-start gap-2">
+                                    <Icon.UilShieldCheck className="text-[#018749] w-[24px] h-[24px]"/>
+                                    <p className="font-medium text-md">48 giờ hoàn trả</p>
+                                </div>
+                                <div className="flex items-center justify-start gap-2">
+                                    <Icon.UilShieldCheck className="text-[#018749] w-[24px] h-[24px]"/>
+                                    <p className="font-medium text-md">Bảo hành khi có lỗi từ Nhà sản xuất</p>
+                                </div>
                             </div>
                         </div>
                     </div>
