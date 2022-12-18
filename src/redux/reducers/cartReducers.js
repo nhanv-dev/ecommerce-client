@@ -2,35 +2,53 @@ import * as types from "../constants/ActionTypes";
 
 var data = JSON.parse(localStorage.getItem("cartItem"))
 var initialState = data ? data : [];
-const cartReducers = (state = initialState, action) => {
+
+const cartReducers = (state=initialState, action)=>{
+    let idSt =[];
+    let index=-1;
+    let combi=undefined;
+    let product = null
+    let newCart = state;
+    if(state.length>0) {
+        state[0].items.forEach((s) => {
+            idSt.push({...s})
+        })
+    }
     switch (action.type) {
         case types.BUY_PRODUCT:
-            let product = null
-            let idSt = [];
-            let item = undefined;
-            action.payload.items.forEach((pro) => {
-                product = {...pro}
-                console.log("pro: ", product)
+            let item=undefined;
+            action.payload.items.forEach((pro)=> {
+                product={...pro}
             })
-            if (state.length > 0) {
-                state[0].items.forEach((s) => {
-                    idSt.push({...s})
-                })
-                item = idSt.find((p) => p.id === product.id);
-            }
-            if (item === undefined) {
-                if (state.length <= 0) {
+            item = idSt.find((p) => p.id === product.id);
+            combi = idSt.find((comb)=> comb.combinationString === product.combinationString)
+            if(combi==undefined){
+                if(state.length<=0){
                     state.push(action.payload)
                 } else {
                     state[0].items.push(product)
                 }
-            } else {
-                let newCart = state;
-                let index = state.findIndex((p) => p.id === action.payload.id);
-                newCart[index].items.forEach((item) => {
-                    item.quantity = item.quantity + 1;
-                })
-                state = {...newCart};
+
+            }
+            else{
+                index = idSt.findIndex((p) => p.combinationString === product.combinationString);
+                 newCart[0].items[index].quantity = newCart[0].items[index].quantity + 1;
+                state={...newCart};
+            }
+            localStorage.setItem("cartItem", JSON.stringify(state))
+            return [...state]
+        case types.DELETE_PRODUCT_CART:
+
+            index = idSt.findIndex((comb)=> comb.combinationString === action.payload.combinationString)
+            if(index !== -1){
+                state[0].items.splice(index, 1)
+            }
+            localStorage.setItem("cartItem", JSON.stringify(state))
+            return [...state]
+        case types.UPDATE_QUANTITY:
+            index = idSt.findIndex((comb)=> comb.combinationString === action.payload.item.combinationString)
+            if(index !== -1){
+                state[0].items[index].quantity = action.payload.quantity
             }
             localStorage.setItem("cartItem", JSON.stringify(state))
             return [...state]
