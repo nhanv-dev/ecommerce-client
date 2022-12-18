@@ -25,6 +25,7 @@ function Router() {
     //     fetch();
     // }, [])
 
+
     useEffect(() => {
         console.log(user)
     }, [user])

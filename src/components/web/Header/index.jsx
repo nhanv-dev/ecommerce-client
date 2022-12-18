@@ -6,17 +6,25 @@ import Logo from "../../../assets/img/logo-white.svg";
 import {publicRequest} from "../../../utils/requestMethods";
 import UserComponent from "./UserComponent";
 import Select from "react-select";
+import {useSelector} from "react-redux";
 
 function Header() {
     const navigate = useNavigate();
     const [categories, setCategories] = useState([])
     const [scrollTop, setScrollTop] = useState(0);
+    const count = useSelector(state => state.cart);
+    const [num, setNum] = useState(0)
 
     useEffect(() => {
         publicRequest.get('/categories?limit=8').then((res) => {
             setCategories(res.data.categories)
         });
     }, [])
+    useEffect(()=>{
+           count?.forEach((c)=>{
+            setNum(c.items.length)
+        })
+    },[count])
 
     useEffect(() => {
         const onScroll = (e) => {
@@ -102,9 +110,9 @@ function Header() {
                                         className="absolute bottom-[99%] left-[50%] translate-x-[-50%] border-[7px] border-[transparent] border-b-[#333333]"/>
                                     Giỏ hàng
                                 </p>
-                                <p className="absolute right-[-10px] top-[-10px] rounded-full bg-white w-[20px] h-[20px] flex items-center justify-center text-primary text-tiny font-semibold">
-                                    <span className="relative top-[.5px]">0</span>
-                                </p>
+
+                                <p className="absolute right-[-10px] top-[-10px] rounded-full bg-primary w-[20px] h-[20px] flex items-center justify-center text-white text-sm font-bold">{num}</p>
+
                             </Link>
                         </div>
                     </div>
