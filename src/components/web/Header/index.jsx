@@ -5,7 +5,6 @@ import * as Icon from '@iconscout/react-unicons';
 import Logo from "../../../assets/img/logo-white.svg";
 import {publicRequest} from "../../../utils/requestMethods";
 import UserComponent from "./UserComponent";
-import Select from "react-select";
 import {useSelector} from "react-redux";
 
 function Header() {
@@ -20,11 +19,11 @@ function Header() {
             setCategories(res.data.categories)
         });
     }, [])
-    useEffect(()=>{
-           count?.forEach((c)=>{
+    useEffect(() => {
+        count?.forEach((c) => {
             setNum(c.items.length)
         })
-    },[count])
+    }, [count])
 
     useEffect(() => {
         const onScroll = (e) => {
@@ -33,14 +32,12 @@ function Header() {
         window.addEventListener("scroll", onScroll);
         return () => window.removeEventListener("scroll", onScroll);
     }, [scrollTop])
-
     const handleSearch = (e) => {
         e.preventDefault();
-        console.log(e.target.searching.value)          // or directly
-        console.log(e.target.type.value)          // or directly
-        // navigate("/")
+        const {searching, type} = e.target;
+        if (searching.value && type.value)
+            navigate(`/tim-kiem?s=${searching.value}&t=${type.value}`)
     }
-
     return (
         <header>
             <div className="h-[35px] bg-[#D0011B] flex items-center">
@@ -110,8 +107,9 @@ function Header() {
                                         className="absolute bottom-[99%] left-[50%] translate-x-[-50%] border-[7px] border-[transparent] border-b-[#333333]"/>
                                     Giỏ hàng
                                 </p>
-
-                                <p className="absolute right-[-10px] top-[-10px] rounded-full bg-primary w-[20px] h-[20px] flex items-center justify-center text-white text-sm font-bold">{num}</p>
+                                <p className="absolute right-[-10px] top-[-10px] rounded-full bg-white w-[20px] h-[20px] flex items-center justify-center text-primary ">
+                                    <span className="text-tiny font-medium relative top-[1px]">{num}</span>
+                                </p>
 
                             </Link>
                         </div>

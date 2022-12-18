@@ -1,10 +1,9 @@
-import {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import * as Icon from "@iconscout/react-unicons";
 import {logout} from "../../../redux/actions/userActions";
-
-function UserComponent(props) {
+import DefaultAvatar from "../../../assets/img/default-avatar.png";
+function UserComponent() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const shop = useSelector(state => state.shop);
@@ -29,7 +28,7 @@ function UserComponent(props) {
                                 className="flex items-center justify-start gap-3 border-b-[1px] border-[#eee] py-3 px-4">
                                 <Link to="/nguoi-dung/thong-tin"
                                       className="bg-cover min-w-[35px] min-h-[35px] rounded-full border-2 border-primary"
-                                      style={{backgroundImage: 'url(https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png)'}}/>
+                                      style={{backgroundImage: `url(${DefaultAvatar})`}}/>
                                 <div className="flex flex-col overflow-hidden w-full">
                                     <Link to="/nguoi-dung/thong-tin"
                                           className="w-[120px] text-base text-primary-hover line-clamp-1 transition-all">
@@ -70,7 +69,7 @@ function UserComponent(props) {
                 </div> :
                 <Link to="/dang-nhap"
                       className="relative outline-none group">
-                    <Icon.UilUser className="w-[26px] h-[26px] text-black"/>
+                    <Icon.UilUser className="w-[26px] h-[26px] text-white"/>
                     <p className="transition-all group-hover:opacity-100 group-hover:top-full mt-[10px] opacity-0 z-[20] absolute top-[70%] left-[50%] translate-x-[-50%] min-w-max bg-black text-white font-medium rounded-[8px] text-sm px-2.5 py-1">
                     <span
                         className="absolute bottom-[99%] left-[50%] translate-x-[-50%] border-[7px] border-[transparent] border-b-[#333333]"/>
