@@ -18,7 +18,7 @@ function Router() {
             }
         }
 
-        fetch();
+        // fetch();
     }, [])
 
 

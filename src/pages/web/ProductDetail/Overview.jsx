@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {formatCurrency} from "../../../utils/format";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Navigation, Thumbs} from "swiper";
@@ -6,23 +6,32 @@ import * as SolidIcon from "@iconscout/react-unicons-solid";
 import * as Icon from "@iconscout/react-unicons";
 import {useDispatch} from "react-redux";
 import {buy} from "../../../redux/actions/cartActions";
+import {Link} from "react-router-dom";
 
 
 function Overview(props) {
     const {
         product,
+        slug,
         userCombination,
         options,
+        checkCombination,
+        checkLogin,
         combinations, addToCart,
         userOptions,
         setUserOptions,
         updateQuantity,
         quantity
     } = props;
+
+    useEffect(()=>{
+        console.log("check combination",checkCombination)
+    }, [])
     const [activeThumbs, setActiveThumbs] = useState()
 
     const handleChooseOption = (option, value) => {
         const payload = [...userOptions].filter(item => item.option._id !== option._id)
+        console.log(option, value)
         setUserOptions([...payload, {option, value}])
     }
 
@@ -164,10 +173,12 @@ function Overview(props) {
                                                 </button>
                                             )
                                         })}
+
                                     </div>
                                 </div>
                             )
                         })}
+
                         <div className="mb-5 pb-5 border-b border-[#f2f2f2]">
                             <div className="flex items-center flex-row">
                                 <div className="basis-1/4">
@@ -208,13 +219,23 @@ function Overview(props) {
                                     }
                                 </p>
                             </div>
+                            <p className={`mt-4 text-primary ${checkCombination ? 'hidden': ''}`}>Vui lòng chọn phân loại sản phẩm</p>
                             <div className="mt-5 flex items-center flex-row gap-3">
                                 <div className="basis-1/2 ">
-                                    <button
+                                    {checkLogin ? <button
                                         className="text-base text-[#3f4b53] font-bold hover:bg-[#F3F3F3] rounded-[4px] bg-[#e7e8ea] w-[100%] h-[44px]"
                                         onClick={addToCart}>
                                         Thêm vào giỏ
-                                    </button>
+                                    </button>:
+                                        <Link to={`/dang-nhap`}>
+                                            <button
+                                                className="text-base text-[#3f4b53] font-bold hover:bg-[#F3F3F3] rounded-[4px] bg-[#e7e8ea] w-[100%] h-[44px]"
+                                                onClick={addToCart}>
+                                                Thêm vào giỏ
+                                            </button>
+                                        </Link>
+                                    }
+
                                 </div>
                                 <div className="basis-1/2">
                                     <button
