@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {Route, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import './style.scss';
 import Helmet from "../../../components/web/Helmet";
 import {UserLayout} from "../../../components/common/Layouts";
@@ -9,15 +9,14 @@ import Overview from "./Overview";
 import ProductDescription from "./ProductDescription";
 import Comment from "./Comment";
 import QuestionBlock from "./QuestionBlock";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {buy} from "../../../redux/actions/cartActions";
-
 import {publicRequest} from "../../../utils/requestMethods";
-import Login from "../Login";
 
 function ProductDetail() {
     const {slug} = useParams();
     const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
     const [product, setProduct] = useState(null);
     const [options, setOptions] = useState([]);
     const [userOptions, setUserOptions] = useState([]);
@@ -26,8 +25,6 @@ function ProductDetail() {
     const [quantity, setQuantity] = useState(1);
     const [shop, setShop] = useState({});
     const [relatedProducts, setRelatedProducts] = useState([]);
-  
-    const user = useSelector(state=> state.user)
     const [checkCombination, setCheckCombination] = useState(true);
     const [checkLogin, setCheckLogin] = useState(true);
     const data = localStorage.getItem("persist:root")
@@ -41,34 +38,23 @@ function ProductDetail() {
         })
     }, [slug])
 
-
     useEffect(() => {
-        if (!product || !product._id) return;
-        publicRequest.get(`/shops/product?productId=${product._id}`).then(res => {
-            const {shop, relatedProducts} = res.data;
-            setShop(shop);
-            setRelatedProducts(relatedProducts);
-        })
-    }, [product])
-
-    useEffect(() => {
-       if(!userOptions || userOptions.length===0)
-           return setUserCombination({outOfStock: true})
-        const correctCombination = findCombinations(userOptions)
-        if (correctCombination.length === 0)
+        if (!userOptions || userOptions.length === 0)
             return setUserCombination({isNotExist: true})
+        const correctCombination = findCombination(userOptions)
+        if (correctCombination.length === 0) return setUserCombination({isNotExist: true})
         setUserCombination(correctCombination[0]);
-        if(userCombination.combinationString)
-            setCheckCombination(true)
-    }, [userOptions,])
+        if (userCombination.combinationString) setCheckCombination(true)
+    }, [userOptions])
 
-    const findCombinations = (options) => {
+    const findCombination = (options) => {
         return [...combinations].filter(item => {
             const strings = item?.combinationString?.split(" + ")
             const included = strings?.filter(character => {
                 return options.filter(item => {
-                    return item.value.name === character;
-                }).length > 0;
+                    console.log(item, character)
+                    return item?.value?.name === character
+                }).length > 0
             })
             return included?.length === strings?.length
         })
@@ -81,14 +67,19 @@ function ProductDetail() {
     const addToCart = () => {
         const item = {
             userId: user?.info?._id,
-            items: [{id: product?._id, combinationString: userCombination.combinationString, product: {...product}, quantity: quantity, }]
+            items: [{
+                id: product?._id,
+                combinationString: userCombination.combinationString,
+                product: {...product},
+                quantity: quantity,
+            }]
         }
         const action = buy(item);
-        if(!data)
+        if (!data)
             return setCheckLogin(false);
-        if(!userCombination.combinationString){
+        if (!userCombination.combinationString) {
             setCheckCombination(false);
-        }else{
+        } else {
             dispatch(action);
         }
     }
@@ -110,7 +101,7 @@ function ProductDetail() {
                               addToCart={addToCart}
                               quantity={quantity}/>
                     <div className="flex flex-wrap justify-between mt-6 max-w-full gap-6 pb-6">
-                            <Shop shop={shop} relatedProducts={relatedProducts}/>
+                        <Shop shop={shop} relatedProducts={relatedProducts}/>
                         <div className="flex-1">
                             <ProductDescription product={product}/>
                             <QuestionBlock product={product} shop={shop}/>

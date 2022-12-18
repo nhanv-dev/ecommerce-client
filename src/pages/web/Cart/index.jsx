@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
 import Helmet from "../../../components/web/Helmet";
 import {UserLayout} from "../../../components/common/Layouts";
-import cartExample from "../../../common/CartExample";
 import CartItem from "./CartItem";
 import {Link} from "react-router-dom";
 import * as Icon from "@iconscout/react-unicons"
@@ -11,23 +10,22 @@ import {deleteProductCart, update} from "../../../redux/actions/cartActions";
 
 function Cart() {
     const [cart, setCart] = useState({});
+    const [total, setToTal] = useState(0);
     const cartState = useSelector(state => state.cart);
-    const [total, setToTal] = useState(0)
-    useEffect(()=>{
-        let c = null
-        cartState.forEach((i)=>{
-            c={...i}
-            setCart(c)
-        })
-    },[cartState])
 
     useEffect(() => {
-        let totalItem=0
-        cart?.items?.forEach((i)=>{
-            totalItem += ((i.product.basePrice) - (i.product.basePrice*(i.product.discountPercent/100)))* i.quantity
+        cartState.forEach((i) => {
+            setCart({...i})
+        })
+    }, [cartState])
+
+    useEffect(() => {
+        let totalItem = 0
+        cart?.items?.forEach((i) => {
+            totalItem += ((i.product.basePrice) - (i.product.basePrice * (i.product.discountPercent / 100))) * i.quantity
         })
         setToTal(totalItem)
-    },[cart])
+    }, [cart])
 
     return (
         <UserLayout>
@@ -63,22 +61,25 @@ function Cart() {
 
 const FilterCart = ({cart}) => {
     const [filterCart, setFilterCart] = useState([]);
-    const shop = useSelector(state=> state.shop);
+    const shop = useSelector(state => state.shop);
     const dispatch = useDispatch();
+
     useEffect(() => {
         const array = [];
         cart?.items?.forEach(item => {
+            console.log(item)
             const owner = item.product
-             if(array.filter(obj => obj?.shop?._id === owner.shopId).length>0){
-                 array.forEach(obj => {
-                     if(obj?.shop?._id ===  owner.shopId) obj.items.push({...item})
-                 })
-             }else{
-                 array.push({shop, items:[{...item}]})
-             }
+            if (array.filter(obj => obj?.shop?._id === owner.shopId).length > 0) {
+                array.forEach(obj => {
+                    if (obj?.shop?._id === owner.shopId) obj.items.push({...item})
+                })
+            } else {
+                array.push({shop, items: [{...item}]})
+            }
         })
         setFilterCart(array)
     }, [cart])
+
     const deleteProductCartById = (item) => {
         const action = deleteProductCart(item)
         dispatch(action)
@@ -107,7 +108,8 @@ const FilterCart = ({cart}) => {
                             </Link>
                         </div>
                         {cart.items.map((item, i) => (
-                            <CartItem deleteProductCartById={deleteProductCartById} updateQuan={updateQuan} key={i} item={item}/>
+                            <CartItem deleteProductCartById={deleteProductCartById} updateQuan={updateQuan} key={i}
+                                      item={item}/>
                         ))}
                     </div>
                 )
