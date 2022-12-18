@@ -12,8 +12,8 @@ module.exports = {
             xl: '1400px',
         },
         colors: {
-            'primary': '#EE2624',
-            'primary-hover': '#D52220',
+            'primary': '#D0011B',
+            'primary-hover': '#D0011B',
             'black': '#333',
             'black-1': '#3f4b53',
             'white': '#fff',

@@ -27,13 +27,17 @@ function Footer({product, quantity, addToCart}) {
                                 <div style={{backgroundImage: `url(${product.images[0].url})`}}
                                      className="border-[1px] min-w-[65px] min-h-[65px] overflow-hidden rounded-[5px] border-[#e7e8ea] bg-origin-content bg-center bg-cover bg-no-repeat">
                                 </div>
-                                <div className="">
-                                    <p className="text-ellipsis font-medium line-clamp-1 overflow-hidden text-tiny">{product.name}</p>
-                                    <span className="text-tiny font-medium">x {quantity}</span>
+                                <div>
+                                    <p className="text-ellipsis font-medium line-clamp-2 overflow-hidden text-tiny">
+                                        {product.name}
+                                    </p>
+                                    <span className="text-tiny font-medium rounded-full bg-primary-hover text-white px-3 py-0.5">
+                                        x {quantity}
+                                    </span>
                                 </div>
                             </div>
                             <div className="text-right">
-                                <p className="text-primary font-bold text-lg">{formatCurrency((product.sellPrice * (100 - product.discountPercent) / 100) * quantity)}</p>
+                                <p className="text-primary font-bold text-lg">{formatCurrency((product.basePrice * (100 - product.discountPercent) / 100) * quantity)}</p>
                             </div>
                         </div>
                         <div className="flex flex-1 items-center justify-start gap-2">

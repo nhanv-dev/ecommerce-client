@@ -4,27 +4,29 @@ import Helmet from "../../../components/web/Helmet";
 import {ProductTable} from "../../../components/seller/Table";
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import {baseURL, protectedRequest, publicRequest, token} from "../../../utils/requestMethods";
+import {protectedRequest, publicRequest} from "../../../utils/requestMethods";
 import * as Icon from "@iconscout/react-unicons";
 import axios from "axios";
 
 function Category() {
     const user = useSelector(state => state.user);
+    const shop = useSelector(state => state.shop);
     const [products, setProducts] = useState([]);
-    const [shop, setShop] = useState({});
 
     useEffect(() => {
-
-        axios.create({
+        console.log(user.accessToken)
+        console.log(JSON.parse(localStorage.getItem("persist:root"))?.accessToken)
+        const baseURL = "http://localhost:8080/api/v1/";
+        const request = axios.create({
             baseURL: baseURL,
-            headers: {token: `Bearer ${token}`},
-        }).get(`/shops/products`).then(res => {
+            headers: {token: `Bearer ${user?.accessToken}`},
+        });
+        protectedRequest.get(`/shops/products`).then(res => {
             setProducts([...res.data.products])
         }).catch(err => {
             console.log(err)
-            console.log()
         })
-    }, [])
+    }, [user])
 
 
     return (

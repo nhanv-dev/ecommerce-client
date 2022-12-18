@@ -12,23 +12,18 @@ const userReducers = (state = initialState(), action) => {
     const storage = JSON.parse(localStorage.getItem("persist:root")) || {};
     switch (action.type) {
         case types.USER_LOGIN_SUCCESS:
-            if (action.payload.accessToken)
-                localStorage.setItem("persist:root", JSON.stringify({...storage, ...action.payload}))
-            return {...state, accessToken: action.payload.accessToken, info: action.payload.info}
+
+            return {accessToken: action.payload.accessToken, info: action.payload.info}
         case types.USER_LOGIN_FAILED :
             delete storage.accessToken
             delete storage.info
             delete state.accessToken
             delete state.info
             localStorage.setItem("persist:root", JSON.stringify({...storage}))
-            return {...state, ...action.payload}
+            return {...state}
         case types.USER_LOGOUT:
-            delete storage.accessToken
-            delete storage.info
-            delete state.accessToken
-            delete state.info
-            localStorage.setItem("persist:root", JSON.stringify({...storage}))
-            return {...state, ...action.payload}
+            localStorage.removeItem("persist:root")
+            return {}
         default:
             return state
     }

@@ -12,18 +12,18 @@ function Router() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
 
-    useEffect(() => {
-        // async function fetch() {
-        //     const storage = localStorage.getItem("persist:root");
-        //     if (!storage) return;
-        //     const data = JSON.parse(storage)
-        //     if (data.accessToken) {
-        //         dispatch(await reLogin())
-        //     }
-        // }
-        //
-        // fetch();
-    }, [])
+    // useEffect(() => {
+    //     async function fetch() {
+    //         const storage = localStorage.getItem("persist:root");
+    //         if (!storage) return;
+    //         const data = JSON.parse(storage)
+    //         if (data.accessToken) {
+    //             dispatch(await reLogin())
+    //         }
+    //     }
+    //
+    //     fetch();
+    // }, [])
 
     useEffect(() => {
         console.log(user)
