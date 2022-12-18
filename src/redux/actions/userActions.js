@@ -12,6 +12,7 @@ export const login = async (payload) => {
                 info: res.data.user,
                 shop: res.data.shop
             };
+            localStorage.setItem("persist:root", JSON.stringify({...action.payload}))
         }).catch(err => {
             action.type = types.USER_LOGIN_FAILED;
             action.payload = {};

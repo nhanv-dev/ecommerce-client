@@ -75,8 +75,12 @@ const OptionsComponent = ({options, setOptions}) => {
         <div>
             {options.map((item, index) => {
                 return (
-                    <div key={index} className="rounded-[5px] bg-[#FAFAFA] p-3 mb-5"
+                    <div key={index} className="relative rounded-[5px] bg-[#FAFAFA] p-3 mb-5"
                          style={{boxShadow: "0 1px 1px 0 rgb(0 0 0 / 5%)"}}>
+                        <button onClick={() => addOptionValue(index)}
+                                className="absolute right-[-8px] top-[-8px] text-primary-hover bg-white rounded-full">
+                            <Icon.UilMinusCircle className="w-[24px] h-[24px]"/>
+                        </button>
                         <div className="flex items-start gap-10">
                             <div className="min-w-[100px] max-w-[100px]">
                                 <OptionInput value={item.option?.name || ""}

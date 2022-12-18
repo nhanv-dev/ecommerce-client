@@ -18,7 +18,7 @@ function UserComponent(props) {
             {user?.info ?
                 <div className="relative group">
                     <Link to="/nguoi-dung/thong-tin" className="relative outline-none">
-                        <Icon.UilUser className="w-[26px] h-[26px] text-black"/>
+                        <Icon.UilUser className="w-[26px] h-[26px] text-white"/>
                     </Link>
                     <div
                         className="transition-all group-hover:opacity-100 group-hover:visible group-hover:top-full mt-[10px] opacity-0 invisible z-[20] absolute top-[70%] right-[-20px]  shadow min-w-max bg-white text-black font-medium rounded-[8px] text-sm">
