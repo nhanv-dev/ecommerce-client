@@ -17,7 +17,8 @@ const Register = lazy(() => import('../pages/web/Register'));
 const RegisterShop = lazy(() => import('../pages/web/RegisterShop'));
 const Checkout = lazy(() => import('../pages/web/Checkout'));
 const ChangeAddress = lazy(() => import('../pages/web/ChangeAddress'));
-const CreateAddress = lazy(() => import('../pages/web/CreateAddress'))
+const CreateAddress = lazy(() => import('../pages/web/CreateAddress'));
+const PasswordRetrieval = lazy(() => import('../pages/web/PasswordRetrieval'));
 
 const routes = [
     {path: '/', exact: true, component: Home},
@@ -28,6 +29,7 @@ const routes = [
     {path: '/danh-muc', exact: true, component: Categories},
     {path: '/danh-muc/:slug', exact: true, component: Category},
     {path: '/cua-hang/:slug/*', exact: true, component: Shop},
+    {path: '/quen-mat-khau/:slug', exact: true, component: PasswordRetrieval},
 ]
 
 const authRoutes = [

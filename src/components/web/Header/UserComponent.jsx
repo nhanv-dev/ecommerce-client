@@ -7,9 +7,12 @@ function UserComponent() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const shop = useSelector(state => state.shop);
+    const data = localStorage.getItem("persist:root")
 
     const handleSignOut = async (e) => {
+
         dispatch(await logout());
+        if(data) localStorage.removeItem("persist:root")
     }
 
     return (

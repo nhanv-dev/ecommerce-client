@@ -43,6 +43,7 @@ function Login() {
                         <Link to="/" className="block w-[130px] mx-auto mb-6">
                             <img src={Logo} alt="logo" className="w-full"/>
                         </Link>
+
                         <div id="toast-danger"
                              className={`${error ? '' : 'hidden'} flex items-center gap-3 p-4 mb-4 w-full max-w-xs bg-[#FDE8E8] text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800`}
                              role="alert">
@@ -56,6 +57,7 @@ function Login() {
                                 </svg>
                                 <span className="sr-only">Error icon</span>
                             </div>
+
                             <div className="text-tiny text-black-1 font-medium">Sai tên đăng nhập hoặc mật khẩu</div>
                         </div>
                         <form className="w-[300px]" onSubmit={handleLogin}>
@@ -78,7 +80,7 @@ function Login() {
                                        type="password" placeholder="Mật khẩu"/>
                             </div>
                             <div className="flex items-center justify-center mb-3">
-                                <Link to="/quen-mat-khau"
+                                <Link to="/quen-mat-khau/1"
                                       className="text-md font-semibold text-white">
                                     Quên mật khẩu ?
                                 </Link>
