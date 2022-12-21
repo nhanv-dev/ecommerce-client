@@ -82,8 +82,8 @@ const OrdersComponent = ({orders}) => {
     return (
         <div className="flex flex-col gap-5">
             {orders.map((order, index) => (
-                <div className="shadow-md rounded-[5px] bg-white">
-                    <OrderBlock key={index} order={order}/>
+                <div key={index} className="shadow-md rounded-[5px] bg-white">
+                    <OrderBlock order={order}/>
                 </div>
             ))}
         </div>
