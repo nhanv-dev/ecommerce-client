@@ -4,13 +4,15 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import {SocketContext, socket} from "./service/socket";
-import ScrollToTop from "./components/common/ScrollToTop/ScrollToTop";
+import Initialization from "./Initialization";
 
 function App() {
     return (
         <SocketContext.Provider value={socket}>
+            <Initialization>
 
-            <Router></Router>
+                <Router></Router>
+            </Initialization>
         </SocketContext.Provider>
     );
 }

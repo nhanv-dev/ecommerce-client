@@ -1,10 +1,10 @@
-import {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import * as Icon from "@iconscout/react-unicons";
 import {logout} from "../../../redux/actions/userActions";
+import DefaultAvatar from "../../../assets/img/default-avatar.png";
 
-function UserComponent(props) {
+function UserComponent() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const shop = useSelector(state => state.shop);
@@ -13,7 +13,7 @@ function UserComponent(props) {
     const handleSignOut = async (e) => {
 
         dispatch(await logout());
-        if(data) localStorage.removeItem("persist:root")
+        if (data) localStorage.removeItem("persist:root")
     }
 
     return (
@@ -21,7 +21,7 @@ function UserComponent(props) {
             {user?.info ?
                 <div className="relative group">
                     <Link to="/nguoi-dung/thong-tin" className="relative outline-none">
-                        <Icon.UilUser className="w-[26px] h-[26px] text-black"/>
+                        <Icon.UilUser className="w-[26px] h-[26px] text-white"/>
                     </Link>
                     <div
                         className="transition-all group-hover:opacity-100 group-hover:visible group-hover:top-full mt-[10px] opacity-0 invisible z-[20] absolute top-[70%] right-[-20px]  shadow min-w-max bg-white text-black font-medium rounded-[8px] text-sm">
@@ -32,7 +32,7 @@ function UserComponent(props) {
                                 className="flex items-center justify-start gap-3 border-b-[1px] border-[#eee] py-3 px-4">
                                 <Link to="/nguoi-dung/thong-tin"
                                       className="bg-cover min-w-[35px] min-h-[35px] rounded-full border-2 border-primary"
-                                      style={{backgroundImage: 'url(https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png)'}}/>
+                                      style={{backgroundImage: `url(${DefaultAvatar})`}}/>
                                 <div className="flex flex-col overflow-hidden w-full">
                                     <Link to="/nguoi-dung/thong-tin"
                                           className="w-[120px] text-base text-primary-hover line-clamp-1 transition-all">
@@ -45,9 +45,15 @@ function UserComponent(props) {
                                 </div>
                             </div>
                             <div className="py-3 px-4 border-b-[1px] border-[#eee] flex flex-col gap-4">
-                                <Link to={`/cua-hang/${shop.slug}`}
+                                {user.isShop && shop.slug &&
+                                    <Link to={`/cua-hang/${shop.slug}`}
+                                          className="flex items-center justify-start gap-3 text-tiny transition-all hover:text-primary-hover">
+                                        <Icon.UilStore className="w-[20px] h-[20px]"/> Shop của tôi
+                                    </Link>
+                                }
+                                <Link to="/nguoi-dung/thong-tin"
                                       className="flex items-center justify-start gap-3 text-tiny transition-all hover:text-primary-hover">
-                                    <Icon.UilStore className="w-[20px] h-[20px]"/> Shop của tôi
+                                    <Icon.UilUserSquare className="w-[20px] h-[20px]"/> Tài khoản của tôi
                                 </Link>
                                 <Link to="/nguoi-dung/hoa-don"
                                       className="flex items-center justify-start gap-3 text-tiny transition-all hover:text-primary-hover">
@@ -73,7 +79,7 @@ function UserComponent(props) {
                 </div> :
                 <Link to="/dang-nhap"
                       className="relative outline-none group">
-                    <Icon.UilUser className="w-[26px] h-[26px] text-black"/>
+                    <Icon.UilUser className="w-[26px] h-[26px] text-white"/>
                     <p className="transition-all group-hover:opacity-100 group-hover:top-full mt-[10px] opacity-0 z-[20] absolute top-[70%] left-[50%] translate-x-[-50%] min-w-max bg-black text-white font-medium rounded-[8px] text-sm px-2.5 py-1">
                     <span
                         className="absolute bottom-[99%] left-[50%] translate-x-[-50%] border-[7px] border-[transparent] border-b-[#333333]"/>

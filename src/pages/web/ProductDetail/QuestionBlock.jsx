@@ -3,6 +3,7 @@ import * as Icon from "@iconscout/react-unicons";
 import {useSelector} from "react-redux";
 import {formatLongDate} from "../../../utils/format";
 import {protectedRequest, publicRequest} from "../../../utils/requestMethods";
+import DefaultAvatar from "../../../assets/img/default-avatar.png";
 
 function QuestionBlock({product, shop}) {
     const user = useSelector(state => state.user);
@@ -47,8 +48,8 @@ const Question = ({question, questions, shop, product, setQuestions}) => {
             <div className="flex flex-wrap items-center justify-between mb-2">
                 <div className="flex flex-wrap items-start">
                     <div style={{
-                        backgroundImage: `url(${question.user?.avatar || 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png'})`
-                    }} className="bg-cover bg-center rounded-full min-w-[40px] min-h-[40px] border-2 border-border"/>
+                        backgroundImage: `url(${question.user?.avatar || DefaultAvatar})`
+                    }} className="bg-cover bg-center rounded-full min-w-[40px] min-h-[40px] overflow-hidden"/>
                     <div className="ml-3">
                         <p className="text-tiny font-medium max-w-[300px] line-clamp-1">
                             {question.user?.fullName || 'Ẩn danh'}
@@ -59,7 +60,7 @@ const Question = ({question, questions, shop, product, setQuestions}) => {
                     </div>
                 </div>
                 <button
-                    className="rounded-full min-w-[24px] min-h-[24px] flex items-center justify-center text-[#3f4b53] hover:bg-[#F3F3F3] active:bg-[#e7e8ea]">
+                    className="rounded-full min-w-[24px] min-h-[24px] flex items-start justify-center text-[#3f4b53] hover:bg-[#F3F3F3] active:bg-[#e7e8ea]">
                     <Icon.UilEllipsisH className="w-[18px] h-[18[x]"/>
                 </button>
             </div>
@@ -76,7 +77,7 @@ const Question = ({question, questions, shop, product, setQuestions}) => {
     )
 }
 
-const Answer = ({answers, shop}) => {
+export const Answer = ({answers, shop}) => {
     return (
         <div>
             {answers?.length > 0 ?
@@ -88,13 +89,19 @@ const Answer = ({answers, shop}) => {
                                 backgroundImage: `url(${shop.avatar || DefaultAvatar})`
                             }}
                                  className="bg-cover bg-center rounded-full min-w-[40px] min-h-[40px] border-2 border-border"/>
-                            <div className="ml-3">
-                                <p className="text-tiny font-medium max-w-[300px] line-clamp-1">
-                                    {shop.name || 'Cửa hàng'}
-                                </p>
-                                <p className="text-[11px] text-[#828282] font-medium">
-                                    {formatLongDate(answer.createdAt)}
-                                </p>
+                            <div className="ml-3 flex-1 flex items-start justify-between">
+                                <div>
+                                    <p className="text-tiny font-medium max-w-[300px] line-clamp-1">
+                                        {shop.name || 'Cửa hàng'}
+                                    </p>
+                                    <p className="text-[11px] text-[#828282] font-medium">
+                                        {formatLongDate(answer.createdAt)}
+                                    </p>
+                                </div>
+                                <button
+                                    className="rounded-full min-w-[24px] min-h-[24px] flex items-center justify-center text-[#3f4b53] hover:bg-[#F3F3F3] active:bg-[#e7e8ea]">
+                                    <Icon.UilEllipsisH className="w-[18px] h-[18[x]"/>
+                                </button>
                             </div>
                         </div>
                         <div className="ml-[40px] pl-3">
@@ -121,7 +128,7 @@ const UserInput = ({product, setQuestions}) => {
             const data = {productId: product._id, content: question}
             if (user.accessToken && user.info)
                 data.userId = user.info._id;
-            await protectedRequest.post("/questions", data).then(res => {
+            await protectedRequest().post("/questions", data).then(res => {
                 setQuestions(prev => [res.data.question, ...prev])
                 setQuestion("")
             })
@@ -131,7 +138,7 @@ const UserInput = ({product, setQuestions}) => {
     return (
         <div className="pt-3">
             <form className="flex justify-start items-center gap-3" onSubmit={submitQuestion}>
-                <div className="min-w-[40px] min-h-[40px] rounded-full bg-cover bg-center"
+                <div className="min-w-[40px] min-h-[40px] rounded-full bg-cover bg-center overflow-hidden"
                      style={{backgroundImage: `url(${user.info?.avatar || DefaultAvatar})`}}></div>
                 <div className="w-full rounded-full bg-[#F7F7F7] px-3 h-[36px]">
                     <input value={question} onChange={(e) => setQuestion(e.target.value)}
@@ -163,7 +170,7 @@ const ShopInput = ({shop, question, questions, setQuestions, product}) => {
                 productId: product._id,
                 shopId: shop._id,
             }
-            await protectedRequest.post("/answers", data).then(res => {
+            await protectedRequest().post("/answers", data).then(res => {
                 const {answer} = res.data
                 const filter = [...questions].map(item => {
                     if (item._id === answer.questionId) {
@@ -184,7 +191,7 @@ const ShopInput = ({shop, question, questions, setQuestions, product}) => {
                 <div className="pt-3">
                     <form className="flex justify-start items-center gap-3" onSubmit={submitAnswer}>
                         <div
-                            className="min-w-[40px] min-h-[40px] rounded-full bg-cover bg-center border-2 border-border"
+                            className="min-w-[40px] min-h-[40px] rounded-full bg-cover bg-center overflow-hidden"
                             style={{backgroundImage: `url(${shop.avatar || DefaultAvatar})`}}></div>
                         <div className="w-full rounded-full bg-[#F7F7F7] px-3 h-[36px]">
                             <input value={answer} onChange={(e) => setAnswer(e.target.value)}
@@ -202,5 +209,4 @@ const ShopInput = ({shop, question, questions, setQuestions, product}) => {
     )
 }
 
-const DefaultAvatar = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png';
 export default QuestionBlock;

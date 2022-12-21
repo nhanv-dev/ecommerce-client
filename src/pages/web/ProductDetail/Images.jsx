@@ -35,18 +35,17 @@ function Images({images}) {
                     <div ref={imageRef}
                          className="scroll-smooth w-full flex gap-[10px] items-center justify-start w-full overflow-hidden">
                         {images?.map((image, index) => (
-                            <div key={index} className="relative">
+                            <div key={index} className={`relative`}>
                                 <button
                                     onClick={() => setActive(index)}
                                     style={{backgroundImage: `url(${image.url || DefaultImage})`}}
-                                    className={`bg-cover bg-center overflow-hidden transition-all outline-none min-w-[80px] min-h-[80px] max-w-[80px] max-h-[80px] bg-cover bg-center rounded-[5px] border-2  
-                                 ${index === active ? 'border-2 border-primary' : 'border-border'}`}>
+                                    className={`rounded-[5px] bg-cover bg-center overflow-hidden transition-all outline-none min-w-[80px] min-h-[80px] max-w-[80px] max-h-[80px] bg-cover bg-center `}>
                                 </button>
                             </div>
                         ))}
                     </div>
                     {images.length > 4 &&
-                        <button onClick={() => scroll(100)}
+                        <button onClick={() => scroll(160)}
                                 className="absolute right-[-16px] top-[50%] translate-y-[-50%] z-10 w-[32px] h-[32px] flex items-center justify-center rounded-full bg-[#D8EAFF]">
                             <Icon.UilAngleRightB className="text-[#1CAC93] w-[18px] h-[18px]"/>
                         </button>

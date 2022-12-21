@@ -9,16 +9,11 @@ module.exports = {
             sm: '480px',
             md: '768px',
             lg: '976px',
-            xl: '1400px',
+            xl: '1300px',
         },
         colors: {
-<<<<<<< Updated upstream
-            'primary': '#EE2624',
-            'primary-hover': '#D52220',
-=======
             'primary': '#D0011B',
-            'primary-hover': '#e70628',
->>>>>>> Stashed changes
+            'primary-hover': '#D0011B',
             'black': '#333',
             'black-1': '#3f4b53',
             'white': '#fff',
@@ -51,7 +46,7 @@ module.exports = {
                 sm: '600px',
                 md: '728px',
                 lg: '984px',
-                xl: '1200px',
+                xl: '1300px',
             },
         },
         extend: {

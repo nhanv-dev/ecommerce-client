@@ -44,7 +44,7 @@ function Product() {
     return (
         <SellerLayout>
             <Helmet title={`${product.name + ' - Shopio'}`}>
-                <div className="container max-w-[1400px]">
+                <div className="container max-w-[1400px] pb-[100px]">
                     <div className="flex gap-6">
                         <div className="w-4/12">
                             <div className="rounded-[6px] bg-white p-5 shadow-md">

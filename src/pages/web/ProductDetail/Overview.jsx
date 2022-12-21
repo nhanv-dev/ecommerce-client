@@ -1,20 +1,17 @@
-import {useState} from 'react';
 import {formatCurrency} from "../../../utils/format";
-import {Swiper, SwiperSlide} from "swiper/react";
-import {Navigation, Thumbs} from "swiper";
 import * as SolidIcon from "@iconscout/react-unicons-solid";
 import * as Icon from "@iconscout/react-unicons";
-import {useDispatch} from "react-redux";
-import {buy} from "../../../redux/actions/cartActions";
 import Images from "./Images";
+import {Link} from "react-router-dom";
 
 
 function Overview(props) {
+
     const {
         product,
         userCombination,
         options,
-        addToCart,
+        handleAddToCart,
         userOptions,
         setUserOptions,
         updateQuantity,
@@ -31,7 +28,6 @@ function Overview(props) {
         else if (value > userCombination.stock) updateQuantity(userCombination.stock)
         else updateQuantity(value)
     }
-
 
     return (
         <>
@@ -129,6 +125,7 @@ function Overview(props) {
                                 </div>
                             )
                         })}
+
                         <div className="mb-5 pb-5 border-b border-[#f2f2f2]">
                             <div className="flex items-center flex-row">
                                 <div className="basis-1/4">
@@ -169,11 +166,12 @@ function Overview(props) {
                                     }
                                 </p>
                             </div>
-                            <div className="max-w-[500px] mt-5 flex items-center flex-row gap-3">
+
+                            <div className="mt-5 flex items-center flex-row gap-3">
                                 <div className="basis-1/2 ">
                                     <button
-                                        className="text-base text-[#3f4b53] font-medium hover:bg-[#F3F3F3] rounded-[4px] bg-[#e7e8ea] w-[100%] h-[44px]"
-                                        onClick={addToCart}>
+                                        className="text-base text-[#3f4b53] font-bold hover:bg-[#F3F3F3] rounded-[4px] bg-[#e7e8ea] w-[100%] h-[44px]"
+                                        onClick={handleAddToCart}>
                                         Thêm vào giỏ
                                     </button>
                                 </div>

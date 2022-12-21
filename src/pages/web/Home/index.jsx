@@ -3,13 +3,15 @@ import {SocketContext} from "../../../service/socket";
 import Helmet from "../../../components/web/Helmet";
 import {UserLayout} from "../../../components/common/Layouts";
 import "./style.scss";
+import {useSelector} from "react-redux";
 
 
 function Home() {
-    const socket = useContext(SocketContext);
-
+    // const socket = useContext(SocketContext);
+    const user = useSelector(state => state.user)
     useEffect(() => {
-    }, [socket])
+    
+    }, [user])
 
     return (
         <UserLayout>

@@ -1,17 +1,19 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SellerLayout} from "../../../components/common/Layouts";
 import Helmet from "../../../components/web/Helmet";
 import * as Icon from "@iconscout/react-unicons";
-import {useSelector} from "react-redux";
-import {protectedRequest, publicRequest} from "../../../utils/requestMethods";
-import {useParams} from "react-router-dom";
+import {protectedRequest} from "../../../utils/requestMethods";
 import Editor from "./Editor";
 import {formatCurrency, formatLongDate} from "../../../utils/format";
 import ModalCategory from "../../../components/seller/ModalCategory";
 import ProductVariants from "../../../components/seller/ProductVariants";
 import Images from "./Images";
+import {ToastContainer, toast} from 'react-toastify';
+import {useNavigate} from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
 
 function Product() {
+    const navigate = useNavigate();
     const [images, setImages] = useState([]);
     const [product, setProduct] = useState({
         name: "",
@@ -36,7 +38,6 @@ function Product() {
     const [showSubCategory, setShowSubCategory] = useState(false);
     const [category, setCategory] = useState({parent: {}, child: {}});
 
-
     useEffect(() => {
         setProduct(prev => ({...prev, categoryId: category.child?._id || category.parent?._id}))
     }, [category])
@@ -47,14 +48,11 @@ function Product() {
                 ...product, images: [...images]
             },
         }
-        console.log("Post payload", payload)
-        protectedRequest.post(`/products`, {...payload}).then(res => {
-            console.log(res)
-            //     // setProduct({...res.data.product})
-            //     // setCategory({
-            //     //     parent: {...res.data.category.parent},
-            //     //     child: {...res.data.category.child},
-            //     // })
+        protectedRequest().post(`/products`, {...payload}).then(res => {
+            if (res.status === 200)
+                navigate(`/san-pham/${res.data.product.slug}`)
+        }).catch(err => {
+            toast.error("Thêm sản phẩm thất bại.")
         })
     }
 
@@ -62,6 +60,7 @@ function Product() {
         <SellerLayout>
             <Helmet title="Đăng bán sản phẩm - Shopio">
                 <div className="container max-w-[1400px] pb-[100px]">
+                    <ToastContainer/>
                     <div className="flex gap-6 mb-6">
                         <div className="w-4/12 min-h-full">
                             <div className="h-full rounded-[6px] bg-white p-5 shadow-md">
