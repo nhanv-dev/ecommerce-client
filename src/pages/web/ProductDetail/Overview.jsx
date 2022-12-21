@@ -6,13 +6,12 @@ import {Link} from "react-router-dom";
 
 
 function Overview(props) {
+
     const {
         product,
         userCombination,
         options,
-        addToCart,
-        checkCombination,
-        checkLogin,
+        handleAddToCart,
         userOptions,
         setUserOptions,
         updateQuantity,
@@ -29,7 +28,6 @@ function Overview(props) {
         else if (value > userCombination.stock) updateQuantity(userCombination.stock)
         else updateQuantity(value)
     }
-
 
     return (
         <>
@@ -123,7 +121,6 @@ function Overview(props) {
                                                 </button>
                                             )
                                         })}
-
                                     </div>
                                 </div>
                             )
@@ -170,24 +167,13 @@ function Overview(props) {
                                 </p>
                             </div>
 
-                            <p className={`mt-4 text-primary ${checkCombination ? 'hidden' : ''}`}>Vui lòng chọn phân
-                                loại sản phẩm</p>
                             <div className="mt-5 flex items-center flex-row gap-3">
                                 <div className="basis-1/2 ">
-                                    {checkLogin ? <button
-                                            className="text-base text-[#3f4b53] font-bold hover:bg-[#F3F3F3] rounded-[4px] bg-[#e7e8ea] w-[100%] h-[44px]"
-                                            onClick={addToCart}>
-                                            Thêm vào giỏ
-                                        </button> :
-                                        <Link to={`/dang-nhap`}>
-                                            <button
-                                                className="text-base text-[#3f4b53] font-bold hover:bg-[#F3F3F3] rounded-[4px] bg-[#e7e8ea] w-[100%] h-[44px]"
-                                                onClick={addToCart}>
-                                                Thêm vào giỏ
-                                            </button>
-                                        </Link>
-                                    }
-
+                                    <button
+                                        className="text-base text-[#3f4b53] font-bold hover:bg-[#F3F3F3] rounded-[4px] bg-[#e7e8ea] w-[100%] h-[44px]"
+                                        onClick={handleAddToCart}>
+                                        Thêm vào giỏ
+                                    </button>
                                 </div>
                                 <div className="basis-1/2">
                                     <button

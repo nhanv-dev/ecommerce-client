@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import * as Icon from "@iconscout/react-unicons";
 import {logout} from "../../../redux/actions/userActions";
 import DefaultAvatar from "../../../assets/img/default-avatar.png";
+
 function UserComponent() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
@@ -12,7 +13,7 @@ function UserComponent() {
     const handleSignOut = async (e) => {
 
         dispatch(await logout());
-        if(data) localStorage.removeItem("persist:root")
+        if (data) localStorage.removeItem("persist:root")
     }
 
     return (
@@ -44,9 +45,15 @@ function UserComponent() {
                                 </div>
                             </div>
                             <div className="py-3 px-4 border-b-[1px] border-[#eee] flex flex-col gap-4">
-                                <Link to={`/cua-hang/${shop.slug}`}
+                                {user.isShop && shop.slug &&
+                                    <Link to={`/cua-hang/${shop.slug}`}
+                                          className="flex items-center justify-start gap-3 text-tiny transition-all hover:text-primary-hover">
+                                        <Icon.UilStore className="w-[20px] h-[20px]"/> Shop của tôi
+                                    </Link>
+                                }
+                                <Link to="/nguoi-dung/thong-tin"
                                       className="flex items-center justify-start gap-3 text-tiny transition-all hover:text-primary-hover">
-                                    <Icon.UilStore className="w-[20px] h-[20px]"/> Shop của tôi
+                                    <Icon.UilUserSquare className="w-[20px] h-[20px]"/> Tài khoản của tôi
                                 </Link>
                                 <Link to="/nguoi-dung/hoa-don"
                                       className="flex items-center justify-start gap-3 text-tiny transition-all hover:text-primary-hover">

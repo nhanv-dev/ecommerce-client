@@ -6,6 +6,8 @@ const Home = lazy(() => import('../pages/seller/Home'));
 const Category = lazy(() => import('../pages/seller/Category'));
 const Product = lazy(() => import('../pages/seller/Product'));
 const CreatingProduct = lazy(() => import('../pages/seller/CreatingProduct'));
+const Order = lazy(() => import('../pages/seller/Order'));
+const Statistical = lazy(() => import('../pages/seller/Statistical'));
 
 const routes = [
     {path: '/', exact: true, component: Home, replaceTo: '/dang-ky-ban-hang'},
@@ -13,6 +15,8 @@ const routes = [
     {path: '/danh-muc', exact: true, component: Category, replaceTo: '/dang-ky-ban-hang'},
     {path: '/san-pham/:slug', exact: true, component: Product, replaceTo: '/dang-ky-ban-hang'},
     {path: '/dang-ban', exact: true, component: CreatingProduct, replaceTo: '/dang-ky-ban-hang'},
+    {path: '/don-dat-hang', exact: true, component: Order, replaceTo: '/dang-ky-ban-hang'},
+    {path: '/thong-ke', exact: true, component: Statistical, replaceTo: '/dang-ky-ban-hang'},
 ];
 
 function SellerRouter() {

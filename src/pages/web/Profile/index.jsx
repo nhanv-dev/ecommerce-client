@@ -18,11 +18,7 @@ function Profile() {
             <Helmet title="Thông tin cá nhân">
                 <div className="container py-8">
                     <div className="flex items-start gap-5">
-                        <div className="basis-3/12">
-                            <div className="rounded-[5px] bg-white p-6">
-                                <UserSidebar/>
-                            </div>
-                        </div>
+                        <UserSidebar/>
                         <div className="flex-1">
                             <div className="rounded-[5px] bg-white p-6">asd</div>
                         </div>

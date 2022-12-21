@@ -1,7 +1,5 @@
 import * as types from '../constants/ActionTypes'
 import {protectedRequest, publicRequest} from "../../utils/requestMethods";
-import {SHOP_LOGIN_FAILED, SHOP_LOGIN_SUCCESS} from "../constants/ActionTypes";
-import axios from "axios";
 
 export const login = async (payload) => {
     const action = {type: types.USER_LOGIN_SUCCESS, payload: {}};
@@ -12,7 +10,6 @@ export const login = async (payload) => {
                 info: res.data.user,
                 shop: res.data.shop
             };
-            localStorage.setItem("persist:root", JSON.stringify({...action.payload}))
         }).catch(err => {
             action.type = types.USER_LOGIN_FAILED;
             action.payload = {};
@@ -34,7 +31,7 @@ export const register = async (payload) => {
 
 export const reLogin = async () => {
     const action = {type: types.USER_LOGIN_SUCCESS, payload: {}};
-    await protectedRequest.post("/auth/re-login")
+    await protectedRequest().post("/auth/re-login")
         .then(async (res) => {
             action.payload = {
                 accessToken: res.data.accessToken,

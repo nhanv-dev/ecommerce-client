@@ -1,9 +1,9 @@
 import {Link} from "react-router-dom";
 import {formatCurrency} from "../../../utils/format";
 import {useEffect, useState} from "react";
-
+import ImageNotFound from "../../../assets/img/image-not-found.jpg";
 function ProductCard({product}) {
-    const [image, setImage] = useState(imageNotFound);
+    const [image, setImage] = useState(ImageNotFound);
     useEffect(() => {
         fetch(product.images[0]?.url).then(res => {
             if (res.status !== 404) setImage(product.images[0].url)
@@ -41,6 +41,5 @@ function ProductCard({product}) {
     );
 }
 
-const imageNotFound = '';
 
 export default ProductCard;

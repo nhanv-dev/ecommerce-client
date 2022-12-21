@@ -2,29 +2,23 @@ import React, {useEffect, useState} from 'react';
 import {SellerLayout} from "../../../components/common/Layouts";
 import Helmet from "../../../components/web/Helmet";
 import {ProductTable} from "../../../components/seller/Table";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import {protectedRequest, publicRequest} from "../../../utils/requestMethods";
+import {protectedRequest} from "../../../utils/requestMethods";
 import * as Icon from "@iconscout/react-unicons";
-import axios from "axios";
+import {logout} from "../../../redux/actions/userActions";
 
 function Category() {
     const user = useSelector(state => state.user);
+    const dispatch = useDispatch();
     const shop = useSelector(state => state.shop);
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        console.log(user.accessToken)
-        console.log(JSON.parse(localStorage.getItem("persist:root"))?.accessToken)
-        const baseURL = "http://localhost:8080/api/v1/";
-        const request = axios.create({
-            baseURL: baseURL,
-            headers: {token: `Bearer ${user?.accessToken}`},
-        });
-        protectedRequest.get(`/shops/products`).then(res => {
+        protectedRequest().get(`/shops/products`).then(res => {
             setProducts([...res.data.products])
         }).catch(err => {
-            console.log(err)
+            dispatch(logout());
         })
     }, [user])
 
@@ -34,7 +28,7 @@ function Category() {
             <Helmet title="Danh mục hàng - Shopio">
                 <div className="container max-w-[1400px]">
                     <div className="flex flex-wrap gap-6">
-                        <div className="min-w-[300px]">
+                        <div className="min-w-[400px]">
                             <div className="rounded-[6px] bg-white p-5 shadow-md">
                                 <div className="mb-5 flex items-center justify-start gap-3">
                                     <p className="text-md font-medium">Đang bán:</p>

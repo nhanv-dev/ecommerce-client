@@ -3,47 +3,19 @@ import * as icon from "@iconscout/react-unicons";
 import {UserLayout} from "../../../components/common/Layouts";
 import Helmet from "../../../components/web/Helmet";
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 function ChangeAddress() {
-    const userEX = {
-        uId: 1,
-        name: "Nguyễn Văn To",
-        ava: "https://i.pinimg.com/736x/ef/b4/56/efb4563befb0ae1bed74f004785f3f0f.jpg",
-        phone: "035648799",
-        addresses: [
-            {
-                id: 1,
-                address: "103, đường số 4, ",
-                ward: "Phường Linh Xuân, ",
-                district: "Thủ Đức, ",
-                city: "Thành Phố Hồ Chí Minh",
-                default: true
-            },
-            {
-                id: 2,
-                address: "103, đường số 4, ",
-                ward: "Phường Linh Xuân, ",
-                district: "Thủ Đức, ",
-                city: "Thành Phố Hồ Chí Minh",
-            },
-        ]
-    }
+    const user = useSelector(state => state.user);
 
-    const [user, setUser] = useState({...userEX})
-    const [check, setCheck] = useState(1)
+    useEffect(() => {
+        console.log(user)
+    }, [user])
+
+    const [check, setCheck] = useState(10)
     const onChangeValue = (e) => {
         setCheck(e.target.value)
     }
-
-
-    // }    // const deleteE = (id)=>{
-    //     //     console.log(id)
-    //     //     // if(check=="notDefault"){
-    //     //         let u = user.addresses.filter(el=> el.id !==id )
-    //     //         setUsers(...u);
-    //     //         console.log(u)
-    //     //     // }
-
 
     return (
         <UserLayout>
@@ -51,10 +23,10 @@ function ChangeAddress() {
                 <div className="container py-8">
                     <div className="bg-white mb-3 rounded-[5px] shadow-md">
                         <div
-                            className="flex items-center justify-between px-5 py-3 bg-gradient-to-r from-[#EDF9FF] to-[#FDFEFF]">
+                            className="flex items-center justify-between px-5 py-3  rounded-t-[5px] bg-gradient-to-r from-[#EDF9FF] to-[#FDFEFF]">
                             <div className="flex items-center gap-3">
                                 <icon.UilLocationPoint className="w-[24px] h-[24px] text-[#01ACFF]"/>
-                                <h1 className="text-base font-medium">Địa chỉ nhận hàng</h1>
+                                <h1 className="text-base font-medium text-black-1">Địa chỉ nhận hàng</h1>
                             </div>
                         </div>
                         <div className="p-5">
