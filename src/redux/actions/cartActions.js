@@ -11,12 +11,13 @@ export const addToCart = async (item) => {
     const action = {};
     await protectedRequest().post("/carts/add-items", {...data}).then(res => {
         action.success = true;
-        action.type = types.ADD_TO_CART
-        action.payload = {item}
+        action.type = types.ADD_TO_CART;
+        console.log(res.data)
+        action.payload = {item: {...item, ...res.data.cartItem}}
     }).catch(err => {
         action.success = false;
-        action.type = types.ADD_TO_CART_FAIL
-        action.payload = {item}
+        action.type = types.ADD_TO_CART_FAIL;
+        action.payload = {item};
     })
     return {...action}
 }
