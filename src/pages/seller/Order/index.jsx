@@ -3,10 +3,10 @@ import {SellerLayout} from "../../../components/common/Layouts";
 import Helmet from "../../../components/web/Helmet";
 import * as Icon from "@iconscout/react-unicons";
 import {useSelector} from "react-redux";
-import OrderItem from "./OrderItem";
+import OrderItem from "./OrderComponent";
 
 function Order() {
-    const user = useSelector(state => state.user)
+    const user = useSelector(state => state.user);
     const [orders, setOrders] = useState([
         {
             user: {fullName: "Trần Thanh Nhân"}, address: {},
@@ -15,7 +15,8 @@ function Order() {
                 product: {},
             }]
         }
-    ])
+    ]);
+
     useEffect(() => {
 
     }, [user])
