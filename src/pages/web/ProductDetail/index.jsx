@@ -14,6 +14,7 @@ import {addToCart} from "../../../redux/actions/cartActions";
 import {publicRequest} from "../../../utils/requestMethods";
 import {ToastContainer, toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import RelateProduct from "./RelateProduct";
 
 function ProductDetail() {
     const {slug} = useParams();
@@ -27,6 +28,7 @@ function ProductDetail() {
     const [userCombination, setUserCombination] = useState(null);
     const [quantity, setQuantity] = useState(1);
     const [relatedProducts, setRelatedProducts] = useState([]);
+    const [extendProduct, setExtendProduct] = useState([])
 
     useEffect(() => {
         publicRequest.get(`/products?slug=${slug}&detail=true`).then(res => {
@@ -43,6 +45,16 @@ function ProductDetail() {
             const {shop, relatedProducts} = res.data;
             setShop(shop)
             setRelatedProducts(relatedProducts)
+        })
+
+    }, [product])
+
+    useEffect(() => {
+        if (!product) return;
+        publicRequest.get(`/products/cate-id/${product._id}`).then(res => {
+
+            const extendProduct = res.data;
+            setExtendProduct(extendProduct)
         })
 
     }, [product])
@@ -107,6 +119,7 @@ function ProductDetail() {
                         </div>
                     </div>
                     <Comment product={product} shop={shop}/>
+                    <RelateProduct extendProduct={extendProduct}/>
                     <Footer product={product} shop={shop}/>
                 </div>
             </Helmet>
