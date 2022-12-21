@@ -1,14 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import * as Icon from "@iconscout/react-unicons";
 import ImageNotFound from "../../../assets/img/image-not-found.jpg";
-import {formatCurrency, formatLongDate, formatSmallDate} from "../../../utils/format";
+import {formatCurrency, formatLongDate, formatSmallDate, formatToK} from "../../../utils/format";
 import {Link} from "react-router-dom";
 import Feedback from "./Feedback";
+import {protectedRequest} from "../../../utils/requestMethods";
+import CancelOrder from "./CancelOrder";
 
-function OrderBlock({order}) {
+function OrderBlock({order, reset}) {
+    const [show, setShow] = useState(false)
 
     return (
-        <div className="">
+        <div className="relative">
             <div className="p-5 flex items-center justify-between gap-6 pb-3 border-b border-[#f2f2f2]">
                 <p className="font-medium text-sm">Ngày đặt hàng: {formatLongDate(order.createdAt)}</p>
                 <div className="flex items-center gap-3">
@@ -43,13 +46,16 @@ function OrderBlock({order}) {
                             </div>
                         </div>
                         <div className="flex items-center gap-5">
+                            <CancelOrder show={show} setShow={setShow} order={order} reset={reset}/>
+                            {order.status !== 'Cancel' &&
+                                <button onClick={() => setShow(true)}
+                                        className="text-md font-medium border-2 border-primary text-primary px-3 py-1 rounded-[5px]">
+                                    Hủy đơn hàng
+                                </button>
+                            }
                             <button
                                 className="text-md font-medium border-2 border-primary text-primary px-3 py-1 rounded-[5px]">
                                 Mua lại
-                            </button>
-                            <button
-                                className="text-md font-medium border-2 border-primary text-primary px-3 py-1 rounded-[5px]">
-                                Xem thông tin Shop
                             </button>
                             <button
                                 className="text-md font-medium border-2 border-primary text-primary px-3 py-1 rounded-[5px]">
@@ -90,7 +96,7 @@ const FilterOrder = ({order}) => {
         <div>
             {filter.length > 0 &&
                 filter.map((obj, index) => (
-                    <div key={index} className="rounded-[5px]">
+                    <div key={index} className="rounded-[5px] relative">
                         <div className="flex items-center gap-5 mb-3 pt-5">
                             <div className="flex items-center gap-3">
                                 <div className="w-[50px] h-[50px] rounded-full border-[3px] border-primary-hover">
@@ -104,11 +110,19 @@ const FilterOrder = ({order}) => {
                                           className="font-semibold text-base mb-1 block">
                                         {obj.shop.name}
                                     </Link>
-                                    <div className="flex items-center gap-3">
-                                        <Link to={`/cua-hang/${obj.shop.slug}`}
-                                              className="text-tiny font-semibold border-2 border-primary text-primary rounded-[4px] px-3">
-                                            Đánh giá Shop
-                                        </Link>
+                                    <div className="flex items-center gap-3 text-black-1">
+                                        <p className="font-medium text-tiny">{formatToK(obj.shop.followed)} người theo
+                                            dõi</p>
+                                        <p className="font-medium text-tiny">|</p>
+                                        <p className="font-medium text-tiny">{formatToK(obj.shop.following)} đang theo
+                                            dõi</p>
+                                        <p className="font-medium text-tiny">|</p>
+                                        <p className="font-medium text-tiny flex items-center gap-1">
+                                            {obj.shop.rating}
+                                            <Icon.UilStar className="w-[15px] h-[15px]"/>
+                                        </p>
+                                        <p className="font-medium text-tiny">|</p>
+                                        <p className="font-medium text-tiny">{obj.shop.numberOfRating} lượt đánh giá</p>
                                     </div>
                                 </div>
                             </div>
@@ -138,10 +152,13 @@ const FilterOrder = ({order}) => {
                                                 </div>
                                                 <div className="flex items-center gap-3">
                                                     {!item.isFeedback ?
-                                                        <button onClick={() => handleShowFeedback(item)}
-                                                                className="font-medium text-sm text-primary underline">
-                                                            Đánh giá
-                                                        </button> :
+                                                        <>    {
+                                                            order.status !== 'Cancel' &&
+                                                            <button onClick={() => handleShowFeedback(item)}
+                                                                    className="font-medium text-sm text-primary underline">
+                                                                Đánh giá
+                                                            </button>
+                                                        }</> :
                                                         <p className="font-medium text-sm text-primary">
                                                             Đã đánh giá
                                                         </p>
@@ -177,10 +194,22 @@ const NotFound = () => {
 
 const StatusOrder = ({order}) => {
     return (
-        <div className="flex items-center gap-2 font-medium text-md text-[#26aa99]">
-            <Icon.UilSpinnerAlt className="w-[16px] h-[16px]"/>
-            {order.status === "Processing" && "Đang xử lý"}
-        </div>
+        <>
+            {order.status === "Processing" &&
+                <div className="flex items-center gap-2 font-medium text-md text-[#26aa99]">
+                    <Icon.UilSpinnerAlt className="w-[16px] h-[16px]"/>
+                    Đang xử lý
+                </div>
+            }
+            {order.status === "Cancel" &&
+                <>
+                    <div className="flex items-center gap-2 font-medium text-md text-primary">
+                        <Icon.UilSpinnerAlt className="w-[16px] h-[16px]"/>
+                        Đã hủy
+                    </div>
+                </>
+            }
+        </>
     )
 }
 

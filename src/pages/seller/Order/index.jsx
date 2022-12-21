@@ -17,9 +17,6 @@ function Order() {
         }
     ]);
 
-    useEffect(() => {
-
-    }, [user])
 
     return (
         <SellerLayout>

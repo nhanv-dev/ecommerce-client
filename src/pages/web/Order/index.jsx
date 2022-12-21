@@ -22,6 +22,16 @@ function Order() {
         })
     }, [user])
 
+    const reset = () => {
+        console.log("reset")
+        if (!user.accessToken) console.log(user);
+        protectedRequest().get("/orders/user").then(res => {
+            setOrders(res.data.orders)
+        }).catch(error => {
+
+        })
+    }
+
     return (
         <UserLayout>
             <Helmet title="Thông tin cá nhân">
@@ -68,7 +78,7 @@ function Order() {
                                 </div>
                             </div>
                             <div className="w-full">
-                                <OrdersComponent orders={orders}/>
+                                <OrdersComponent orders={orders} reset={reset}/>
                             </div>
                         </div>
                     </div>
@@ -78,12 +88,12 @@ function Order() {
     );
 }
 
-const OrdersComponent = ({orders}) => {
+const OrdersComponent = ({orders, reset}) => {
     return (
         <div className="flex flex-col gap-5">
             {orders.map((order, index) => (
-                <div key={index} className="shadow-md rounded-[5px] bg-white">
-                    <OrderBlock order={order}/>
+                <div key={index} className={`${order.status !== 'Cancel' ? 'bg-white' : 'bg-[#EAEAEA]'} shadow-md rounded-[5px]`}>
+                    <OrderBlock order={order} reset={reset}/>
                 </div>
             ))}
         </div>
