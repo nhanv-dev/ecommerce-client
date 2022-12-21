@@ -77,7 +77,7 @@ const Question = ({question, questions, shop, product, setQuestions}) => {
     )
 }
 
-const Answer = ({answers, shop}) => {
+export const Answer = ({answers, shop}) => {
     return (
         <div>
             {answers?.length > 0 ?
@@ -128,7 +128,7 @@ const UserInput = ({product, setQuestions}) => {
             const data = {productId: product._id, content: question}
             if (user.accessToken && user.info)
                 data.userId = user.info._id;
-            await protectedRequest.post("/questions", data).then(res => {
+            await protectedRequest().post("/questions", data).then(res => {
                 setQuestions(prev => [res.data.question, ...prev])
                 setQuestion("")
             })
@@ -170,7 +170,7 @@ const ShopInput = ({shop, question, questions, setQuestions, product}) => {
                 productId: product._id,
                 shopId: shop._id,
             }
-            await protectedRequest.post("/answers", data).then(res => {
+            await protectedRequest().post("/answers", data).then(res => {
                 const {answer} = res.data
                 const filter = [...questions].map(item => {
                     if (item._id === answer.questionId) {

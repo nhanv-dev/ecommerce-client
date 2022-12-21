@@ -1,16 +1,16 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SellerLayout} from "../../../components/common/Layouts";
 import Helmet from "../../../components/web/Helmet";
 import * as Icon from "@iconscout/react-unicons";
-import {protectedRequest, publicRequest} from "../../../utils/requestMethods";
+import {protectedRequest} from "../../../utils/requestMethods";
 import Editor from "./Editor";
 import {formatCurrency, formatLongDate} from "../../../utils/format";
 import ModalCategory from "../../../components/seller/ModalCategory";
 import ProductVariants from "../../../components/seller/ProductVariants";
 import Images from "./Images";
 import {ToastContainer, toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import {useNavigate} from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
 
 function Product() {
     const navigate = useNavigate();
@@ -37,6 +37,7 @@ function Product() {
     const [showCategory, setShowCategory] = useState(false);
     const [showSubCategory, setShowSubCategory] = useState(false);
     const [category, setCategory] = useState({parent: {}, child: {}});
+
     useEffect(() => {
         setProduct(prev => ({...prev, categoryId: category.child?._id || category.parent?._id}))
     }, [category])
@@ -47,16 +48,9 @@ function Product() {
                 ...product, images: [...images]
             },
         }
-        console.log("Post payload", payload)
-        protectedRequest.post(`/products`, {...payload}).then(res => {
-            console.log(res)
+        protectedRequest().post(`/products`, {...payload}).then(res => {
             if (res.status === 200)
                 navigate(`/san-pham/${res.data.product.slug}`)
-            //     // setProduct({...res.data.product})
-            //     // setCategory({
-            //     //     parent: {...res.data.category.parent},
-            //     //     child: {...res.data.category.child},
-            //     // })
         }).catch(err => {
             toast.error("Thêm sản phẩm thất bại.")
         })

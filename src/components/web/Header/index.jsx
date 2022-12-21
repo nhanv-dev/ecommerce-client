@@ -11,19 +11,13 @@ function Header() {
     const navigate = useNavigate();
     const [categories, setCategories] = useState([])
     const [scrollTop, setScrollTop] = useState(0);
-    const count = useSelector(state => state.cart);
-    const [num, setNum] = useState(0)
+    const cart = useSelector(state => state.cart);
 
     useEffect(() => {
         publicRequest.get('/categories?limit=8').then((res) => {
             setCategories(res.data.categories)
         });
     }, [])
-    useEffect(() => {
-        count?.forEach((c) => {
-            setNum(c.items.length)
-        })
-    }, [count])
 
     useEffect(() => {
         const onScroll = (e) => {
@@ -108,7 +102,7 @@ function Header() {
                                     Giỏ hàng
                                 </p>
                                 <p className="absolute right-[-10px] top-[-10px] rounded-full bg-white w-[20px] h-[20px] flex items-center justify-center text-primary ">
-                                    <span className="text-tiny font-medium relative top-[1px]">{num}</span>
+                                    <span className="text-tiny font-medium relative top-[1px]">{cart?.items?.length || 0}</span>
                                 </p>
 
                             </Link>
@@ -117,7 +111,7 @@ function Header() {
                 </div>
             </div>
             <div
-                className={`bg-[white] shadow-lg transition-all z-50 border-b-[1px] border-[#E5E5E5] ${scrollTop >= 300 && 'fixed top-0 left-0 right-0'}`}>
+                className={`bg-[white] shadow-lg transition-all z-50 border-b-[1px] border-[#E5E5E5] ${scrollTop >= 150 && 'fixed top-0 left-0 right-0'}`}>
                 <div className="container">
                     <div className="flex gap-6 py-2 relative">
                         <div

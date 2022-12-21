@@ -9,7 +9,7 @@ module.exports = {
             sm: '480px',
             md: '768px',
             lg: '976px',
-            xl: '1400px',
+            xl: '1300px',
         },
         colors: {
             'primary': '#D0011B',
@@ -46,7 +46,7 @@ module.exports = {
                 sm: '600px',
                 md: '728px',
                 lg: '984px',
-                xl: '1200px',
+                xl: '1300px',
             },
         },
         extend: {

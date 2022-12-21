@@ -6,7 +6,9 @@ function Home(props) {
     return (
         <SellerLayout>
             <Helmet title="Kênh bán hàng - Shopio">
-
+                <div className="container">
+                    Home
+                </div>
             </Helmet>
         </SellerLayout>
     );

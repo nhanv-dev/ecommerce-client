@@ -10,8 +10,7 @@ function Home() {
     // const socket = useContext(SocketContext);
     const user = useSelector(state => state.user)
     useEffect(() => {
-        console.log(user.accessToken)
-        console.log(JSON.parse(localStorage.getItem("persist:root"))?.accessToken)
+    
     }, [user])
 
     return (

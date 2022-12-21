@@ -2,9 +2,6 @@ import {Link} from "react-router-dom";
 import ShopComponent from "./ShopComponent";
 import * as Icon from "@iconscout/react-unicons";
 import {useDispatch, useSelector} from "react-redux";
-import {protectedRequest, publicRequest} from "../../../utils/requestMethods";
-import {useEffect} from "react";
-import {SHOP_LOGIN_FAILED, SHOP_LOGIN_SUCCESS} from "../../../redux/constants/ActionTypes";
 
 function Header() {
     const dispatch = useDispatch();
