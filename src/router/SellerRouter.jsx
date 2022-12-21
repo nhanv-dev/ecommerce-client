@@ -2,13 +2,11 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import {lazy, useEffect} from "react";
 import {useSelector} from "react-redux";
 
-
 const Home = lazy(() => import('../pages/seller/Home'));
 const Category = lazy(() => import('../pages/seller/Category'));
 const Product = lazy(() => import('../pages/seller/Product'));
 const CreatingProduct = lazy(() => import('../pages/seller/CreatingProduct'));
 const Order = lazy(() => import('../pages/seller/Order'));
-const Statistical = lazy(() => import('../pages/seller/Statistical'));
 const Info = lazy(() => import('../pages/seller/Info'))
 const Statistical = lazy(() => import('../pages/seller/Statistical'));
 

@@ -77,22 +77,12 @@ function ProductDetail() {
             product,
             combination: {...userCombination},
             shop: {_id: shop._id, name: shop.name, avatar: shop.avatar, slug: shop.slug},
-
              items: [{
                 id: product?._id,
                 combinationString: userCombination.combinationString,
                 product: {...product},
                 quantity: quantity,
             }]
-        }
-        const action = buy(item);
-        if (!data)
-            return setCheckLogin(false);
-        if (!userCombination.combinationString) {
-            setCheckCombination(false);
-        } else {
-            dispatch(action);
-
         }
         const action = await addToCart({...item});
         if (!action.success) toast.error("Thêm sản phẩm thất bại")
