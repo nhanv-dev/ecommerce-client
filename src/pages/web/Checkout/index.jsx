@@ -53,9 +53,11 @@ function CheckOut() {
         if (!payload.shippingMethod) return toast.error("Vui lòng chọn phương thức giao hàng")
         if (!payload.paymentMethod) return toast.error("Vui lòng chọn phương thức thanh toán")
         protectedRequest().post("/orders", {...payload}).then(res => {
+            console.log(res)
             if (res.status === 200) navigate(`/don-hang?id=${res.data.order._id}`)
             else toast.error("Vui lòng thử lại sau.")
         }).catch(err => {
+            console.log(err)
             if (err.status === 403) return navigate("/dang-nhap")
             toast.error("Vui lòng thử lại sau.")
         })

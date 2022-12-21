@@ -6,7 +6,7 @@ import {Link, useNavigate} from "react-router-dom";
 import UserSidebar from "../../../components/web/UserSidebar";
 import * as Icon from "@iconscout/react-unicons";
 import {protectedRequest} from "../../../utils/requestMethods";
-import OrderItem from "./OrderItem";
+import OrderBlock from "./OrderBlock";
 
 function Order() {
     const navigate = useNavigate();
@@ -82,8 +82,8 @@ const OrdersComponent = ({orders}) => {
     return (
         <div className="flex flex-col gap-5">
             {orders.map((order, index) => (
-                <div className="shadow-md rounded-[5px] bg-white p-5">
-                    <OrderItem key={index} order={order}/>
+                <div className="shadow-md rounded-[5px] bg-white">
+                    <OrderBlock key={index} order={order}/>
                 </div>
             ))}
         </div>
