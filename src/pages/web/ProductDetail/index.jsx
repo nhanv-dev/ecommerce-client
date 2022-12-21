@@ -76,23 +76,7 @@ function ProductDetail() {
             quantity,
             product,
             combination: {...userCombination},
-            shop: {_id: shop._id, name: shop.name, avatar: shop.avatar, slug: shop.slug},
-
-             items: [{
-                id: product?._id,
-                combinationString: userCombination.combinationString,
-                product: {...product},
-                quantity: quantity,
-            }]
-        }
-        const action = buy(item);
-        if (!data)
-            return setCheckLogin(false);
-        if (!userCombination.combinationString) {
-            setCheckCombination(false);
-        } else {
-            dispatch(action);
-
+            shop: {_id: shop._id, name: shop.name, avatar: shop.avatar, slug: shop.slug}
         }
         const action = await addToCart({...item});
         if (!action.success) toast.error("Thêm sản phẩm thất bại")
@@ -100,32 +84,33 @@ function ProductDetail() {
         dispatch(action);
     }
 
-    return (<UserLayout>
-        <Helmet title={product?.name}>
-            <div className="container py-8">
-                <ToastContainer/>
-                <Overview product={product}
-                          slug={slug}
-                          userCombination={userCombination}
-                          options={options}
-                          combinations={combinations}
-                          userOptions={userOptions}
-                          setUserOptions={setUserOptions}
-                          updateQuantity={updateQuantity}
-                          handleAddToCart={handleAddToCart}
-                          quantity={quantity}/>
-                <div className="flex flex-wrap justify-between mt-6 max-w-full gap-6 pb-6">
-                    <Shop shop={shop} relatedProducts={relatedProducts}/>
-                    <div className="flex-1">
-                        <ProductDescription product={product}/>
-                        <QuestionBlock product={product} shop={shop}/>
+    return (
+        <UserLayout>
+            <Helmet title={product?.name}>
+                <div className="container py-8">
+                    <ToastContainer/>
+                    <Overview product={product}
+                              slug={slug}
+                              userCombination={userCombination}
+                              options={options}
+                              combinations={combinations}
+                              userOptions={userOptions}
+                              setUserOptions={setUserOptions}
+                              updateQuantity={updateQuantity}
+                              handleAddToCart={handleAddToCart}
+                              quantity={quantity}/>
+                    <div className="flex flex-wrap justify-between mt-6 max-w-full gap-6 pb-6">
+                        <Shop shop={shop} relatedProducts={relatedProducts}/>
+                        <div className="flex-1">
+                            <ProductDescription product={product}/>
+                            <QuestionBlock product={product} shop={shop}/>
+                        </div>
                     </div>
+                    <Comment product={product} shop={shop}/>
+                    <Footer product={product} shop={shop}/>
                 </div>
-                <Comment product={product} shop={shop}/>
-                <Footer product={product} shop={shop}/>
-            </div>
-        </Helmet>
-    </UserLayout>);
+            </Helmet>
+        </UserLayout>);
 }
 
 export default ProductDetail;

@@ -16,6 +16,7 @@ function Searching() {
         setSearch(searchParams.get("s"))
         setType(searchParams.get("t"))
     }, [searchParams])
+
     useEffect(() => {
         if (type !== "cua-hang") return
         publicRequest.get(`/shops/search?searching=${search}`).then(res => {
