@@ -69,9 +69,34 @@ function ProductDetail() {
 
     const addToCart = () => {
         const item = {
+<<<<<<< Updated upstream
             id: 1,
             userId: 'quyen',
             items: [{id: slug, product: {...product}, quantity: quantity}]
+=======
+            userId: user?.info?._id,
+<<<<<<< Updated upstream
+            quantity,
+            product,
+            combination: {...userCombination},
+            shop: {_id: shop._id, name: shop.name, avatar: shop.avatar, slug: shop.slug},
+=======
+             items: [{
+                id: product?._id,
+                combinationString: userCombination.combinationString,
+                product: {...product},
+                quantity: quantity,
+            }]
+        }
+        const action = buy(item);
+        if (!data)
+            return setCheckLogin(false);
+        if (!userCombination.combinationString) {
+            setCheckCombination(false);
+        } else {
+            dispatch(action);
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         }
         const action = buy(item);
         dispatch(action);

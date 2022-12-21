@@ -12,8 +12,13 @@ module.exports = {
             xl: '1400px',
         },
         colors: {
+<<<<<<< Updated upstream
             'primary': '#EE2624',
             'primary-hover': '#D52220',
+=======
+            'primary': '#D0011B',
+            'primary-hover': '#e70628',
+>>>>>>> Stashed changes
             'black': '#333',
             'black-1': '#3f4b53',
             'white': '#fff',
