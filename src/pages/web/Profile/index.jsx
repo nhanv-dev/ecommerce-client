@@ -4,6 +4,7 @@ import {UserLayout} from "../../../components/common/Layouts";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import UserSidebar from "../../../components/web/UserSidebar";
+import Info from "./Info";
 
 
 function Profile() {
@@ -20,7 +21,7 @@ function Profile() {
                     <div className="flex items-start gap-5">
                         <UserSidebar/>
                         <div className="flex-1">
-                            <div className="rounded-[5px] bg-white p-6">asd</div>
+                            <Info/>
                         </div>
                     </div>
                 </div>
