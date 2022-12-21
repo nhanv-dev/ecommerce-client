@@ -14,6 +14,7 @@ function Cart() {
     const cart = useSelector(state => state.cart);
     const [total, setTotal] = useState(0);
     const [discount, setDiscount] = useState(0);
+
     useEffect(() => {
         let total = 0, discount = 0
         cart.items?.forEach(item => {

@@ -5,14 +5,16 @@ import * as Icon from '@iconscout/react-unicons';
 import {formatCurrency} from "../../../utils/format";
 import Modal from "../../../components/web/Modal/index";
 import {Link, useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import NotFoundImage from "../../../assets/img/image-not-found.jpg";
 import {protectedRequest} from "../../../utils/requestMethods";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import * as types from "../../../redux/constants/ActionTypes";
 
 function CheckOut() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const cart = useSelector(state => state.cart);
     const [items, setItems] = useState([]);
@@ -40,7 +42,7 @@ function CheckOut() {
         setItems(items)
     }, [cart, user])
 
-    const handleOrder = () => {
+    const handleOrder = async () => {
         const payload = {
             note,
             address,
@@ -52,14 +54,23 @@ function CheckOut() {
         if (!payload.address) return toast.error("Vui lòng chọn địa chỉ nhận hàng")
         if (!payload.shippingMethod) return toast.error("Vui lòng chọn phương thức giao hàng")
         if (!payload.paymentMethod) return toast.error("Vui lòng chọn phương thức thanh toán")
-        protectedRequest().post("/orders", {...payload}).then(res => {
-            console.log(res)
-            if (res.status === 200) navigate(`/don-hang?id=${res.data.order._id}`)
-            else toast.error("Vui lòng thử lại sau.")
+        await protectedRequest().post("/orders", {...payload}).then(res => {
+            let path = "/don-hang-thanh-cong?id="
+            if (res.status === 200) {
+                res.data.orders.forEach(order => path += `${order._id}&`);
+
+                navigate(path);
+            } else toast.error("Vui lòng thử lại sau.")
+        }).then(async () => {
+            await protectedRequest().get("/carts/all-items").then(res => {
+                dispatch({type: types.INITIALIZE_CART, payload: {...res.data.cart}})
+            }).catch(err => {
+                localStorage.removeItem("cart")
+            })
         }).catch(err => {
             console.log(err)
             if (err.status === 403) return navigate("/dang-nhap")
-            toast.error("Vui lòng thử lại sau.")
+            toast.error("Hệ thống đang xảy ra lỗi.")
         })
     }
 

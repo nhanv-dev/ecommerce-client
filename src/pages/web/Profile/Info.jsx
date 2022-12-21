@@ -30,9 +30,11 @@ function Info() {
         setMonth(m)
         setYear(y)
     },[])
+
     const onChangeValue = (e)=>{;
         setGender(e.target.value)
     }
+
     return (
         <>
             <div className="flex-1">

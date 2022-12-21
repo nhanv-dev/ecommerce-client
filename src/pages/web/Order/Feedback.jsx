@@ -28,10 +28,12 @@ function Feedback({showFeedback, setShowFeedback, item}) {
     }
 
     return (
-        <div onClick={() => setShowFeedback(true)}
-             className={`${showFeedback ? 'visible opacity-100' : 'invisible opacity-0'} fixed top-0 left-0 right-0 bottom-0 z-[40] transition-all after:absolute after:bg-[#000] after:opacity-20 after:top-0 after:left-0 after:right-0 after:bottom-0 after:z-[40]`}>
+        <>
+            <div onClick={() => setShowFeedback(false)}
+                 className={`${showFeedback ? 'visible opacity-100' : 'invisible opacity-0'} fixed top-0 left-0 right-0 bottom-0 z-[50] transition-all after:absolute after:bg-[#000] after:opacity-20 after:top-0 after:left-0 after:right-0 after:bottom-0 after:z-[40]`}>
+            </div>
             <div
-                className="p-3 min-w-[600px] max-w-[600px]  border border-border rounded-[5px] z-[50] bg-white shadow-md fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+                className={`${showFeedback ? 'visible opacity-100' : 'invisible opacity-0'} transition-all min-w-[600px] max-w-[600px]  border border-border rounded-[5px] z-[100] bg-white shadow-md fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]`}>
                 <div className="p-5">
                     {item &&
                         <div>
@@ -99,7 +101,8 @@ function Feedback({showFeedback, setShowFeedback, item}) {
                     <Icon.UilTimes className="w-[18px] h-[18px]"/>
                 </button>
             </div>
-        </div>
+        </>
+
     );
 }
 

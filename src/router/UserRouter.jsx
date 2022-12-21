@@ -48,7 +48,7 @@ const authRoutes = [
     {path: '/nguoi-dung/thay-doi-dia-chi', exact: true, component: ChangingAddress, replaceTo: '/dang-nhap'},
     {path: '/dang-ky-ban-hang', exact: true, component: RegisterShop, replaceTo: '/dang-nhap'},
     {path: '/thanh-toan', exact: true, component: Checkout, replaceTo: '/dang-nhap'},
-    {path: '/don-hang', exact: true, component: SuccessCheckout, replaceTo: '/dang-nhap'},
+    {path: '/don-hang-thanh-cong', exact: true, component: SuccessCheckout, replaceTo: '/dang-nhap'},
 
 ]
 const reverseAuthRoutes = [

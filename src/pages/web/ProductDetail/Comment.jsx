@@ -1,182 +1,134 @@
 import {useEffect, useState} from 'react';
 import * as SolidIcon from "@iconscout/react-unicons-solid";
 import * as Icon from "@iconscout/react-unicons";
-import {Swiper, SwiperSlide} from "swiper/react";
-import {Navigation, Thumbs} from "swiper";
 import {Link} from "react-router-dom";
+import {publicRequest} from "../../../utils/requestMethods";
+import {formatSmallDate} from "../../../utils/format";
+import DefaultAvatar from "../../../assets/img/default-avatar.png";
 
 function Comment({product}) {
-    const commentsData = [
-        {
-            user: {
-                _id: 1,
-                name: 'Trần Thanh Nhân',
-                avatar: 'https://media3.scdn.vn/img4/2021/08_11/uM41MFm2oMETHLbjqGv4.jpg',
-            },
-            createdDate: "07:15 25/09/2022",
-            rating: 5,
-            message: "Tốt",
-            images: [{url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'}, {url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'}, {url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'}, {url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'}, {url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'}, {url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'}, {url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'}, {url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'}, {url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'}, {url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'}, {url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'}, {url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'},]
-        }, {
-            user: {
-                _id: 2,
-                name: 'Trần Thanh Nhân',
-                avatar: 'https://media3.scdn.vn/img4/2021/08_11/uM41MFm2oMETHLbjqGv4.jpg',
-            },
-            createdDate: "07:15 25/09/2022",
-            rating: 5,
-            message: "Chưa biết sài chưa biết sao",
-            images: [{url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'},]
-        }, {
-            user: {
-                _id: 3,
-                name: 'Trần Thanh Nhân',
-                avatar: 'https://media3.scdn.vn/img4/2021/08_11/uM41MFm2oMETHLbjqGv4.jpg',
-            },
-            createdDate: "07:15 21/09/2022",
-            rating: 3,
-            message: "Giao hàng lâu",
-            images: [{url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'},]
-        }, {
-            user: {
-                _id: 4,
-                name: 'Trần Thanh Nhân',
-                avatar: 'https://media3.scdn.vn/img4/2021/08_11/uM41MFm2oMETHLbjqGv4.jpg',
-            },
-            createdDate: "07:15 20/09/2022",
-            rating: 4,
-            message: "Tạm ổn",
-            images: [{url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'},]
-        }, {
-            user: {
-                _id: 5,
-                name: 'Trần Thanh Nhân',
-                avatar: 'https://media3.scdn.vn/img4/2021/08_11/uM41MFm2oMETHLbjqGv4.jpg',
-            },
-            createdDate: "07:15 01/09/2022",
-            rating: 5,
-            message: "hàng nét",
-            images: [{url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'},]
-        }, {
-            user: {
-                _id: 6,
-                name: 'Trần Thanh Nhân',
-                avatar: 'https://media3.scdn.vn/img4/2021/08_11/uM41MFm2oMETHLbjqGv4.jpg',
-            },
-            createdDate: "07:15 20/08/2022",
-            rating: 1,
-            message: "dỏm mọi người né",
-            images: [{url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'},]
-        }, {
-            user: {
-                _id: 7,
-                name: 'Trần Thanh Nhân',
-                avatar: 'https://media3.scdn.vn/img4/2021/08_11/uM41MFm2oMETHLbjqGv4.jpg',
-            },
-            createdDate: "07:15 26/09/2021",
-            rating: 1,
-            message: "kém chất lượng",
-            images: [{url: 'https://salt.tikicdn.com/cache/w280/ts/review/a4/90/a4/17e49b81789743da93f5e5deb59f5556.jpg'},]
-        }]
     const [comments, setComments] = useState([])
 
     useEffect(() => {
-        setComments([...commentsData])
+        if (!product) return;
+        publicRequest.get(`/evaluates/productId/${product._id}`).then(res => {
+            setComments(res.data.evaluates)
+            console.log(res)
+        })
     }, [product])
 
+    return (
+        <>
+            {comments.length <= 0 ?
+                <NullComment/> :
+                <div className="rounded-md bg-white">
+                    <div className="py-8 px-10">
+                        <p className="inline-block font-bold text-lg mb-3">Đánh giá & nhận xét từ khách hàng</p>
+                        <div className="flex justify-between items-start">
+                            <div className="min-w-max basis-4/12">
+                                <div className="flex items-center gap-3 ">
+                                    <p className="text-5xl font-bold leading-10">{product?.rating}</p>
+                                    <div className="flex flex-col">
+                                        <div className="pt-2 flex gap-0.5 items-center justify-start">
+                                            <SolidIcon.UisStar className="w-[12px] h-[12px] text-[#e4a400]"/>
+                                            <SolidIcon.UisStar className="w-[12px] h-[12px] text-[#e4a400]"/>
+                                            <SolidIcon.UisStar className="w-[12px] h-[12px] text-[#e4a400]"/>
+                                            <SolidIcon.UisStar className="w-[12px] h-[12px] text-[#e4a400]"/>
+                                            <SolidIcon.UisStar className="w-[12px] h-[12px] text-[#e4a400]"/>
+                                        </div>
+                                        <p className="pt-2 font-medium text-[.85rem] text-[#808089] ">
+                                            {comments.length} đánh giá & nhận xét
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="mt-2">
+                                    <Rating value={5} comments={comments}/>
+                                    <Rating value={4} comments={comments}/>
+                                    <Rating value={3} comments={comments}/>
+                                    <Rating value={2} comments={comments}/>
+                                    <Rating value={1} comments={comments}/>
+                                </div>
+                            </div>
+                            <div className="flex-1 ">
+                                <CustomerImages comments={comments}/>
+                                <div className="mt-8 flex items-start gap-3">
+                                    <p className="pt-1 text-md font-medium">Lọc xem theo:</p>
+                                    <div className="flex-1 flex items-center justify-start gap-3 flex-wrap">
+                                        <button
+                                            className="flex items-center gap-2 text-tiny font-medium h-[30px] px-3 rounded-full bg-[#f5f5fa] text-[#38383d]">
+                                            <span>Có hình ảnh</span>
+                                        </button>
+                                        <button
+                                            className="flex items-center gap-2 text-tiny font-medium h-[30px] px-3 rounded-full bg-[#f5f5fa] text-[#38383d]">
+                                            <span>5</span>
+                                            <Icon.UilStar className="w-[18px] h-[18px] relative top-[.5px]"/>
+                                        </button>
+                                        <button
+                                            className="flex items-center gap-2 text-tiny font-medium h-[30px] px-3 rounded-full bg-[#f5f5fa] text-[#38383d]">
+                                            <span>4</span>
+                                            <Icon.UilStar className="w-[18px] h-[18px] relative top-[.5px]"/>
+                                        </button>
+                                        <button
+                                            className="flex items-center gap-2 text-tiny font-medium h-[30px] px-3 rounded-full bg-[#f5f5fa] text-[#38383d]">
+                                            <span>3</span>
+                                            <Icon.UilStar className="w-[18px] h-[18px] relative top-[.5px]"/>
+                                        </button>
+                                        <button
+                                            className="flex items-center gap-2 text-tiny font-medium h-[30px] px-3 rounded-full bg-[#f5f5fa] text-[#38383d]">
+                                            <span>2</span>
+                                            <Icon.UilStar className="w-[18px] h-[18px] relative top-[.5px]"/>
+                                        </button>
+                                        <button
+                                            className="flex items-center gap-2 text-tiny font-medium h-[30px] px-3 rounded-full bg-[#f5f5fa] text-[#38383d]">
+                                            <span>1</span>
+                                            <Icon.UilStar className="w-[18px] h-[18px] relative top-[.5px]"/>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        {comments.map((comment, index) => (
+                            <CommentItem comment={comment} key={index}/>
+                        ))}
+                    </div>
+                    <div className="p-8 flex items-center justify-end">
+                        <div className="flex gap-2 items-center">
+                            <Link to={""}
+                                  className="rounded-full min-w-[32px] min-h-[32px] text-base font-medium flex items-center justify-center">
+                                <Icon.UilAngleLeft/>
+                            </Link>
+                            {[...Array(5)].map((val, index) => (
+                                <Link to={""} key={index}
+                                      className={`${index === 0 ? 'bg-[#134c75] text-white' : 'hover:bg-[#c1e7ff] text-black-1'}  rounded-full min-w-[32px] min-h-[32px] text-base font-medium flex items-center justify-center`}>
+                                    {index + 1}
+                                </Link>
+                            ))}
+                            <Link to={""}
+                                  className="rounded-full min-w-[32px] min-h-[32px] text-base font-medium flex items-center justify-center">
+                                <Icon.UilAngleRight/>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            }
+        </>
+
+    );
+}
+
+const NullComment = () => {
     return (
         <div className="rounded-md bg-white">
             <div className="py-8 px-10">
                 <p className="inline-block font-bold text-lg mb-3">Đánh giá & nhận xét từ khách hàng</p>
-                <div className="flex justify-between items-start">
-                    <div className="min-w-max basis-4/12">
-                        <div className="flex items-center gap-3 ">
-                            <p className="text-5xl font-bold leading-10">{product?.rating}</p>
-                            <div className="flex flex-col">
-                                <div className="pt-2 flex gap-0.5 items-center justify-start">
-                                    <SolidIcon.UisStar className="w-[12px] h-[12px] text-[#e4a400]"/>
-                                    <SolidIcon.UisStar className="w-[12px] h-[12px] text-[#e4a400]"/>
-                                    <SolidIcon.UisStar className="w-[12px] h-[12px] text-[#e4a400]"/>
-                                    <SolidIcon.UisStar className="w-[12px] h-[12px] text-[#e4a400]"/>
-                                    <SolidIcon.UisStar className="w-[12px] h-[12px] text-[#e4a400]"/>
-                                </div>
-                                <p className="pt-2 font-medium text-[.85rem] text-[#808089] ">
-                                    {comments.length} đánh giá & nhận xét
-                                </p>
-                            </div>
-                        </div>
-                        <div className="mt-2">
-                            <Rating value={5} comments={comments}/>
-                            <Rating value={4} comments={comments}/>
-                            <Rating value={3} comments={comments}/>
-                            <Rating value={2} comments={comments}/>
-                            <Rating value={1} comments={comments}/>
-                        </div>
-                    </div>
-                    <div className="flex-1 ">
-                        <CustomerImages comments={comments}/>
-                        <div className="mt-8 flex items-start gap-3">
-                            <p className="pt-1 text-md font-medium">Lọc xem theo:</p>
-                            <div className="flex-1 flex items-center justify-start gap-3 flex-wrap">
-                                <button
-                                    className="flex items-center gap-2 text-tiny font-medium h-[30px] px-3 rounded-full bg-[#f5f5fa] text-[#38383d]">
-                                    <span>Có hình ảnh</span>
-                                </button>
-                                <button
-                                    className="flex items-center gap-2 text-tiny font-medium h-[30px] px-3 rounded-full bg-[#f5f5fa] text-[#38383d]">
-                                    <span>5</span>
-                                    <Icon.UilStar className="w-[18px] h-[18px] relative top-[.5px]"/>
-                                </button>
-                                <button
-                                    className="flex items-center gap-2 text-tiny font-medium h-[30px] px-3 rounded-full bg-[#f5f5fa] text-[#38383d]">
-                                    <span>4</span>
-                                    <Icon.UilStar className="w-[18px] h-[18px] relative top-[.5px]"/>
-                                </button>
-                                <button
-                                    className="flex items-center gap-2 text-tiny font-medium h-[30px] px-3 rounded-full bg-[#f5f5fa] text-[#38383d]">
-                                    <span>3</span>
-                                    <Icon.UilStar className="w-[18px] h-[18px] relative top-[.5px]"/>
-                                </button>
-                                <button
-                                    className="flex items-center gap-2 text-tiny font-medium h-[30px] px-3 rounded-full bg-[#f5f5fa] text-[#38383d]">
-                                    <span>2</span>
-                                    <Icon.UilStar className="w-[18px] h-[18px] relative top-[.5px]"/>
-                                </button>
-                                <button
-                                    className="flex items-center gap-2 text-tiny font-medium h-[30px] px-3 rounded-full bg-[#f5f5fa] text-[#38383d]">
-                                    <span>1</span>
-                                    <Icon.UilStar className="w-[18px] h-[18px] relative top-[.5px]"/>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                {comments.map((comment, index) => (
-                    <CommentItem comment={comment} key={index}/>
-                ))}
-            </div>
-            <div className="p-8 flex items-center justify-end">
-                <div className="flex gap-2 items-center">
-                    <Link to={""}
-                          className="rounded-full min-w-[32px] min-h-[32px] text-base font-medium flex items-center justify-center">
-                        <Icon.UilAngleLeft/>
-                    </Link>
-                    {[...Array(5)].map((val, index) => (
-                        <Link to={""} key={index}
-                              className={`${index === 0 ? 'bg-[#134c75] text-white' : 'hover:bg-[#c1e7ff] text-black-1'}  rounded-full min-w-[32px] min-h-[32px] text-base font-medium flex items-center justify-center`}>
-                            {index + 1}
-                        </Link>
-                    ))}
-                    <Link to={""}
-                          className="rounded-full min-w-[32px] min-h-[32px] text-base font-medium flex items-center justify-center">
-                        <Icon.UilAngleRight/>
-                    </Link>
+                <div className="flex justify-center items-center m-10">
+                    <h5 className="font-semibold text-lg text-center">Sản phẩm chưa có đánh giá.</h5>
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
 
@@ -186,12 +138,12 @@ const CommentItem = ({comment, extendClass}) => {
             <div className="basis-4/12">
                 <div className="flex items-start gap-4">
                     <div className="w-[55px] h-[55px] overflow-hidden rounded-full bg-cover bg-center"
-                         style={{backgroundImage: `url(${comment.user.avatar})`}}>
+                         style={{backgroundImage: `url(${comment.user.avatar || DefaultAvatar})`}}>
                     </div>
                     <div>
-                        <h1 className="font-bold text-md">{comment.user.name}</h1>
-                        <div className="flex italic items-center text-[#3f4b53] justify-start text">
-                            <p className="text-sm font-medium">{comment.createdDate}</p>
+                        <h1 className="font-bold text-md">{comment.user.fullName}</h1>
+                        <div className="flex items-center text-[#3f4b53] justify-start text-sm">
+                            <p className="text-sm font-medium">{formatSmallDate(comment.createdAt)}</p>
                         </div>
                     </div>
                 </div>
@@ -226,7 +178,7 @@ const CommentItem = ({comment, extendClass}) => {
                         {comment.rating === 1 && 'Rất không hài lòng'}
                     </p>
                 </div>
-                <p className="pt-2 pb-4 text-tiny font-medium">{comment.message}</p>
+                <p className="pt-2 pb-4 text-tiny font-medium">{comment.content}</p>
                 <div className="flex flex-wrap items-center justify-start gap-3">
                     {comment.images.slice(0, 7).map((image, index) => (
                         <div style={{backgroundImage: `url(${image.url})`}} key={index}
@@ -238,9 +190,6 @@ const CommentItem = ({comment, extendClass}) => {
                     <button
                         className="flex items-center gap-2 px-4 py-1.5 rounded-[4px] border-[1px] border-[#0b74e5] text-sm text-[#0b74e5] font-semibold">
                         <Icon.UilThumbsUp className="w-[16px] h-[16px] relative top-[-1px]"/> Hữu ích
-                    </button>
-                    <button className="text-sm text-[#0b74e5] font-semibold">
-                        Bình luận
                     </button>
                     <button className="text-sm text-[#0b74e5] font-semibold">
                         Chia sẻ
