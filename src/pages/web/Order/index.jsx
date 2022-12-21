@@ -5,6 +5,8 @@ import {useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import UserSidebar from "../../../components/web/UserSidebar";
 import * as Icon from "@iconscout/react-unicons";
+import {protectedRequest} from "../../../utils/requestMethods";
+import OrderItem from "./OrderItem";
 
 function Order() {
     const navigate = useNavigate();
@@ -12,7 +14,12 @@ function Order() {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        if (!user.accessToken) console.log(user)
+        if (!user.accessToken) console.log(user);
+        protectedRequest().get("/orders/user").then(res => {
+            setOrders(res.data.orders)
+        }).catch(error => {
+
+        })
     }, [user])
 
     return (
@@ -60,11 +67,8 @@ function Order() {
                                            placeholder="Bạn có thể tìm kiếm theo tên Shop, ID đơn hàng hoặc Tên sản phẩm"/>
                                 </div>
                             </div>
-                            <div className="shadow-md rounded-[5px] bg-white p-5">
-                                <div
-                                    className="flex justify-between items-center gap-5 font-medium text-md text-black-1">
-
-                                </div>
+                            <div className="w-full">
+                                <OrdersComponent orders={orders}/>
                             </div>
                         </div>
                     </div>
@@ -74,5 +78,16 @@ function Order() {
     );
 }
 
+const OrdersComponent = ({orders}) => {
+    return (
+        <div className="flex flex-col gap-5">
+            {orders.map((order, index) => (
+                <div className="shadow-md rounded-[5px] bg-white p-5">
+                    <OrderItem key={index} order={order}/>
+                </div>
+            ))}
+        </div>
+    )
+}
 
 export default Order;
