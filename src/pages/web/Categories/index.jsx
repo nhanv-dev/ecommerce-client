@@ -1,19 +1,17 @@
 import {useState, useEffect, useContext} from 'react';
-import {SocketContext} from "../../../service/socket";
 import Helmet from "../../../components/web/Helmet";
 import {UserLayout} from "../../../components/common/Layouts";
 import {Link} from "react-router-dom";
 import {publicRequest} from "../../../utils/requestMethods";
 
 function Categories() {
-    const socket = useContext(SocketContext);
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
         publicRequest.get("/categories").then((res) => {
             setCategories([...res.data.categories])
         })
-    }, [socket])
+    }, [])
 
     return (
         <UserLayout>
