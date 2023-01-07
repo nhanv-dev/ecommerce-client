@@ -11,7 +11,6 @@ import facebook from "../../../assets/img/facebook.png"
 import google from "../../../assets/img/google.png"
 
 
-
 function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -38,20 +37,21 @@ function Login() {
 
     return (
         <Helmet title="Đăng nhập - Shopio.">
-            <div>
-                <Header/>
-
-                <div className=" bg-cover" style={{backgroundImage: `url(https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-038.jpg)`}}>
-                    <div className="flex items-center justify-center rounded-2xl shadow bg-cover bg-left-bottom p-8">
-                        <div className="basis-2/3 my-8 flex items-center">
-                            <div className="basis-1/2">
-                                <Link to="/" className="block w-[300px] text-center mx-auto mb-6">
-                                    <img src={Logo} alt="logo" className="w-full"/>
-                                    <p className="text-[26px] mt-3 text-white">Sàn thương mại <br/> điện  tử lớn nhất Việt Nam</p>
-                                </Link>
-                            </div>
-                            <div className="basis-1/2 bg-white h-[500px] p-10 rounded-md shadow-md">
-                                <h1 className="text-black text-2xl pb-5">Đăng nhập</h1>
+            <div className="h-[100vh] bg-cover"
+                 style={{backgroundImage: `url(https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-038.jpg)`}}>
+                <div className="flex items-center justify-center rounded-2xl shadow bg-cover bg-left-bottom p-8">
+                    <div className="basis-2/3 my-8 flex items-center">
+                        <div className="basis-1/2">
+                            <Link to="/" className="block w-[200px] text-center mx-auto mb-6">
+                                <img src={Logo} alt="logo" className="w-full"/>
+                            </Link>
+                            <p className="font-semibold text-white text-xl">
+                                Chợ trực tuyến uy tín nhất thị trường Việt Nam.
+                            </p>
+                        </div>
+                        <div className="basis-1/2">
+                            <div className="bg-white h-[500px] mt-10 p-10 rounded-md shadow-md">
+                                <h1 className="text-black text-2xl pb-5 font-semibold">Đăng nhập</h1>
                                 <div id="toast-danger"
                                      className={`${error ? '' : 'hidden'} flex items-center gap-3 p-4 mb-4 w-full max-w-xs bg-[#FDE8E8] text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800`}
                                      role="alert">
@@ -66,7 +66,8 @@ function Login() {
                                         <span className="sr-only">Error icon</span>
                                     </div>
 
-                                    <div className="text-tiny text-black-1 font-medium">Sai tên đăng nhập hoặc mật khẩu</div>
+                                    <div className="text-tiny text-black-1 font-medium">Sai tên đăng nhập hoặc mật khẩu
+                                    </div>
                                 </div>
                                 <form className="" onSubmit={handleLogin}>
                                     <div
@@ -100,19 +101,7 @@ function Login() {
                                         </button>
 
                                     </div>
-
                                 </form>
-
-                                <div className=" mt-8 flex items-center  justify-around">
-                                    <div className="flex items-center justify-center cursor-pointer w-[120px] bg-white p-2 shadow-md rounded-md">
-                                        <img src={facebook} className="w-[30px] h-[30px] mr-1" alt=""/>
-                                        <p>Facebook</p>
-                                    </div>
-                                    <div className="flex items-center justify-center cursor-pointer w-[120px] bg-white p-2 shadow-md rounded-md">
-                                        <img src={google} className="w-[30px] h-[30px] mr-1" alt=""/>
-                                       <p>Google</p>
-                                    </div>
-                                </div>
                                 <div className="mt-5">
                                     <div className="text-center font-semibold text-[#6f787e]e text-md">
                                         Bạn chưa có tài khoản?
@@ -120,13 +109,9 @@ function Login() {
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
-
-                <Footer/>
             </div>
         </Helmet>
     );

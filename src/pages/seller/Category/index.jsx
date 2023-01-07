@@ -30,22 +30,22 @@ function Category() {
                     <div className="flex flex-wrap gap-6">
                         <div className="min-w-[400px]">
                             <div className="rounded-[6px] bg-white p-5 shadow-md">
-                                <div className="mb-5 flex items-center justify-start gap-3">
+                                <div className="mb-3 flex items-center justify-start gap-3">
                                     <p className="text-md font-medium">Đang bán:</p>
-                                    <p className="text-sm font-medium rounded-[50px] bg-primary text-white px-3 py-0.5">
-                                        123
+                                    <p className="text-primary rounded-[50px] text-md font-semibold">
+                                        29
                                     </p>
                                 </div>
-                                <div className="mb-5 flex items-center justify-start gap-3">
+                                <div className="mb-3 flex items-center justify-start gap-3">
                                     <p className="text-md font-medium">Ngừng bán:</p>
-                                    <p className="text-sm font-medium rounded-[50px] bg-primary text-white px-3 py-0.5">
-                                        123
+                                    <p className="text-primary rounded-[50px] text-md font-semibold">
+                                        0
                                     </p>
                                 </div>
-                                <div className="mb-5 flex items-center justify-start gap-3">
+                                <div className=" flex items-center justify-start gap-3">
                                     <p className="text-md font-medium">Hết hàng:</p>
-                                    <p className="text-sm font-medium rounded-[50px] bg-primary text-white px-3 py-0.5">
-                                        123
+                                    <p className="text-primary rounded-[50px] text-md font-semibold">
+                                        0
                                     </p>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@ function Category() {
                                     <div className="flex items-center gap-5">
                                         <div
                                             className="bg-[#F7F7F7] w-[280px] flex gap-2 items-center rounded-[5px] p-2 px-3">
-                                            <input type="text"
+                                            <input type="text" placeholder="Tìm kiếm sản phẩm"
                                                    className="text-black-1 bg-[#F7F7F7] font-medium text-md flex-1 outline-none"/>
                                             <button>
                                                 <Icon.UilSearch className="min-w-[18px] min-h-[18px] text-black-1"/>

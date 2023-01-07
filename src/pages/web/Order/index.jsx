@@ -67,13 +67,13 @@ function Order() {
                                     </Link>
                                 </div>
                             </div>
-                            <div className="mb-5 shadow-md rounded-[5px] bg-[#eaeaea] py-3 px-3">
+                            <div className="mb-5 shadow-md rounded-[5px] bg-[#fff] py-3 px-3">
                                 <div
                                     className="flex justify-between items-center gap-5 font-medium text-md text-black-1">
                                     <button>
                                         <Icon.UilSearch/>
                                     </button>
-                                    <input type="text" className="bg-[#eaeaea] w-full outline-none text-black-1"
+                                    <input type="text" className="bg-[#fff] w-full outline-none text-black-1"
                                            placeholder="Bạn có thể tìm kiếm theo tên Shop, ID đơn hàng hoặc Tên sản phẩm"/>
                                 </div>
                             </div>

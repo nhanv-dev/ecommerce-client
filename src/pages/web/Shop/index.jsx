@@ -168,7 +168,7 @@ function Shop() {
                         <Route path="bo-suu-tap" element={<Collection shop={shop}/>}/>
                         <Route path="thong-tin" element={<Info shop={shop}/>}/>
                         <Route path="danh-gia-phan-hoi" element={<Review shop={shop}/>}/>
-                        <Route path="" element={<Home vouchers={vouchers}/>}/>
+                        <Route path="" element={<Product shop={shop}/>}/>
                     </Routes>
                 </div>
             </Helmet>
