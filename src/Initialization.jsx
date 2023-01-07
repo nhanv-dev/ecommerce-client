@@ -2,7 +2,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {protectedRequest} from "./utils/requestMethods";
 import * as types from "./redux/constants/ActionTypes";
-import {CHECK_TOKEN_FAILED} from "./redux/constants/ActionTypes";
 
 function Initialization({children}) {
     const dispatch = useDispatch();
