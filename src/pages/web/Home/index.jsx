@@ -21,10 +21,10 @@ function Home() {
     return (
         <UserLayout>
             <Helmet title="Trang chủ">
-                <div className="container">
-                    <div className="bg-white my-2">
+                <div className="container py-8">
+                    <div className="bg-white mb-5 rounded-[5px]">
                         <div className="border-b flex border-border">
-                            <div className="ml-6 p-2 text-primary border-b-4 border-primary">
+                            <div className="ml-6 p-2 text-primary border-b-4 border-primary font-semibold">
                                Sản phẩm mới nhất
                             </div>
                         </div>

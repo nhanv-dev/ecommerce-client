@@ -13,16 +13,10 @@ function Statistical() {
                         <div className="max-w-[1000px] w-[1000px]">
                             <BarChart/>
                         </div>
-                    </div>
-                    <div className="flex gap-6">
-                        <div className="basis-4/12">
-                            <PieChart/>
-                        </div>
-                        <div className="basis-4/12">
-                            <PieChart/>
-                        </div>
-                        <div className="basis-4/12">
-                            <PieChart/>
+                        <div className="flex-1">
+                            <div className="">
+                                <PieChart/>
+                            </div>
                         </div>
                     </div>
                 </div>

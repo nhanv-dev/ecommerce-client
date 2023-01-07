@@ -4,7 +4,7 @@ function Home(props) {
     return (
         <>
             <div className="container pb-6">
-                <Voucher vouchers={props.vouchers}/>
+
             </div>
         </>
     );

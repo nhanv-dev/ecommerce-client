@@ -21,9 +21,12 @@ function ProductCard({product}) {
                 </p>
                 <div className="flex items-center justify-start gap-3">
                     <p className="text-base font-bold text-primary-hover">{formatCurrency(product.basePrice * (100 - product.discountPercent) / 100)}</p>
-                    <p className="text-primary-hover font-bold text-sm relative top-[1px]">
-                        -{product.discountPercent}%
-                    </p>
+
+                    {product.discountPercent > 0 &&
+                        <p className="bg-primary-hover text-white px-3 py-0.5 rounded-[5px] font-bold text-sm relative top-[1px]">
+                            -{product.discountPercent}%
+                        </p>
+                    }
                 </div>
                 <div className="flex items-center justify-start gap-1.5 flex-wrap">
                     {product.tags.slice(0, 1).map((tag, index) => {
