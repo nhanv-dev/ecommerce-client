@@ -1,14 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../../redux/actions/userActions";
 import {Link, useNavigate} from "react-router-dom";
 import * as Icon from '@iconscout/react-unicons';
 import Logo from "../../../assets/img/logo-white.svg";
 import Helmet from "../../../components/web/Helmet";
-import Header from "./Header";
-import Footer from "../../../components/web/Footer";
-import facebook from "../../../assets/img/facebook.png"
-import google from "../../../assets/img/google.png"
 
 
 function Login() {
@@ -37,15 +33,17 @@ function Login() {
 
     return (
         <Helmet title="Đăng nhập - Shopio.">
-            <div className="h-[100vh] bg-cover"
-                 style={{backgroundImage: `url(https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-038.jpg)`}}>
-                <div className="flex items-center justify-center rounded-2xl shadow bg-cover bg-left-bottom p-8">
-                    <div className="basis-2/3 my-8 flex items-center">
+            <div
+                className="min-h-[100vh] bg-cover bg-[#f4f4f4] bg-center relative after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after:bg-[#000] after:z-10 after:opacity-40"
+                style={{backgroundImage: `url(https://auth.services.adobe.com/img/canvas/Fotolia_134829797_XL.jpg)`}}>
+                <div
+                    className="flex items-center justify-center relative z-20 min-h-[100vh]">
+                    <div className="basis-2/3 flex items-center">
                         <div className="basis-1/2">
                             <Link to="/" className="block w-[200px] text-center mx-auto mb-6">
                                 <img src={Logo} alt="logo" className="w-full"/>
                             </Link>
-                            <p className="font-semibold text-white text-xl">
+                            <p className="text-center font-semibold text-white text-xl">
                                 Chợ trực tuyến uy tín nhất thị trường Việt Nam.
                             </p>
                         </div>
@@ -66,7 +64,8 @@ function Login() {
                                         <span className="sr-only">Error icon</span>
                                     </div>
 
-                                    <div className="text-tiny text-black-1 font-medium">Sai tên đăng nhập hoặc mật khẩu
+                                    <div className="text-tiny text-black-1 font-medium">Sai tên đăng nhập hoặc mật
+                                        khẩu
                                     </div>
                                 </div>
                                 <form className="" onSubmit={handleLogin}>

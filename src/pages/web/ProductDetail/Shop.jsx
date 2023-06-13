@@ -1,13 +1,12 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {Link} from "react-router-dom";
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {Navigation, Thumbs} from 'swiper';
 import * as SolidIcon from '@iconscout/react-unicons-solid';
 import * as Icon from '@iconscout/react-unicons';
 import SmallProductCard from "../../../components/web/SmallProductCard";
-import shopExample from "../../../common/ShopExample";
 import DefaultShopImage from '../../../assets/img/default-shop.png';
-import {formatBetweenDate, formatSmallDate, formatToK} from "../../../utils/format";
+import {formatBetweenDate, formatToK} from "../../../utils/format";
 
 function Shop({shop, relatedProducts}) {
 
