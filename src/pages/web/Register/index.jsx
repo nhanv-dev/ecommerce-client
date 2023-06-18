@@ -1,6 +1,5 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {register} from "../../../redux/actions/userActions";
 import {Link, useNavigate} from "react-router-dom";
 import * as Icon from '@iconscout/react-unicons';
 import Logo from "../../../assets/img/logo.svg";

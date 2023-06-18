@@ -196,8 +196,7 @@ function Product() {
                 </div>
             </Helmet>
         </SellerLayout>
-    )
-        ;
+    );
 }
 
 
