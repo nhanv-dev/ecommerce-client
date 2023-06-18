@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // export const baseURL = "http://localhost:8080/api/v1/";
-export const baseURL = "https://ecommerce-server-lake.vercel.app/api/v1/";
+export const baseURL = "https://ecommerce-server-nu.vercel.app/api/v1/";
 
 export const publicRequest = axios.create({
     baseURL: baseURL,
